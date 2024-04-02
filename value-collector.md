@@ -1,8 +1,9 @@
 ---
 title: Collect values from URL, HTML etc.
 layout: default
-nav_order: 4.5
-has_children: true
+nav_order: 5
+has_children: false
+# nav_exclude: true
 ---
 
 # Collect values and send them to backend.
@@ -61,78 +62,93 @@ it("should extract by selector", () => {
 });
 ```
 
-## :: extract values from url
+## :: add constant value
+
+```html
+<a
+  href="../pjax-link-1.html"
+  ph-pjax-link
+  ph-params="a::1,b::2,c::hello"
+  id="to-pjax-link-1"
+>
+  To pjax-link-1</a
+>
+```
+
+## : extract values from url
 
 ```javascript
-  it('should parse from query', () => {
-    tutil.setpathname('/hello/55/x')
-    tutil.setquery("id=123&dataid=456&html=hello%20world")
-    let div = document.createElement('div')
-    // zero based path parts
-    div.setAttribute("ph-params", "id:/1/,html,dataid1:dataid");
-    document.body.appendChild(div)
-    let kvs = htmlUtil.getParams(div);
-    expect(kvs).toEqual({ id: '55', html: 'hello world', dataid1: '456' })
+it("should parse from query", () => {
+  tutil.setpathname("/hello/55/x");
+  tutil.setquery("id=123&dataid=456&html=hello%20world");
+  let div = document.createElement("div");
+  // zero based path parts
+  div.setAttribute("ph-params", "id:/1/,html,dataid1:dataid");
+  document.body.appendChild(div);
+  let kvs = htmlUtil.getParams(div);
+  expect(kvs).toEqual({ id: "55", html: "hello world", dataid1: "456" });
 
-    div = document.createElement('div')
-    // there's no 10th part.
-    div.setAttribute("ph-params", "id:/10/");
-    document.body.appendChild(div)
-    kvs = htmlUtil.getParams(div);
-    expect(kvs).toStrictEqual({})
+  div = document.createElement("div");
+  // there's no 10th part.
+  div.setAttribute("ph-params", "id:/10/");
+  document.body.appendChild(div);
+  kvs = htmlUtil.getParams(div);
+  expect(kvs).toStrictEqual({});
 
-    div = document.createElement('div')
-    div.setAttribute("ph-params", "id:/-1/");
-    document.body.appendChild(div)
-    kvs = htmlUtil.getParams(div);
-    expect(kvs).toStrictEqual({})
+  div = document.createElement("div");
+  div.setAttribute("ph-params", "id:/-1/");
+  document.body.appendChild(div);
+  kvs = htmlUtil.getParams(div);
+  expect(kvs).toStrictEqual({});
 
-    div = document.createElement('div')
-    div.setAttribute("ph-params", "id:/abc/");
-    document.body.appendChild(div)
-    kvs = htmlUtil.getParams(div);
-    expect(kvs).toStrictEqual({})
+  div = document.createElement("div");
+  div.setAttribute("ph-params", "id:/abc/");
+  document.body.appendChild(div);
+  kvs = htmlUtil.getParams(div);
+  expect(kvs).toStrictEqual({});
 
-    div = document.createElement('div')
-    div.setAttribute("ph-params", "id://");
-    document.body.appendChild(div)
-    kvs = htmlUtil.getParams(div);
-    expect(kvs).toStrictEqual({})
-  })
+  div = document.createElement("div");
+  div.setAttribute("ph-params", "id://");
+  document.body.appendChild(div);
+  kvs = htmlUtil.getParams(div);
+  expect(kvs).toStrictEqual({});
+});
 ```
 
 ## get all query
 
 ```javascript
-  it('should extract by selector, keep current query.', () => {
-    // create an html element with tag and attributes
-    tutil.setquery("id=123&dataid=456&html=hello%20world")
-    let div = document.createElement('div')
-    div.setAttribute("ph-params", "*:*");
-    document.body.appendChild(div)
-    let kvs = htmlUtil.getParams(div);
+it("should extract by selector, keep current query.", () => {
+  // create an html element with tag and attributes
+  tutil.setquery("id=123&dataid=456&html=hello%20world");
+  let div = document.createElement("div");
+  div.setAttribute("ph-params", "*:*");
+  document.body.appendChild(div);
+  let kvs = htmlUtil.getParams(div);
 
-    expect(kvs).toStrictEqual({ id: '123', dataid: '456', html: 'hello world' })
+  expect(kvs).toStrictEqual({ id: "123", dataid: "456", html: "hello world" });
 
-    div = document.createElement('div')
-    div.setAttribute("ph-params", "*:*,id::321");
-    document.body.appendChild(div)
-    kvs = htmlUtil.getParams(div);
+  div = document.createElement("div");
+  div.setAttribute("ph-params", "*:*,id::321");
+  document.body.appendChild(div);
+  kvs = htmlUtil.getParams(div);
 
-    expect(kvs).toStrictEqual({ id: '321', dataid: '456', html: 'hello world' })
+  expect(kvs).toStrictEqual({ id: "321", dataid: "456", html: "hello world" });
 
-    div = document.createElement('div')
-    div.setAttribute("ph-params", "all:*json");
-    document.body.appendChild(div)
-    kvs = htmlUtil.getParams(div);
+  div = document.createElement("div");
+  div.setAttribute("ph-params", "all:*json");
+  document.body.appendChild(div);
+  kvs = htmlUtil.getParams(div);
 
-    expect(kvs).toStrictEqual({ all: JSON.stringify({ id: '123', dataid: '456', html: 'hello world' }) })
+  expect(kvs).toStrictEqual({
+    all: JSON.stringify({ id: "123", dataid: "456", html: "hello world" }),
+  });
 
-    div = document.createElement('div')
-    div.setAttribute("ph-params", "all:*");
-    document.body.appendChild(div)
-    kvs = htmlUtil.getParams(div);
+  div = document.createElement("div");
+  div.setAttribute("ph-params", "all:*");
+  document.body.appendChild(div);
+  kvs = htmlUtil.getParams(div);
 
-    expect(kvs).toStrictEqual({ all: "id=123&dataid=456&html=hello+world" })
-  })
+  expect(kvs).toStrictEqual({ all: "id=123&dataid=456&html=hello+world" });
+});
 ```

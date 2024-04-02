@@ -1,8 +1,8 @@
 ---
 title: Relative path explained
 layout: default
-nav_order: 4.5
-has_children: true
+nav_order: 10
+has_children: false
 ---
 
 # Relative path
@@ -48,7 +48,7 @@ it("should remove the last slash", () => {
   expect(url).toBe("/abc");
 });
 
-it("should ass the last slash", () => {
+it("should add the last slash", () => {
   tutil.setpathname("/abc"); // treat it as a directory
   const dataUrl = "./";
   const url = urlUtil.calUrl(dataUrl);
