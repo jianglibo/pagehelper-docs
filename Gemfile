@@ -2,7 +2,7 @@
 source 'https://rubygems.org'
 
 gem "jekyll", "~> 4.2"
+gem "just-the-docs"
 
 group :jekyll_plugins do
-  gem "just-the-docs"
 end
