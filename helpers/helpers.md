@@ -30,4 +30,4 @@ The following code will enhance the link by fetching the target page and replace
 
 ----
 
-[ph-link]: /helpers/
+[ph-link]: helpers/

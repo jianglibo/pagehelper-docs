@@ -5,5 +5,24 @@
   "main": "index.js",
   "repository": "https://github.com/jianglibo/pagehelper-docs.git",
   "author": "jianglibo <jianglibo@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "packageManager": "yarn@4.1.1",
+  "devDependencies": {
+    "semantic-release": "^23.0.6"
+  },
+  "release": {
+    "branches": [
+      "main"
+    ],
+    "plugins": [
+      [
+        "@semantic-release/github",
+        {
+          "assets": [
+            "dist/**"
+          ]
+        }
+      ]
+    ]
+  }
 }

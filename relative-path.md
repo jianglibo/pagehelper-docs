@@ -9,8 +9,8 @@ has_children: false
 
 To make relative path caculate unambiguously, follow strictly two rules.
 
-- think the current path as a directory, no matter it ends with slash or not.
-- the provided path ends with a slash the final path will end with a slash, vise versa.
+1. think the current path as a directory, no matter it ends with slash or not.
+2. the provided path ends with a slash the final path will end with a slash, vise versa.
 
 ## Example
 

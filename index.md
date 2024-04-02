@@ -1,5 +1,5 @@
 ---
-title: PageHelper document site
+title: Home
 layout: default
 nav_order: 1
 ---
