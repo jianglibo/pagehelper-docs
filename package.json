@@ -1,0 +1,9 @@
+{
+  "name": "pagehelper-docs",
+  "version": "1.0.0",
+  "description": "docs for pagehelper",
+  "main": "index.js",
+  "repository": "https://github.com/jianglibo/pagehelper-docs.git",
+  "author": "jianglibo <jianglibo@gmail.com>",
+  "license": "MIT"
+}
