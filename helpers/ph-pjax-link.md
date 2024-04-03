@@ -33,3 +33,7 @@ Convert the link to do a ajax fetch, then replace the content and pushstate.
   <span>Go</span>
 </button>
 ```
+
+{: .warning }
+The pjax won't execute the script tag inside the body, if you need the script to be executed, you should add `ph-execute-me` attribute to script tag.
+
