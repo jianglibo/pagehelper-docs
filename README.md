@@ -20,3 +20,7 @@ yarn set version stable
 
 bundle info --path just-the-docs
 
+
+## release
+
+bash release.sh
