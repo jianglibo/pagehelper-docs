@@ -4,15 +4,20 @@ layout: default
 nav_order: 1
 ---
 
-# A pagehelper make some things easier.
+# A Pagehelper.
 
-It's not a framework. It's a small tool.
+Pagehelper is a utility designed to make common processes simpler and more efficient in web page development.
+
+It's not a framework, just a tool.
 
 get started:
 
 ```html
 <script type="module">
-  import { PageHelper, FormEnricher } from "https://cdn.jsdelivr.net/gh/jianglibo/pagehelper-docs@latest/dist/bundle.min.es.js";
+  import {
+    PageHelper,
+    FormEnricher,
+  } from "https://cdn.jsdelivr.net/gh/jianglibo/pagehelper-docs@latest/dist/bundle.min.es.js";
   const pageHelper = new PageHelper({ debug: true }); // Cfg
   // pageHelper.disableAll().add(new FormEnricher()).enrich();
   pageHelper.enrich();
