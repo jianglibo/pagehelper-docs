@@ -19,5 +19,5 @@ cp -f ./dist/bundle.min.iife.js ../pagehelper-docs/dist/
 
 cd $originDir
 
-ls -l dist
+source secret.sh
 yarn semantic-release --no-ci

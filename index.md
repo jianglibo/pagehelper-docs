@@ -12,7 +12,7 @@ get started:
 
 ```html
 <script type="module">
-  import { PageHelper, FormEnricher } from "/dist/bundle.es.js";
+  import { PageHelper, FormEnricher } from "https://cdn.jsdelivr.net/gh/jianglibo/pagehelper-docs@latest/dist/bundle.min.es.js";
   const pageHelper = new PageHelper({ debug: true }); // Cfg
   // pageHelper.disableAll().add(new FormEnricher()).enrich();
   pageHelper.enrich();
