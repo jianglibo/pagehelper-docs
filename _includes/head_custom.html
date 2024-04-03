@@ -1,0 +1,8 @@
+<script type="module">
+	import {
+		PageHelper
+	} from "/dist/bundle.min.es.js";
+	const pageHelper = new PageHelper({ debug: true });
+	console.log(pageHelper.listBuiltins());
+	pageHelper.enrich();
+</script>

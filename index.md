@@ -50,3 +50,18 @@ add attributes to html tag:
   To pjax-link-1</a
 >
 ```
+
+
+
+<div class="code-example" markdown="1">
+<button type="button" name="button" class="btn" ph-pjax-link="./examples/ph-pjax-link-1/">Will load by pjax</button>
+
+</div>
+```html
+<button type="button" 
+name="button" 
+class="btn" 
+ph-pjax-link="./examples/ph-pjax-link-1/">
+  Will load by pjax
+</button>
+```

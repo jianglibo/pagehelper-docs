@@ -16,4 +16,7 @@ corepack enable
 asdf reshim nodejs
 yarn set version stable
 
-## 
+##  customize
+
+bundle info --path just-the-docs
+
