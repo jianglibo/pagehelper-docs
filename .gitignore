@@ -1,2 +1,3 @@
 _site/*
 .yarn
+**/node_modules
