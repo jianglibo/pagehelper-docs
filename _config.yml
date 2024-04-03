@@ -14,3 +14,8 @@ permalink: pretty
 
 aux_links:
   Lets-script: https://lets-script.com
+baseurl: /pagehelper-docs
+callouts:
+  warning:
+    title: Warning
+    color: red
