@@ -34,6 +34,33 @@ Convert the link to do a ajax fetch, then replace the content and pushstate.
 </button>
 ```
 
+## extra attributes for this helper:
+
+| name         | descriptio        | link |
+|:-------------|:------------------|------|
+| ph-params    | append query parameters to the url  | <a href="{{site.baseurl}}/value-collector/" ph-pjax-link>value collector</a>  |
+
+
+## Caveats
+
+
 {: .warning }
 The pjax won't execute the script tag inside the body, if you need the script to be executed, you should add `ph-execute-me` attribute to script tag.
+
+
+{: .warning }
+And the events listen on the `document.body` need to add again after page replace.
+
+There's an event be fired after replace:
+
+```typescript
+window.addEventListener('pjaxPageLoaded', e => {
+  if (this.cfg.debug) {
+    console.log('pjaxPageLoaded event from pjax:', e)
+  }
+  document.body.addEventListener('click', ee => {
+    // add your code here.
+  })
+})
+```
 
