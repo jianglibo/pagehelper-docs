@@ -10,35 +10,39 @@ parent: Helpers List
 
 It's just a link, you could add parameters easily.
 
+
+<div class="code-example" markdown="1">
+<span id="value-to-query">toServer</span>
+</div>
+```html
+<span id="value-to-query">toServer</span>
+```
+
+<script>
+  let vtq = document.getElementById('value-to-query');
+  let v = Math.floor(Math.random() * (100 - 1)) + 1;
+  vtq.innerHTML = 'toServer-' + v
+</script>
+
+<div class="code-example" markdown="1">
+<button
+type="button"
+ph-mask="2"
+class="btn btn-sm"
+ph-params="selectedIds:::#value-to-query/innerHTML"
+ph-link="./">
+ <span>Add Query</span>
+</button>
+</div>
+
 ```html
 <button
   type="button"
   ph-mask="2"
   class="btn btn-sm"
-  ph-params="selectedIds:::__selected_ids__/apikey"
-  ph-link="./edit"
+  ph-params="selectedIds:::#value-to-query/innerHTML"
+  ph-link="./"
 >
   <span>Edit</span>
 </button>
-```
-
-when clicked will visit:
-
-```
-/edit?selectedIds=1,2,3
-```
-
-the default id separator is ',', but you could customize it.
-
-```typescript
-export type Cfg = {
-  selectedIdSeparator?: string; // default: ','
-  selectedIdHolder?: SelectedIdHolder;
-  debug?: boolean;
-  disable_pjax?: boolean;
-  rowSelector?: {
-    attr?: string;
-    ptn?: string;
-  };
-}
 ```
