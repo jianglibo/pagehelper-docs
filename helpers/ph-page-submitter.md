@@ -20,7 +20,7 @@ When the value of an element changed, will summit the current page with changed 
 
 ```html
 <label>Type to search
-<input type="search" name="search" ph-page-submitter="pjax" ph-config="delay::1500" />
+<input type="search" name="search" ph-page-submitter="pjax" ph-config="delay::1500" ph-sync />
 </label>
 ```
 

@@ -108,7 +108,7 @@ Even if remove the `ph-validate` attribute, the server side could hanle the vali
 <form
 ph-form="../../fixtures/ph-form"
 ph-method="post"
-  ph-confirm='{ "title": "Do you want to save the changes?", "showCancelButton": true, "confirmButtonText": "Save" }'
+  ph-confirm='{"title": "Do you want to save the changes?", "showCancelButton": true, "confirmButtonText": "Save"}'
 >
 <label>
 email:
@@ -220,14 +220,13 @@ the returned data. it locates the field by name.
 
 ## extra attributes for this helper:
 
-| name                 | descriptio                                | link                                                                         |
-| :------------------- | :---------------------------------------- | ---------------------------------------------------------------------------- |
-| ph-params            | append extra value to form submit         | <a href="{{site.baseurl}}/value-collector/" ph-pjax-link>value collector</a> |
-| ph-validate          | validate the field. number::min:3,max:365 | syntax follow [Yup](https://github.com/jquense/yup)                          |
-| ph-error-message     | The error message to display              |                                                                              |
-| ph-error-message-for | the field name                            |                                                                              |
-| ph-error-css         | The css name to add when validate failed. |                                                                              |
-| ph-error-css-for     | the field name                            |                                                                              |
-| ph-config            | dataType::origin, dataType::json(default) |                                                                              |
-| ph-confirm           | confirm before submit. If passin a Json value, it will be treat as Swal                     |                                                                              |
-
+| name                 | descriptio                                                              | link                                                                         |
+| :------------------- | :---------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| ph-params            | append extra value to form submit                                       | <a href="{{site.baseurl}}/value-collector/" ph-pjax-link>value collector</a> |
+| ph-validate          | validate the field. number::min:3,max:365                               | syntax follow [Yup](https://github.com/jquense/yup)                          |
+| ph-error-message     | The error message to display                                            |                                                                              |
+| ph-error-message-for | the field name                                                          |                                                                              |
+| ph-error-css         | The css name to add when validate failed.                               |                                                                              |
+| ph-error-css-for     | the field name                                                          |                                                                              |
+| ph-config            | dataType::origin, dataType::json(default)                               |                                                                              |
+| ph-confirm           | confirm before submit. If passin a Json value, it will be treat as Swal |                                                                              |
