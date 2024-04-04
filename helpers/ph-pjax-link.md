@@ -36,17 +36,14 @@ Convert the link to do a ajax fetch, then replace the content and pushstate.
 
 ## extra attributes for this helper:
 
-| name         | descriptio        | link |
-|:-------------|:------------------|------|
-| ph-params    | append query parameters to the url  | <a href="{{site.baseurl}}/value-collector/" ph-pjax-link>value collector</a>  |
-
+| name      | descriptio                         | link                                                                         |
+| :-------- | :--------------------------------- | ---------------------------------------------------------------------------- |
+| ph-params | append query parameters to the url | <a href="{{site.baseurl}}/value-collector/" ph-pjax-link>value collector</a> |
 
 ## Caveats
 
-
 {: .warning }
 The pjax won't execute the script tag inside the body, if you need the script to be executed, you should add `ph-execute-me` attribute to script tag.
-
 
 {: .warning }
 And the events listen on the `document.body` need to add again after page replace.
@@ -54,13 +51,47 @@ And the events listen on the `document.body` need to add again after page replac
 There's an event be fired after replace:
 
 ```typescript
-window.addEventListener('pjaxPageLoaded', e => {
+window.addEventListener("pjaxPageLoaded", (e) => {
   if (this.cfg.debug) {
-    console.log('pjaxPageLoaded event from pjax:', e)
+    console.log("pjaxPageLoaded event from pjax:", e);
   }
-  document.body.addEventListener('click', ee => {
+  document.body.addEventListener("click", (ee) => {
     // add your code here.
-  })
-})
+  });
+});
 ```
 
+## Execute scripts in the header
+
+Sometimes you cannot control or it's not easy to controll the source of the page, like this Jekyll template, there's flag in the config object.
+
+```typescript
+export type Cfg = {
+  selectedIdSeparator?: string;
+  selectedIdHolder?: SelectedIdHolder;
+  debug?: boolean;
+  disable_pjax?: boolean;
+  scripts_outof_body_patterns?: RegExp[];
+  execute_scripts_outof_body?: boolean;
+  rowSelector?: {
+    attr?: string;
+    ptn?: string;
+  };
+};
+```
+
+## The config of this site
+
+The config bellow will execute these two script tag after Ajax replace the page.
+
+```html
+<script type="module">
+  import { PageHelper } from "{{ site.baseurl }}/dist/bundle.min.es.js";
+  const pageHelper = new PageHelper({
+    debug: true,
+    scripts_outof_body_patterns: [/lunr\.min\.js/, /just-the-docs\.js/],
+  });
+  console.log(pageHelper.listBuiltins());
+  pageHelper.enrich();
+</script>
+```

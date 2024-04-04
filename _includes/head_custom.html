@@ -4,7 +4,7 @@
 	import {
 		PageHelper
 	} from "{{ site.baseurl }}/dist/bundle.min.es.js";
-	const pageHelper = new PageHelper({ debug: true });
+	const pageHelper = new PageHelper({ debug: false, scripts_outof_body_patterns: [/lunr\.min\.js/, /just-the-docs\.js/] });
 	console.log(pageHelper.listBuiltins());
 	pageHelper.enrich();
 </script>

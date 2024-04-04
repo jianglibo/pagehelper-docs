@@ -11,24 +11,14 @@ By adding custom attributes to the HTML tag give the element extra functions.
 
 The following code will enhance the link by fetching the target page and replace the page then push state.
 
-```html
-<a
-  href="/new-page"
+<div class="code-example" markdown="1">
+<a href="./"
   ph-pjax-link
-  ph-params="id:idInUrl"
-  >ToNewPage</a
->
+  ph-params="id:idInUrl">ToNewPage</a>
+</div>
+```html
+<a href="./"
+  ph-pjax-link
+  ph-params="id:idInUrl">
+  ToNewPage</a>
 ```
-## List of helpers
-
-* [ph-link]
-* [ph-pjax-link]
-* [ph-ajax]
-* [ph-form]
-* [ph-page-submitter]
-* [ph-row-selector]
-
-----
-
-[ph-link]: ../ph-link/
-[ph-pjax-link]: ../ph-pjax-link/
