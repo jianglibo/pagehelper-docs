@@ -21,3 +21,9 @@ callouts:
   warning:
     title: Warning
     color: red
+  note:
+    title: Note
+    color: purple
+
+# footer_content:
+#   <a href="https://lets-script.com">Lets-script</a> &copy; 2021

@@ -12,6 +12,22 @@ To make relative path caculate unambiguously, follow strictly two rules.
 1. think the current path as a directory, no matter it ends with slash or not.
 2. the provided path ends with a slash the final path will end with a slash, vise versa.
 
+## Explain
+
+**Think `/one/two/` and `/one/two` as the same. Both are `/one/two/`.**
+
+{: .note }
+> `..` will be `/one`
+>
+> `../` will be `/one/`
+>
+> `.` will be `/one/two`
+>
+> `./` will be `/one/two/`
+
+
+
+
 ## Example
 
 if current path is `/abc/`.

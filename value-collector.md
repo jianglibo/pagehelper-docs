@@ -1,5 +1,5 @@
 ---
-title: Collect values from URL, HTML etc.
+title: Collect values
 layout: default
 nav_order: 5
 has_children: false
@@ -62,6 +62,14 @@ it("should extract by selector", () => {
 });
 ```
 
+{: .note }
+> Special cases:
+>
+> `__selected_ids__/user` will get current selected ids. see: [ph-row-selector](/helpers/ph-row-selector/) 
+>
+> `this/attribute/href` will get the attribute value.
+
+
 ## :: add constant value
 
 ```html
@@ -115,6 +123,14 @@ it("should parse from query", () => {
 });
 ```
 
+{: .note }
+> Special cases:
+>
+> `id:idInUrl` will get the idInUrl and as id to new url parameter.
+>
+> `id:/1/` will get the first part of the pathname.
+
+
 ## get all query
 
 ```javascript
@@ -152,3 +168,12 @@ it("should extract by selector, keep current query.", () => {
   expect(kvs).toStrictEqual({ all: "id=123&dataid=456&html=hello+world" });
 });
 ```
+
+{: .note }
+> Special cases:
+>
+> `*:*,page::3` will include all the current query string in the url, the page will override if exists.
+>
+> `all:*json` will add queries to all as a json string.
+>
+> `all:*` will add query string to all.
