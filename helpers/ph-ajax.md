@@ -23,7 +23,8 @@ Do ajax work.
 <input type="text" name="name" ph-group-id="group-1" ph-on-group-response="value" ph-data-path="data.__changed_value" />
 <select
   ph-evtname="change"
-  ph-ajax="../../fixtures/group-changed?want=map"
+  ph-ajax="../../fixtures/group-changed"
+  ph-params="want::map"
   ph-group-id="group-1"
 >
   <option value="1">one</option>
@@ -41,7 +42,8 @@ Do ajax work.
   ph-data-path="data.__changed_value" />
 <select
   ph-evtname="change"
-  ph-ajax="../../fixtures/group-changed?want=map"
+  ph-ajax="../../fixtures/group-changed"
+  ph-params="want::map"
   ph-group-id="group-1"
 >
   <option value="1">one</option>
@@ -68,7 +70,8 @@ Do ajax work.
 
 <select
   ph-evtname="change"
-  ph-ajax="../../fixtures/group-changed?want=list"
+  ph-ajax="../../fixtures/group-changed"
+  ph-params="want::list"
   ph-group-id="group-1"
 >
   <option value="1">one</option>
@@ -93,7 +96,8 @@ Do ajax work.
 
 <select
   ph-evtname="change"
-  ph-ajax="../../fixtures/group-changed?want=list"
+  ph-ajax="../../fixtures/group-changed"
+  ph-params="want::list"
   ph-group-id="group-1"
 >
   <option value="1">one</option>

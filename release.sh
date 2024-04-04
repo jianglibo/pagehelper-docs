@@ -1,7 +1,5 @@
 #!/bin/bash
 
-pwd
-
 originDir=$(pwd)
 cd "$(dirname -- "${BASH_SOURCE}")"
 
@@ -19,5 +17,8 @@ cp -f ./dist/bundle.min.iife.js ../pagehelper-docs/dist/
 
 cd $originDir
 
-source secret.sh
-yarn semantic-release --no-ci
+# if parameter 1 is equal to 'do', then do the following
+if [[ "$1" == 'do' ]];then
+  source secret.sh
+  yarn semantic-release --no-ci
+fi
