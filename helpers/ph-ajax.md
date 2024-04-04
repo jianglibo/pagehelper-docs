@@ -10,6 +10,12 @@ parent: Helpers List
 
 Do ajax work.
 
+{: .important }
+> When invoking the ajax, if the source element has an attribute `ph-group-id`, it will send to the server with the header name: `Ph-Group-Id`, your server side code should echo the value. It's easy to write a fiter for it.
+>
+> When server response with data and an element with a `ph-on-group-response` will react to response.
+
+
 ## change group value
 
 <div class="code-example" markdown="1">
