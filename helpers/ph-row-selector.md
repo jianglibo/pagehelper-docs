@@ -83,7 +83,7 @@ this.idRegex = new RegExp(
     </div>
     <div>
         <span>Items per page:</span>
-        <select ph-page-submitter="pjax" name="size" ph-sync="5">
+        <select ph-page-submitter="pjax" name="size" ph-qs-to-value="size:5">
             <option value="5">5</option>
             <option value="10">10</option>
             <option value="20">20</option>
@@ -98,25 +98,45 @@ this.idRegex = new RegExp(
   ph-selector-listener="todo"
   ph-config="toggle::disabled"
 >
-    <button type="button" ph-mask="7" class="btn"
-     ph-pjax-link="."
-     ph-params="ids:::__selected_ids__/todo">
-     New</button>
-    <button type="button" ph-mask="2" class="btn"
-     ph-pjax-link="."
-     ph-params="ids:::__selected_ids__/todo">
-    Edit</button>
-    <button type="button" ph-mask="6" class="btn"
-     ph-ajax="../../fixtures/todo"
-     ph-method="delete"
-     ph-params="ids:::__selected_ids__/todo">
-    Delete</button>
+  <button
+    type="button"
+    ph-mask="7"
+    class="btn"
+    ph-pjax-link="."
+    ph-params="ids:::__selected_ids__/todo"
+  >
+    New
+  </button>
+  <button
+    type="button"
+    ph-mask="2"
+    class="btn"
+    ph-pjax-link="."
+    ph-params="ids:::__selected_ids__/todo"
+  >
+    Edit
+  </button>
+  <button
+    type="button"
+    ph-mask="6"
+    class="btn"
+    ph-ajax="../../fixtures/todo"
+    ph-method="delete"
+    ph-params="ids:::__selected_ids__/todo"
+  >
+    Delete
+  </button>
 </div>
 
 <table>
   <thead>
     <tr>
-      <th> <input type="checkbox" ph-row-selector-all="todo"/> </th>
+      <th>
+        <input
+          type="checkbox"
+          ph-row-selector-all="todo"
+        />
+      </th>
       <th>ID</th>
       <th>Task</th>
       <th>Due Date</th>
@@ -140,23 +160,45 @@ this.idRegex = new RegExp(
   </tbody>
 </table>
 <div class="pagination">
-    <div>
+  <div>
     <button>&laquo; Prev</button>
-    <button class="active" ph-pjax-link="./" ph-params="*:*,page::1" ph-qs-to-css="page:1,innerHTML,active">1</button>
-    <button ph-pjax-link="./" ph-params="*:*,page::2" ph-qs-to-css="page:1,innerHTML,active">2</button>
-    <button ph-pjax-link="./" ph-params="*:*,page::3" ph-qs-to-css="page:1,innerHTML,active">3</button>
+    <button
+      class="active"
+      ph-pjax-link="./"
+      ph-params="*:*,page::1"
+      ph-qs-to-css="page:1,innerHTML,active"
+    >
+      1
+    </button>
+    <button
+      ph-pjax-link="./"
+      ph-params="*:*,page::2"
+      ph-qs-to-css="page:1,innerHTML,active"
+    >
+      2
+    </button>
+    <button
+      ph-pjax-link="./"
+      ph-params="*:*,page::3"
+      ph-qs-to-css="page:1,innerHTML,active"
+    >
+      3
+    </button>
     <button>Next &raquo;</button>
-    </div>
-    <div>
-        <span>Items per page:</span>
-        <select ph-page-submitter="pjax" name="size" ph-sync="5">
-            <option value="5">5</option>
-            <option value="10">10</option>
-            <option value="20">20</option>
-        </select>
-    </div>
+  </div>
+  <div>
+    <span>Items per page:</span>
+    <select
+      ph-page-submitter="pjax"
+      name="size"
+      ph-qs-to-value="size:5"
+    >
+      <option value="5">5</option>
+      <option value="10">10</option>
+      <option value="20">20</option>
+    </select>
+  </div>
 </div>
-
 ```
 
 How `ph-selector-listener` react to the selection change.
@@ -172,29 +214,29 @@ When delete button clicked, the Ajax reques will add a header named `Ph-Selector
 
 ```json
 {
-    "data": [
-        {
-            "action": "TOAST",
-            "params": {
-                "toast": {
-                    "icon": "success",
-                    "title": "Deleted.",
-                    "timer": 3000
-                }
-            }
-        },
-        {
-            "action": "DELETE_ROWS",
-            "params": {
-                "ids": [
-                    {
-                        "id": 694,
-                        "name": "todo"
-                    }
-                ]
-            }
+  "data": [
+    {
+      "action": "TOAST",
+      "params": {
+        "toast": {
+          "icon": "success",
+          "title": "Deleted.",
+          "timer": 3000
         }
-    ]
+      }
+    },
+    {
+      "action": "DELETE_ROWS",
+      "params": {
+        "ids": [
+          {
+            "id": 694,
+            "name": "todo"
+          }
+        ]
+      }
+    }
+  ]
 }
 ```
 
@@ -203,28 +245,51 @@ When delete button clicked, the Ajax reques will add a header named `Ph-Selector
 by `ph-pjax-link`, the page number usually created at server side.
 
 ```html
-    <div>
-    <button>&laquo; Prev</button>
-    <button class="active" ph-pjax-link="." ph-params="*:*,page::1">1</button>
-    <button ph-pjax-link="." ph-params="*:*,page::2">2</button>
-    <button ph-pjax-link="." ph-params="*:*,page::3">3</button>
-    <button>Next &raquo;</button>
-    </div>
+<div>
+  <button>&laquo; Prev</button>
+  <button
+    class="active"
+    ph-pjax-link="."
+    ph-params="*:*,page::1"
+  >
+    1
+  </button>
+  <button
+    ph-pjax-link="."
+    ph-params="*:*,page::2"
+  >
+    2
+  </button>
+  <button
+    ph-pjax-link="."
+    ph-params="*:*,page::3"
+  >
+    3
+  </button>
+  <button>Next &raquo;</button>
+</div>
 ```
 
 If you prefer `ph-ajax`, using `ph-groupd-id` to link the paginition and the table, when json data return it will replace the content.
 
 the return data shape doesn't matter, it's better to mustache friendly.
 
-
 ```html
-<table ph-group-id="paginition-table" ph-on-group-response="innerHTML">
+<table
+  ph-group-id="paginition-table"
+  ph-on-group-response="innerHTML"
+>
   <template>
     <!-- using mustache template to recreate the table content.  -->
   </template>
-  <thead>
-  </thead>
+  <thead></thead>
 </table>
 
-<button ph-pjax-link="." ph-params="*:*,page::2" ph-group-id="paginition-table">2</button>
+<button
+  ph-pjax-link="."
+  ph-params="*:*,page::2"
+  ph-group-id="paginition-table"
+>
+  2
+</button>
 ```
