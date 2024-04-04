@@ -76,14 +76,14 @@ this.idRegex = new RegExp(
 <div class="pagination">
     <div>
     <button>&laquo; Prev</button>
-    <button class="active" ph-pjax-link="." ph-params="*:*,page::1">1</button>
-    <button ph-pjax-link="." ph-params="*:*,page::2">2</button>
-    <button ph-pjax-link="." ph-params="*:*,page::3">3</button>
+    <button class="active" ph-pjax-link="./" ph-params="*:*,page::1" ph-qs-to-css="page:1,innerHTML,active">1</button>
+    <button ph-pjax-link="./" ph-params="*:*,page::2" ph-qs-to-css="page:1,innerHTML,active">2</button>
+    <button ph-pjax-link="./" ph-params="*:*,page::3" ph-qs-to-css="page:1,innerHTML,active">3</button>
     <button>Next &raquo;</button>
     </div>
     <div>
         <span>Items per page:</span>
-        <select ph-page-submitter="pjax" name="size">
+        <select ph-page-submitter="pjax" name="size" ph-sync="5">
             <option value="5">5</option>
             <option value="10">10</option>
             <option value="20">20</option>
@@ -139,6 +139,24 @@ this.idRegex = new RegExp(
     </tr>
   </tbody>
 </table>
+<div class="pagination">
+    <div>
+    <button>&laquo; Prev</button>
+    <button class="active" ph-pjax-link="./" ph-params="*:*,page::1" ph-qs-to-css="page:1,innerHTML,active">1</button>
+    <button ph-pjax-link="./" ph-params="*:*,page::2" ph-qs-to-css="page:1,innerHTML,active">2</button>
+    <button ph-pjax-link="./" ph-params="*:*,page::3" ph-qs-to-css="page:1,innerHTML,active">3</button>
+    <button>Next &raquo;</button>
+    </div>
+    <div>
+        <span>Items per page:</span>
+        <select ph-page-submitter="pjax" name="size" ph-sync="5">
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="20">20</option>
+        </select>
+    </div>
+</div>
+
 ```
 
 How `ph-selector-listener` react to the selection change.
