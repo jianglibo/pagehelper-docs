@@ -24,3 +24,7 @@ bundle info --path just-the-docs
 ## release
 
 bash release.sh
+
+## cloudflare
+
+be aware of the `baseurl`.
