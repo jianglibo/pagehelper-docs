@@ -1,0 +1,21 @@
+session_name: pagehelper-docs
+windows:
+  - window_name: rollup-dev
+    layout: main-horizontal
+    focus: true
+    shell_command_before:
+      - cd ~/pagehelper-docs/
+    optons:
+      main-pane-height: 30
+    panes:
+      # - shell_command:
+      #     - yarn test --watch
+      - shell_command:
+          - yarn dev
+      # - shell_command:
+      #     - live-server ./public
+      - shell_command:
+          - yarn sr
+      - shell_command:
+          - bundle exec jekyll serve --livereload
+      - pane

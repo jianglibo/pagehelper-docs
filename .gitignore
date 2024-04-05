@@ -2,3 +2,5 @@ _site/*
 .yarn
 **/node_modules
 secret.sh
+public/*
+src/*
