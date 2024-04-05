@@ -13,7 +13,7 @@ Submit a form and add extra functions.
 ## client side validate
 
 <div class="code-example" markdown="1">
-<form
+<form class="ph"
 ph-form="../../fixtures/ph-form"
 ph-method="post"
 ph-confirm
@@ -28,6 +28,7 @@ ph-error-css-for="email"
 />
 </label>
 <span
+class="error-message"
 ph-error-message="must be a valid email."
 ph-error-message-for="email"
 ></span>
@@ -42,6 +43,7 @@ ph-error-css-for="password"
 />
 </label>
 <span
+class="error-message"
 ph-error-message="at least 6 characters"
 ph-error-message-for="password"
 ></span>
@@ -56,6 +58,7 @@ ph-error-message-for="password"
 
 ```html
 <form
+  class="ph"
   ph-form="../../fixtures/ph-form"
   ph-method="post"
   ph-confirm
@@ -71,6 +74,7 @@ ph-error-message-for="password"
     />
   </label>
   <span
+    class="error-message"
     ph-error-message="must be a valid email."
     ph-error-message-for="email"
   ></span>
@@ -86,6 +90,7 @@ ph-error-message-for="password"
     />
   </label>
   <span
+    class="error-message"
     ph-error-message="at least 6 characters"
     ph-error-message-for="password"
   ></span>
@@ -105,7 +110,7 @@ ph-error-message-for="password"
 Even if remove the `ph-validate` attribute, the server side could hanle the validation too, but need return the data in specific format.
 
 <div class="code-example" markdown="1">
-<form
+<form class="ph"
 ph-form="../../fixtures/ph-form"
 ph-method="post"
   ph-confirm='{"title": "Do you want to save the changes?", "showCancelButton": true, "confirmButtonText": "Save"}'
@@ -119,6 +124,7 @@ ph-error-css-for="email"
 />
 </label>
 <span
+class="error-message"
 ph-error-message="must be a valid email."
 ph-error-message-for="email"
 ></span>
@@ -131,7 +137,7 @@ ph-error-css="is-invalid"
 ph-error-css-for="password"
 />
 </label>
-<span
+<span class="error-message"
 ph-error-message="at least 6 characters"
 ph-error-message-for="password"
 ></span>
@@ -146,9 +152,10 @@ ph-error-message-for="password"
 
 ```html
 <form
+  class="ph"
   ph-form="../../fixtures/ph-form"
   ph-method="post"
-  ph-confirm='{ "title": "Do you want to save the changes?", "showCancelButton": true, "confirmButtonText": "Save" }'
+  ph-confirm='{"title": "Do you want to save the changes?", "showCancelButton": true, "confirmButtonText": "Save"}'
 >
   <label>
     email:
@@ -160,6 +167,7 @@ ph-error-message-for="password"
     />
   </label>
   <span
+    class="error-message"
     ph-error-message="must be a valid email."
     ph-error-message-for="email"
   ></span>
@@ -174,6 +182,7 @@ ph-error-message-for="password"
     />
   </label>
   <span
+    class="error-message"
     ph-error-message="at least 6 characters"
     ph-error-message-for="password"
   ></span>

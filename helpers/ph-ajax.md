@@ -89,7 +89,7 @@ Do ajax work. The table bellow is a mix of pjax and ajax calls. The browser's ba
     <button ph-ajax="./" 
       ph-push-state
       ph-params="*:*"
-      ph-qs-step="page:1,min:1"
+      ph-qs-step="page:1,min:1,disabled"
       ph-group-id="table1">
     &laquo; Prev</button>
     <button class="active" 
@@ -113,7 +113,7 @@ Do ajax work. The table bellow is a mix of pjax and ajax calls. The browser's ba
     <button ph-ajax="./" 
       ph-push-state
       ph-params="*:*"
-      ph-qs-step="page:1,max:3"
+      ph-qs-step="page:1,max:3,disabled"
       ph-group-id="table1">Next
       &raquo;</button>
     </div>

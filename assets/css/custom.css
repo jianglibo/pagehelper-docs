@@ -21,3 +21,62 @@
 	color: #fff;
 	border: none;
 }
+
+/* Reset default margin and padding */
+form.ph {
+	margin: 0;
+	padding: 0;
+}
+
+/* Style form elements */
+.ph input[type="text"],
+.ph input[type="email"],
+.ph input[type="password"],
+.ph textarea,
+.ph select {
+	width: 100%;
+	padding: 10px;
+	margin-bottom: 15px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+	/* Ensure padding and border are included in the width */
+	font-size: 16px;
+}
+
+.ph .ph
+
+/* Style form labels */
+.ph label {
+	display: block;
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+
+/* Style submit button */
+.ph input[type="submit"] {
+	background-color: #007bff;
+	color: #fff;
+	border: none;
+	border-radius: 4px;
+	padding: 10px 20px;
+	cursor: pointer;
+}
+
+.ph input[type="submit"]:hover {
+	background-color: #0056b3;
+}
+
+/* Style form elements with validation error */
+input.is-invalid,
+textarea.is-invalid,
+select.is-invalid {
+  border-color: #dc3545;
+}
+
+/* Style error message */
+.error-message {
+  color: #dc3545;
+  font-size: 14px;
+  margin-top: 5px;
+}

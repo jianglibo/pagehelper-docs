@@ -12,6 +12,11 @@ When the value of an element changed, will summit the current page with changed 
 
 
 ## search field
+
+> {: .highlight }
+  Type words the page will sumbit after delay specified.
+
+
 <div class="code-example" markdown="1">
 <label>Type to search
 <input type="search" name="search" ph-page-submitter="pjax" ph-config="delay::1500" ph-qs-to-value/>
@@ -67,6 +72,9 @@ When the value of an element changed, will summit the current page with changed 
 ```typescript
 type PjaxRequestType = 'query' | 'pjax' | 'ajax'
 ```
+
+{: .important }
+> If you need more controll, consider using `ph-ajax` attribute.
 
 ## extra attributes for this helper:
 
