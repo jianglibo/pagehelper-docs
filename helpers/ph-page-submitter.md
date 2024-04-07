@@ -10,12 +10,11 @@ parent: Helpers List
 
 When the value of an element changed, will summit the current page with changed value.
 
+{: .highlight }
+>  Change the value of the form field and watch the url change.
+
 
 ## search field
-
-> {: .highlight }
-  Type words the page will sumbit after delay specified.
-
 
 <div class="code-example" markdown="1">
 <label>Type to search

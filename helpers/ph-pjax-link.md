@@ -43,7 +43,7 @@ Convert the link to do a ajax fetch, then replace the content and pushstate.
 ## Caveats
 
 {: .warning }
-The pjax won't execute the script tag inside the body, if you need the script to be executed, you should add `ph-execute-me` attribute to script tag.
+The pjax will default execute all the script tag inside the body after replace the page content, if you don't want the script to be executed, you should add `ph-not-execute-me` attribute to script tag.
 
 {: .warning }
 And the events listen on the `document.body` need to add again after page replace.
@@ -63,7 +63,8 @@ window.addEventListener("pjaxPageLoaded", (e) => {
 
 ## Execute scripts in the header
 
-Sometimes you cannot control or it's not easy to controll the source of the page, like this Jekyll template, there's flag in the config object.
+Sometimes you cannot control or it's not easy to controll the source of the page, like this Jekyll template, you could add patterns to `script_execlude_patterns` to avoid re-execute of the script tag.
+
 
 ```typescript
 export type Cfg = {
@@ -71,8 +72,7 @@ export type Cfg = {
   selectedIdHolder?: SelectedIdHolder;
   debug?: boolean;
   disable_pjax?: boolean;
-  scripts_outof_body_patterns?: RegExp[];
-  execute_scripts_outof_body?: boolean;
+  scripts_exclude_patterns?: RegExp[];
   rowSelector?: {
     attr?: string;
     ptn?: string;
@@ -85,11 +85,10 @@ export type Cfg = {
 The config bellow will execute these two script tag after Ajax replace the page.
 
 ```html
-<script type="module">
+<script type="module" ph-not-execute-me>
   import { PageHelper } from "{{ site.baseurl }}/dist/bundle.min.es.js";
   const pageHelper = new PageHelper({
-    debug: true,
-    scripts_outof_body_patterns: [/lunr\.min\.js/, /just-the-docs\.js/],
+    debug: true
   });
   console.log(pageHelper.listBuiltins());
   pageHelper.enrich();

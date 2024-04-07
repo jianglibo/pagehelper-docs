@@ -8,6 +8,10 @@ has_children: false
 
 # Collect values and send them to backend.
 
+{: .important }
+
+> This rule apply to mutiple attributes, include `ph-params`, `ph-headers` etc.
+
 Look at the code bellow:
 
 ```html
@@ -22,6 +26,14 @@ Look at the code bellow:
 >
   Delete
 </button>
+```
+
+The result URL will be:
+
+```typescript
+// suppose current URL was: /user/30?qa=me
+// And selected id is [5]
+const finalurl = "?ids=5&cat=abc&parentid=30&othervalue=me";
 ```
 
 ## ::: extract special value or by css selector
@@ -63,12 +75,12 @@ it("should extract by selector", () => {
 ```
 
 {: .note }
+
 > Special cases:
 >
-> `__selected_ids__/user` will get current selected ids. see: [ph-row-selector](/helpers/ph-row-selector/) 
+> `__selected_ids__/user` will get current selected ids. see: [ph-row-selector](/helpers/ph-row-selector/)
 >
 > `this/attribute/href` will get the attribute value.
-
 
 ## :: add constant value
 
@@ -124,12 +136,12 @@ it("should parse from query", () => {
 ```
 
 {: .note }
+
 > Special cases:
 >
 > `id:idInUrl` will get the idInUrl and as id to new url parameter.
 >
 > `id:/1/` will get the first part of the pathname.
-
 
 ## get all query
 
@@ -170,6 +182,7 @@ it("should extract by selector, keep current query.", () => {
 ```
 
 {: .note }
+
 > Special cases:
 >
 > `*:*,page::3` will include all the current query string in the url, the page will override if exists.

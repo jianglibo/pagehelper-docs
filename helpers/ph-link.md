@@ -46,3 +46,9 @@ ph-link="./">
   <span>Edit</span>
 </button>
 ```
+
+## extra attributes for this helper:
+
+| name      | descriptio                         | link                                                                         |
+| :-------- | :--------------------------------- | ---------------------------------------------------------------------------- |
+| ph-params | append query parameters to the url | <a href="{{site.baseurl}}/value-collector/" ph-pjax-link>value collector</a> |

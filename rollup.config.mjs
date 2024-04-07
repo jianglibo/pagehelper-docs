@@ -23,7 +23,7 @@ export default {
 	plugins: [typescript(), json(),
 	// nodePolyfills()
 	, nodeResolve({
-		// preferBuiltins: false
+		preferBuiltins: true
 		// exportConditions: ['node']
 	}), commonjs(
 		// {

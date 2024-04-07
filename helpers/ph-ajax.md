@@ -10,7 +10,19 @@ parent: Helpers List
 
 Do ajax work. The table bellow is a mix of pjax and ajax calls. The browser's backward and forward keep working.
 
+<!-- export type GroupMessageHandleCat =  -->
+
+## extra attributes for this helper:
+
+| name          | descriptio                                                                                  | link                                 |
+| :------------ | :------------------------------------------------------------------------------------------ | ------------------------------------ |
+| ph-params     | append extra values to ajax request                                                         | [value-collector](/value-collector/) |
+| ph-headers    | append extra headers to ajax request                                                        | [value-collector](/value-collector/) |
+| ph-json       | all kvs will send as a json object, if the method is GET, will append to `body` query name. |                                      |
+| ph-auto-start | will invoke the ajax request when dom ready.                                                |                                      |
+
 {: .note }
+
 > If you only use pjax, it will be easier.
 
 <div class="code-example" markdown="1">
@@ -144,12 +156,12 @@ Do ajax work. The table bellow is a mix of pjax and ajax calls. The browser's ba
      New</button>
     <button type="button"
      class="btn"
-     ph-mask="2" 
+     ph-mask="2"
      ph-pjax-link="./"
      ph-params="ids:::__selected_ids__/todo">
     Edit</button>
     <button type="button" class="btn"
-     ph-mask="6" 
+     ph-mask="6"
      ph-ajax="../../fixtures/todo"
      ph-method="delete"
      ph-params="ids:::__selected_ids__/todo">
@@ -208,31 +220,31 @@ Do ajax work. The table bellow is a mix of pjax and ajax calls. The browser's ba
 
 <div class="pagination">
     <div>
-    <button ph-ajax="./" 
+    <button ph-ajax="./"
       ph-push-state
       ph-params="*:*"
       ph-qs-step="page:1,min:1"
       ph-group-id="table1">
     &laquo; Prev</button>
-    <button class="active" 
+    <button class="active"
      ph-group-id="table1"
      ph-push-state
      ph-ajax="./"
      ph-params="*:*,page::1"
      ph-qs-to-css="page:1,innerHTML,active">1</button>
-    <button 
-    ph-group-id="table1" 
+    <button
+    ph-group-id="table1"
     ph-ajax="./"
     ph-push-state
-    ph-params="*:*,page::2" 
+    ph-params="*:*,page::2"
     ph-qs-to-css="page:1,innerHTML,active">2</button>
-    <button 
-    ph-group-id="table1" 
-    ph-ajax="./" 
-    ph-push-state 
+    <button
+    ph-group-id="table1"
+    ph-ajax="./"
+    ph-push-state
     ph-params="*:*,page::3"
     ph-qs-to-css="page:1,innerHTML,active">3</button>
-    <button ph-ajax="./" 
+    <button ph-ajax="./"
       ph-push-state
       ph-params="*:*"
       ph-qs-step="page:1,max:3"
@@ -241,10 +253,10 @@ Do ajax work. The table bellow is a mix of pjax and ajax calls. The browser's ba
     </div>
     <div>
         <span>Items per page:</span>
-        <select 
+        <select
            ph-group-id="table1"
-           ph-ajax="./" 
-           ph-params="*:*,size:::this/value" 
+           ph-ajax="./"
+           ph-params="*:*,size:::this/value"
            ph-push-state
            ph-evtname="change"
            name="size"
@@ -257,6 +269,7 @@ Do ajax work. The table bellow is a mix of pjax and ajax calls. The browser's ba
 </div>
 </div>
 ```
+
 ## change group value
 
 <div class="code-example" markdown="1">
@@ -401,12 +414,3 @@ The history state will holder the value.
   }
 }
 ```
-
-<!-- export type GroupMessageHandleCat =  -->
-
-## extra attributes for this helper:
-
-| name                 | descriptio                                                                        | link                                                                                                                                                                                                |
-| :------------------- | :-------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| ph-on-group-response | react to group response. when the repsponse's Ph-Group-Id matches my ph-group-id. | 'outHTML' , **'innerHTML'** , 'innerText' , **'value'** , 'src' , 'href' , 'style' , 'class' , 'append' , 'prepend' , 'remove' , 'replace' , 'insertBefore' , 'insertAfter' , 'removeChild' , 'appendChild', **Only support bolded item only** |
-| ph-data-path         | extract final data from response                                                  |                                                                                                                                                                                                     |

@@ -227,15 +227,20 @@ the returned data. it locates the field by name.
 }
 ```
 
+{: .note }
+
+> Change the data type by add `ph-data-type` attribute on the input field. like `number` make server side json parse easier.
+
 ## extra attributes for this helper:
 
-| name                 | descriptio                                                              | link                                                                         |
-| :------------------- | :---------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| ph-params            | append extra value to form submit                                       | <a href="{{site.baseurl}}/value-collector/" ph-pjax-link>value collector</a> |
-| ph-validate          | validate the field. number::min:3,max:365                               | syntax follow [Yup](https://github.com/jquense/yup)                          |
-| ph-error-message     | The error message to display                                            |                                                                              |
-| ph-error-message-for | the field name                                                          |                                                                              |
-| ph-error-css         | The css name to add when validate failed.                               |                                                                              |
-| ph-error-css-for     | the field name                                                          |                                                                              |
-| ph-config            | dataType::origin, dataType::json(default)                               |                                                                              |
-| ph-confirm           | confirm before submit. If passin a Json value, it will be treat as Swal |                                                                              |
+| name                 | descriptio                                                                  | link                                                |
+| :------------------- | :-------------------------------------------------------------------------- | --------------------------------------------------- |
+| ph-params            | append extra value to form submit                                           | [value-collector](/value-collector/)                |
+| ph-validate          | validate the field. number::min:3,max:365                                   | syntax follow [Yup](https://github.com/jquense/yup) |
+| ph-error-message     | The error message to display                                                |                                                     |
+| ph-error-message-for | the field name                                                              |                                                     |
+| ph-error-css         | The css name to add when validate failed.                                   |                                                     |
+| ph-error-css-for     | the field name                                                              |                                                     |
+| ph-json              | submit all data as a json, If the method is GET, will apped to `body` query |                                                     |
+| ph-confirm           | confirm before submit. If passin a Json value, it will be treat as Swal     |                                                     |
+| ph-save-keybind      | ph-save-keybind="Ctrl+s", unchangable at the moment.                        |                                                     |
