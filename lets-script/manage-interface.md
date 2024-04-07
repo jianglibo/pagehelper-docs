@@ -23,7 +23,7 @@ When you click an action on manage page, the backend react to this action and re
             <th>Data</th>
         </tr>
     </thead>
-    <tbody ph-group-id="table1" ph-ajax="../../fixtures/manage" ph-params="selector::this" ph-auto-start>
+    <tbody ph-group-id="table1" ph-ajax="../../fixtures/manage" ph-params="selector::this" ph-auto-start ph-once>
 		{% raw %}
 		<template>
 		{{#items}}
