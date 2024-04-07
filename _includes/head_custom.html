@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="{{ '/assets/css/custom.css' | relative_url }}">
 
-<script type="module">
+<script type="module" ph-not-execute-me>
 	import {
 		PageHelper
 	} from "{{ site.baseurl }}/dist/bundle.min.es.js";
@@ -8,9 +8,3 @@
 	console.log(pageHelper.listBuiltins());
 	pageHelper.enrich();
 </script>
-
-<!-- <script>
-	window.addEventListener('DOMContentLoaded', () => {
-		document.querySelector('.nav-list-expander').click();
-	})
-</script> -->
