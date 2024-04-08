@@ -28,3 +28,6 @@ bash release.sh
 ## cloudflare
 
 be aware of the `baseurl`.
+
+
+## yarn onchange ../pagehelper/**/*.ts -- bash release.sh

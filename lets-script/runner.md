@@ -30,7 +30,7 @@ Before executing the command the runner will prepare all the files in one tempor
 | SCRIPT_ENVS_CLEAR  | like RUNNER_AND_CMD but hide some fields.                                          |
 | IMAGE_NAME         | Lxd image name Or Docker image name or Other meaning.                              |
 | INSTANCE_ID        | Lxd container or docker container or Other meaning.                                |
-| CMD_VARS           | line like 'lets-script.cmdvars.name: varvalue' in the source file, will put there. |
+| CMD_VARS           | line like `lets-script.cmdvars.name: varvalue` in the source file, will put there. |
 | HOST_IP            | for script to communicate with the agent service                                   |
 | HOST_LISTEN_PORT   | for script to communicate with the agent service                                   |
 | HOST_LISTEN_SCHEMA | for script to communicate with the agent service                                   |

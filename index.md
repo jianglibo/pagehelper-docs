@@ -28,15 +28,16 @@ the config object:
 
 ```typescript
 export type Cfg = {
-  selectedIdSeparator?: string; // default: ','
-  selectedIdHolder?: SelectedIdHolder;
-  debug?: boolean;
-  disable_pjax?: boolean;
-  rowSelector?: {
-    attr?: string;
-    ptn?: string;
-  };
-};
+	selectedIdSeparator?: string // default: ','
+	debug?: boolean
+	disable_pjax?: boolean
+	execute_scripts_default?: boolean
+	script_exclude_patterns?: RegExp[]
+	rowSelector?: {
+		attr?: string,
+		ptn?: string
+	},
+}
 ```
 
 add attributes to html tag:

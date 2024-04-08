@@ -1,10 +1,23 @@
-<link rel="stylesheet" href="{{ '/assets/css/custom.css' | relative_url }}">
+<link
+  rel="stylesheet"
+  href="{{ '/assets/css/custom.css' | relative_url }}"
+/>
 
-<script type="module" ph-not-execute-me>
-	import {
-		PageHelper
-	} from "{{ site.baseurl }}/dist/bundle.min.es.js";
-	const pageHelper = new PageHelper({ debug: true, scripts_outof_body_patterns: [/lunr\.min\.js/, /just-the-docs\.js/] });
-	console.log(pageHelper.listBuiltins());
-	pageHelper.enrich();
+<script
+  type="module"
+  ph-not-execute-me
+>
+  import { PageHelper } from "{{ site.baseurl }}/dist/bundle.min.es.js";
+  const pageHelper = new PageHelper({
+    debug: true,
+  });
+  pageHelper.enrich();
+
+  window.addEventListener("pjaxPageLoaded", (e) => {
+    var domContentLoadedEvent = new Event("DOMContentLoaded", {
+      bubbles: true,
+      cancelable: true,
+    });
+    document.dispatchEvent(domContentLoadedEvent);
+  });
 </script>

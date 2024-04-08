@@ -18,7 +18,7 @@ Convert the link to do a ajax fetch, then replace the content and pushstate.
   name="button"
   class="btn"
   ph-params="a::b,n::1,fromqs:a"
-  ph-pjax-link=".">
+  ph-pjax-link="./">
   Go
   </button>
 </div>
@@ -28,7 +28,7 @@ Convert the link to do a ajax fetch, then replace the content and pushstate.
   ph-mask="2"
   class="btn btn-sm"
   ph-params="a::b,n::1,fromqs:a"
-  ph-link="."
+  ph-link="./"
 >
   <span>Go</span>
 </button>
@@ -46,38 +46,42 @@ Convert the link to do a ajax fetch, then replace the content and pushstate.
 The pjax will default execute all the script tag inside the body after replace the page content, if you don't want the script to be executed, you should add `ph-not-execute-me` attribute to script tag.
 
 {: .warning }
-And the events listen on the `document.body` need to add again after page replace.
+Because replace the innerHTML of the body won't fire DOMContentLoaded event. You maybe should fire it manually.
 
 There's an event be fired after replace:
 
 ```typescript
+export type PjaxPageLoadedEvent = CustomEvent<{ url: string, fromPopState: boolean }>
+
 window.addEventListener("pjaxPageLoaded", (e) => {
-  if (this.cfg.debug) {
-    console.log("pjaxPageLoaded event from pjax:", e);
-  }
-  document.body.addEventListener("click", (ee) => {
-    // add your code here.
-  });
+  var domContentLoadedEvent = new Event('DOMContentLoaded', {
+      bubbles: true,
+      cancelable: true
+    });
+    // Dispatch the event on the document object
+  document.dispatchEvent(domContentLoadedEvent);
 });
 ```
 
-## Execute scripts in the header
-
-Sometimes you cannot control or it's not easy to controll the source of the page, like this Jekyll template, you could add patterns to `script_execlude_patterns` to avoid re-execute of the script tag.
-
+{: .warning }
+> Mind the global Cfg object. The `ph-not-execute-me` always take effect. but the `script_exclude_patterns` dependends on `execute_scripts_default`.
+>
+> If `execute_scripts_default=false(default)`, `script_exclude_patterns` will match the scripts to run.
+>
+> If `execute_scripts_default=true`, `script_exclude_patterns` will match the scripts **not** to run.
 
 ```typescript
 export type Cfg = {
-  selectedIdSeparator?: string;
-  selectedIdHolder?: SelectedIdHolder;
-  debug?: boolean;
-  disable_pjax?: boolean;
-  scripts_exclude_patterns?: RegExp[];
-  rowSelector?: {
-    attr?: string;
-    ptn?: string;
-  };
-};
+	selectedIdSeparator?: string // default: ','
+	debug?: boolean
+	disable_pjax?: boolean
+	execute_scripts_default?: boolean
+	script_exclude_patterns?: RegExp[]
+	rowSelector?: {
+		attr?: string,
+		ptn?: string
+	},
+}
 ```
 
 ## The config of this site
@@ -92,5 +96,13 @@ The config bellow will execute these two script tag after Ajax replace the page.
   });
   console.log(pageHelper.listBuiltins());
   pageHelper.enrich();
+  window.addEventListener("pjaxPageLoaded", (e) => {
+    var domContentLoadedEvent = new Event('DOMContentLoaded', {
+        bubbles: true,
+        cancelable: true
+      });
+      // Dispatch the event on the document object
+    document.dispatchEvent(domContentLoadedEvent);
+  });
 </script>
 ```
