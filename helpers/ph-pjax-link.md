@@ -51,20 +51,24 @@ Because replace the innerHTML of the body won't fire DOMContentLoaded event. You
 There's an event be fired after replace:
 
 ```typescript
-export type PjaxPageLoadedEvent = CustomEvent<{ url: string, fromPopState: boolean }>
+export type PjaxPageLoadedEvent = CustomEvent<{
+  url: string;
+  fromPopState: boolean;
+}>;
 
 window.addEventListener("pjaxPageLoaded", (e) => {
-  var domContentLoadedEvent = new Event('DOMContentLoaded', {
-      bubbles: true,
-      cancelable: true
-    });
-    // Dispatch the event on the document object
+  var domContentLoadedEvent = new Event("DOMContentLoaded", {
+    bubbles: true,
+    cancelable: true,
+  });
+  // Dispatch the event on the document object
   document.dispatchEvent(domContentLoadedEvent);
 });
 ```
 
 {: .warning }
-> Mind the global Cfg object. The `ph-not-execute-me` always take effect. but the `script_exclude_patterns` dependends on `execute_scripts_default`.
+
+> Mind the global Cfg object. The `ph-not-execute-me` and `ph-execte-me` always take effect. but the `script_exclude_patterns` dependends on `execute_scripts_default`.
 >
 > If `execute_scripts_default=false(default)`, `script_exclude_patterns` will match the scripts to run.
 >
@@ -72,16 +76,16 @@ window.addEventListener("pjaxPageLoaded", (e) => {
 
 ```typescript
 export type Cfg = {
-	selectedIdSeparator?: string // default: ','
-	debug?: boolean
-	disable_pjax?: boolean
-	execute_scripts_default?: boolean
-	script_exclude_patterns?: RegExp[]
-	rowSelector?: {
-		attr?: string,
-		ptn?: string
-	},
-}
+  selectedIdSeparator?: string; // default: ','
+  debug?: boolean;
+  disable_pjax?: boolean;
+  execute_scripts_default?: boolean;
+  script_exclude_patterns?: RegExp[];
+  rowSelector?: {
+    attr?: string;
+    ptn?: string;
+  };
+};
 ```
 
 ## The config of this site
@@ -89,19 +93,22 @@ export type Cfg = {
 The config bellow will execute these two script tag after Ajax replace the page.
 
 ```html
-<script type="module" ph-not-execute-me>
+<script
+  type="module"
+  ph-not-execute-me
+>
   import { PageHelper } from "{{ site.baseurl }}/dist/bundle.min.es.js";
   const pageHelper = new PageHelper({
-    debug: true
+    debug: true,
   });
   console.log(pageHelper.listBuiltins());
   pageHelper.enrich();
   window.addEventListener("pjaxPageLoaded", (e) => {
-    var domContentLoadedEvent = new Event('DOMContentLoaded', {
-        bubbles: true,
-        cancelable: true
-      });
-      // Dispatch the event on the document object
+    var domContentLoadedEvent = new Event("DOMContentLoaded", {
+      bubbles: true,
+      cancelable: true,
+    });
+    // Dispatch the event on the document object
     document.dispatchEvent(domContentLoadedEvent);
   });
 </script>
