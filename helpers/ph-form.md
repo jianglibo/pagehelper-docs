@@ -105,6 +105,7 @@ ph-error-message-for-password="at least 6 characters"
 
 Even if remove the `ph-validate` attribute, the server side could hanle the validation too, but need return the data in specific format.
 
+<code class="language-plaintext highlighter-rouge" ph-show-response-body>Show response body here</code>
 <div class="code-example" markdown="1">
 <form class="ph"
 ph-form="../../fixtures/ph-form"
@@ -156,8 +157,7 @@ ph-error-css-for-password="is-invalid"
     <input
       type="text"
       name="email"
-      ph-error-css="is-invalid"
-      ph-error-css-for="email"
+      ph-error-css-for-email="is-invalid"
     />
   </label>
   <span
@@ -170,8 +170,7 @@ ph-error-css-for-password="is-invalid"
     <input
       type="text"
       name="password"
-      ph-error-css="is-invalid"
-      ph-error-css-for="password"
+      ph-error-css-for-password="is-invalid"
     />
   </label>
   <span

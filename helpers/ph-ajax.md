@@ -184,7 +184,7 @@ Do ajax work. The table bellow is a mix of pjax and ajax calls. The browser's ba
             <th>Priority</th>
         </tr>
     </thead>
-    <tbody ph-group-id="table1" ph-on-group-response="innerHTML">
+    <tbody ph-group-id="table1" ph-data-consumer="innerhtml-mustache">
         {% raw %}
         <template>
           {{#data}}
@@ -278,6 +278,7 @@ Do ajax work. The table bellow is a mix of pjax and ajax calls. The browser's ba
 
 Using `ph-data-consumer="value"` to consume the server response.
 
+<code class="language-plaintext highlighter-rouge" ph-show-response-body>Show Response body here.</code>
 <div class="code-example" markdown="1">
 <form>
 <input type="text" name="name" 
@@ -286,6 +287,7 @@ Using `ph-data-consumer="value"` to consume the server response.
   ph-data-path="data.__changed_value" />
 <select
   ph-evtname="change"
+  name="__changed_value"
   ph-ajax="../../fixtures/group-changed"
   ph-params="want::map"
   ph-target="#input-select-value"
@@ -318,6 +320,7 @@ Using `ph-data-consumer="value"` to consume the server response.
 
 Using `ph-data-consumer="innerhtml-mustach"` to consume the data from response.
 
+<code class="language-plaintext highlighter-rouge" ph-show-response-body>Show response body here.</code>
 <div class="code-example" markdown="1">
 {% raw %}
 <form>

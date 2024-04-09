@@ -11,6 +11,7 @@
   import { PageHelper } from "{{ site.baseurl }}/forever/bundle.min.es.hashed.{{ bundleHash }}.js";
   const pageHelper = new PageHelper({
     debug: true,
+    demo_mode: true,
   });
   pageHelper.enrich();
 
