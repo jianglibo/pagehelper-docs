@@ -31,8 +31,8 @@ An HTML element which consumes data.
 </div>
 ```html
 {% raw %}
-<ul ph-data-consumer="innerhtml-mustach:any-custom-value">
-  id="data-consumer"
+<ul ph-data-consumer="innerhtml-mustach:any-custom-value"
+  id="data-consumer">
   <template>
     {{#data}}
     <li>{{name}}({{id}})</li>

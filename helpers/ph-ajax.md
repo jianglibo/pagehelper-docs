@@ -59,7 +59,7 @@ Do ajax work. The table bellow is a mix of pjax and ajax calls. The browser's ba
             <th>Priority</th>
         </tr>
     </thead>
-    <tbody ph-group-id="table1" ph-on-group-response="innerHTML">
+    <tbody ph-group-id="table1" ph-data-consumer="innerhtml-mustache">
         {% raw %}
         <template>
           {{#data}}
@@ -103,37 +103,40 @@ Do ajax work. The table bellow is a mix of pjax and ajax calls. The browser's ba
       ph-push-state
       ph-params="*:*"
       ph-qs-step="page:1,min:1,disabled"
-      ph-group-id="table1">
+      ph-target='[ph-group-id="table1"]'>
     &laquo; Prev</button>
     <button class="active" 
-     ph-group-id="table1"
+     ph-target='[ph-group-id="table1"]'
      ph-push-state
      ph-ajax="./"
+     ph-id="p-1"
      ph-params="*:*,page::1"
      ph-qs-to-css="page:1,innerHTML,active">1</button>
     <button 
-    ph-group-id="table1" 
+    ph-target='[ph-group-id="table1"]'
     ph-ajax="./"
+     ph-id="p-2"
     ph-push-state
     ph-params="*:*,page::2" 
     ph-qs-to-css="page:1,innerHTML,active">2</button>
     <button 
-    ph-group-id="table1" 
-    ph-ajax="./" 
+    ph-target='[ph-group-id="table1"]'
+    ph-ajax="./"  
     ph-push-state 
+    ph-id="p-3"
     ph-params="*:*,page::3"
     ph-qs-to-css="page:1,innerHTML,active">3</button>
     <button ph-ajax="./" 
       ph-push-state
       ph-params="*:*"
       ph-qs-step="page:1,max:3,disabled"
-      ph-group-id="table1">Next
+      ph-target='[ph-group-id="table1"]'>Next
       &raquo;</button>
     </div>
     <div>
         <span>Items per page:</span>
         <select 
-           ph-group-id="table1"
+           ph-target='[ph-group-id="table1"]'
            ph-ajax="./" 
            ph-params="*:*,size:::this/value" 
            ph-push-state
@@ -271,16 +274,21 @@ Do ajax work. The table bellow is a mix of pjax and ajax calls. The browser's ba
 </div>
 ```
 
-## change group value
+## change target value
+
+Using `ph-data-consumer="value"` to consume the server response.
 
 <div class="code-example" markdown="1">
 <form>
-<input type="text" name="name" ph-group-id="group-1" ph-on-group-response="value" ph-data-path="data.__changed_value" />
+<input type="text" name="name" 
+  id="input-select-value"
+  ph-data-consumer="value"
+  ph-data-path="data.__changed_value" />
 <select
   ph-evtname="change"
   ph-ajax="../../fixtures/group-changed"
   ph-params="want::map"
-  ph-group-id="group-1"
+  ph-target="#input-select-value"
 >
   <option value="1">one</option>
   <option value="2">two</option>
@@ -290,16 +298,15 @@ Do ajax work. The table bellow is a mix of pjax and ajax calls. The browser's ba
 </form>
 </div>
 ```html
-<input type="text"
-  name="name"
-  ph-group-id="group-1"
-  ph-on-group-response="value"
+<input type="text" name="name" 
+  id="input-select-value"
+  ph-data-consumer="value"
   ph-data-path="data.__changed_value" />
 <select
   ph-evtname="change"
   ph-ajax="../../fixtures/group-changed"
   ph-params="want::map"
-  ph-group-id="group-1"
+  ph-target="#input-select-value"
 >
   <option value="1">one</option>
   <option value="2">two</option>
@@ -307,14 +314,16 @@ Do ajax work. The table bellow is a mix of pjax and ajax calls. The browser's ba
 </select>
 ```
 
-## change group by template
+## change target innerHTML
+
+Using `ph-data-consumer="innerhtml-mustach"` to consume the data from response.
 
 <div class="code-example" markdown="1">
 {% raw %}
 <form>
 <select
-  ph-group-id="group-1"
-  ph-on-group-response="innerHTML"
+  id="select-consumer"
+  ph-data-consumer="innerhtml-mustache"
   ph-qs-to-value="_:1,value"
 >
 <template>
@@ -328,9 +337,7 @@ Do ajax work. The table bellow is a mix of pjax and ajax calls. The browser's ba
 ph-evtname="change"
 ph-ajax="../../fixtures/group-changed"
 ph-params="want::list"
-ph-group-id="group-1"
-
->
+ph-target="#select-consumer">
 
   <option value="a">one</option>
   <option value="b">two</option>
@@ -342,8 +349,9 @@ ph-group-id="group-1"
 ```html
 {% raw %}
 <select
-  ph-group-id="group-1"
-  ph-on-group-response="innerHTML"
+  id="select-consumer"
+  ph-data-consumer="innerhtml-mustache"
+  ph-qs-to-value="_:1,value"
 >
 <template>
   {{#data}}
@@ -356,9 +364,7 @@ ph-group-id="group-1"
 ph-evtname="change"
 ph-ajax="../../fixtures/group-changed"
 ph-params="want::list"
-ph-group-id="group-1"
-
->
+ph-target="#select-consumer">
 
   <option value="a">one</option>
   <option value="b">two</option>
@@ -375,43 +381,20 @@ ph-group-id="group-1"
 
 ## Ajax and State
 
-Use attribute `ph-gropu-id` to map a UI element to a data received from the server.
-
-The ajax element.
-
-```html
-<a
-  href="."
-  ph-ajax="."
-  ph-group-id="list-users"
-  ph-push-state
->
-  Query
-</a>
-```
-
-The response data.
+Using a `__pn` namespace in the history.state to keep the state.
 
 ```json
 {
-  "data": [
-    { "name": "a", "age": 20 },
-    { "name": "b", "age": 10 }
-  ]
-}
-```
-
-The history state will holder the value.
-
-```json
-{
-  "phGroupStates": {
-    "list-users": {
-      "data": [
-        { "name": "a", "age": 20 },
-        { "name": "b", "age": 10 }
-      ]
+  "selectedIds": {
+    "todo": [1, 2, 3]
+  },
+  "phIdStates": {
+    "ph-id-value": {
+      "any": "data from the server by this trigger"
     }
   }
 }
 ```
+
+{: .warning }
+> Don't over use this function, Maybe you shoud use other framework instead of this tool to do that kind of things.

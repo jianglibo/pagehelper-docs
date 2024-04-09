@@ -23,14 +23,13 @@ email:
 <input type="text" 
 name="email"
 ph-validate="string::min:5,max:24"
-ph-error-css="is-invalid"
-ph-error-css-for="email"
+ph-error-css-for-email="is-invalid"
 />
 </label>
 <span
 class="error-message"
-ph-error-message="must be a valid email."
-ph-error-message-for="email"
+ph-error-css-for-email="is-invalid"
+ph-error-message-for-email="must be a valid email."
 ></span>
 <br/>
 <label>
@@ -38,14 +37,13 @@ password:
 <input type="text" 
 name="password"
 ph-validate="string::min:6,max:32"
-ph-error-css="is-invalid"
-ph-error-css-for="password"
+ph-error-css-for-password="is-invalid"
 />
 </label>
 <span
 class="error-message"
-ph-error-message="at least 6 characters"
-ph-error-message-for="password"
+ph-error-css-for-password="is-invalid"
+ph-error-message-for-password="at least 6 characters"
 ></span>
 <br/>
 <button type="submit" 
@@ -69,14 +67,13 @@ ph-error-message-for="password"
       type="text"
       name="email"
       ph-validate="string::min:5,max:24"
-      ph-error-css="is-invalid"
-      ph-error-css-for="email"
+      ph-error-css-for-email="is-invalid"
     />
   </label>
   <span
     class="error-message"
-    ph-error-message="must be a valid email."
-    ph-error-message-for="email"
+    ph-error-css-for-email="is-invalid"
+    ph-error-message-for-email="must be a valid email."
   ></span>
   <br />
   <label>
@@ -85,14 +82,13 @@ ph-error-message-for="password"
       type="text"
       name="password"
       ph-validate="string::min:6,max:32"
-      ph-error-css="is-invalid"
-      ph-error-css-for="password"
+      ph-error-css-for-password="is-invalid"
     />
   </label>
   <span
     class="error-message"
-    ph-error-message="at least 6 characters"
-    ph-error-message-for="password"
+    ph-error-css-for-password="is-invalid"
+    ph-error-message-for-password="at least 6 characters"
   ></span>
   <br />
   <button
@@ -113,33 +109,31 @@ Even if remove the `ph-validate` attribute, the server side could hanle the vali
 <form class="ph"
 ph-form="../../fixtures/ph-form"
 ph-method="post"
-  ph-confirm='{"title": "Do you want to save the changes?", "showCancelButton": true, "confirmButtonText": "Save"}'
+ph-confirm='{"title": "Do you want to save the changes?", "showCancelButton": true, "confirmButtonText": "Save"}'
 >
 <label>
 email:
 <input type="text" 
 name="email"
-ph-error-css="is-invalid"
-ph-error-css-for="email"
+ph-error-css-for-email="is-invalid"
 />
 </label>
 <span
 class="error-message"
-ph-error-message="must be a valid email."
-ph-error-message-for="email"
+ph-error-message-for-email="must be a valid email."
+ph-error-css-for-email="is-invalid"
 ></span>
 <br/>
 <label>
 password:
 <input type="text" 
 name="password"
-ph-error-css="is-invalid"
-ph-error-css-for="password"
+ph-error-css-for-password="is-invalid"
 />
 </label>
 <span class="error-message"
-ph-error-message="at least 6 characters"
-ph-error-message-for="password"
+ph-error-message-for-password="at least 6 characters"
+ph-error-css-for-password="is-invalid"
 ></span>
 <br/>
 <button type="submit" 
@@ -168,8 +162,7 @@ ph-error-message-for="password"
   </label>
   <span
     class="error-message"
-    ph-error-message="must be a valid email."
-    ph-error-message-for="email"
+    ph-error-message-for-email="must be a valid email."
   ></span>
   <br />
   <label>
@@ -183,8 +176,7 @@ ph-error-message-for="password"
   </label>
   <span
     class="error-message"
-    ph-error-message="at least 6 characters"
-    ph-error-message-for="password"
+    ph-error-message-for-password="at least 6 characters"
   ></span>
   <br />
   <button
