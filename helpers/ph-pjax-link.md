@@ -14,6 +14,9 @@ Convert the link to do a ajax fetch, then replace the content and pushstate.
 2. Click again, will get `ph-pjax-link?a=b&n=1&fromqs=b`
 
 <div class="code-example" markdown="1">
+<code class="language-plaintext highlighter-rouge" ph-show-current-url></code>
+
+
 <button type="button" 
   name="button"
   class="btn"

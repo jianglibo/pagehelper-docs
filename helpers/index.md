@@ -12,6 +12,8 @@ By adding custom attributes to the HTML tag give the element extra functions.
 The following code will enhance the link by fetching the target page and replace the page then push state.
 
 <div class="code-example" markdown="1">
+
+<code class="language-plaintext highlighter-rouge" ph-show-current-url></code>
 <a href="./"
   ph-pjax-link
   ph-params="id:idInUrl">ToNewPage</a>

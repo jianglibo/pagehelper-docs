@@ -20,7 +20,7 @@ this.idRegex = new RegExp(
 ```
 
 <h2>Todo List</h2>
-
+<code class="language-plaintext highlighter-rouge" ph-show-current-url></code>
 <div class="code-example" markdown="1">
 <div class="select-all" ph-selector-listener="todo" ph-config="toggle::disabled">
     <button type="button" ph-mask="7" class="btn"
@@ -72,7 +72,6 @@ this.idRegex = new RegExp(
         </tr>
     </tbody>
 </table>
-
 <div class="pagination">
     <div>
     <button>&laquo; Prev</button>

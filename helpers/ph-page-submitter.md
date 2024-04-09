@@ -17,6 +17,8 @@ When the value of an element changed, will summit the current page with changed 
 ## search field
 
 <div class="code-example" markdown="1">
+<code class="language-plaintext highlighter-rouge" ph-show-current-url></code>
+
 <label>Type to search
 <input type="search" name="search" ph-page-submitter="pjax" ph-config="delay::1500" ph-qs-to-value/>
 </label>
@@ -38,6 +40,8 @@ When the value of an element changed, will summit the current page with changed 
 ## select field
 
 <div class="code-example" markdown="1">
+<code class="language-plaintext highlighter-rouge" ph-show-current-url></code>
+
 <label>Select size
 <select name="size" 
  ph-page-submitter="pjax" 
@@ -67,6 +71,8 @@ When the value of an element changed, will summit the current page with changed 
 ## Checkbox field
 
 <div class="code-example" markdown="1">
+<code class="language-plaintext highlighter-rouge" ph-show-current-url></code>
+
 <label>all
 <input type="checkbox" name="all"
  ph-page-submitter="pjax"

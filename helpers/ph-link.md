@@ -10,12 +10,16 @@ parent: Helpers List
 
 It's just a link, you could add parameters easily.
 
-
 <div class="code-example" markdown="1">
 <span id="value-to-query">toServer</span>
 </div>
 ```html
 <span id="value-to-query">toServer</span>
+<script>
+  let vtq = document.getElementById('value-to-query');
+  let v = Math.floor(Math.random() * (100 - 1)) + 1;
+  vtq.innerHTML = 'toServer-' + v
+</script>
 ```
 
 <script>
@@ -25,6 +29,8 @@ It's just a link, you could add parameters easily.
 </script>
 
 <div class="code-example" markdown="1">
+<code class="language-plaintext highlighter-rouge" ph-show-current-url></code>
+
 <button
 type="button"
 ph-mask="2"
