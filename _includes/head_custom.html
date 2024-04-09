@@ -3,11 +3,12 @@
   href="{{ '/assets/css/custom.css' | relative_url }}"
 />
 
+{% assign bundleHash = site.data.file_hashes.bundle_es %}
 <script
   type="module"
   ph-not-execute-me
 >
-  import { PageHelper } from "{{ site.baseurl }}/dist/bundle.min.es.js";
+  import { PageHelper } from "{{ site.baseurl }}/dist/bundle.min.es.hashed.{{ bundleHash }}.js";
   const pageHelper = new PageHelper({
     debug: true,
   });

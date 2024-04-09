@@ -15,6 +15,15 @@ fi
 cp -f ./dist/bundle.min.es.js ../pagehelper-docs/dist/
 cp -f ./dist/bundle.min.iife.js ../pagehelper-docs/dist/
 
+# remove all files it's name contains .hashed.
+find ../pagehelper-docs/dist -name "*.hashed.*" -exec rm -f {} \;
+
+hash=$(md5sum ../pagehelper/dist/bundle.min.es.js | cut -d ' ' -f 1)
+cp -f ./dist/bundle.min.es.js ../pagehelper-docs/dist/bundle.min.es.hashed.$hash.js
+
+# update ../pagehelper-docs/_data/file_hashes.yml with content: bundle_es: $hash
+echo "bundle_es: $hash" > ../pagehelper-docs/_data/file_hashes.yml
+
 cd $originDir
 
 # if parameter 1 is equal to 'do', then do the following
