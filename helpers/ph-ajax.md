@@ -300,12 +300,14 @@ Using `ph-data-consumer="value"` to consume the server response.
 </form>
 </div>
 ```html
+<form>
 <input type="text" name="name" 
   id="input-select-value"
   ph-data-consumer="value"
   ph-data-path="data.__changed_value" />
 <select
   ph-evtname="change"
+  name="__changed_value"
   ph-ajax="../../fixtures/group-changed"
   ph-params="want::map"
   ph-target="#input-select-value"
@@ -314,6 +316,7 @@ Using `ph-data-consumer="value"` to consume the server response.
   <option value="2">two</option>
   <option value="3">three</option>
 </select>
+</form>
 ```
 
 ## change target innerHTML
