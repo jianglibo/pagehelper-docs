@@ -12,7 +12,7 @@ Put a mustache template as a child in the HTML element.
 
 ```html
 {% raw %}
-<ul ph-data-consumer="innerhtml-mustach:any-custom-value">
+<ul ph-data-consumer="innerhtml-mustache:any-custom-value">
   id="data-consumer"
   <template>
     {{#data}}
