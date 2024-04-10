@@ -28,15 +28,17 @@ the config object:
 
 ```typescript
 export type Cfg = {
-	selectedIdSeparator?: string // default: ','
+	selected_id_separator?: string // default: ','
 	debug?: boolean
+	demo_mode?: boolean
 	disable_pjax?: boolean
 	execute_scripts_default?: boolean
 	script_exclude_patterns?: RegExp[]
-	rowSelector?: {
+	row_selector?: {
 		attr?: string,
 		ptn?: string
 	},
+	pjax_cache?: CacheSetting
 }
 ```
 
@@ -55,6 +57,8 @@ add attributes to html tag:
 
 
 <div class="code-example" markdown="1">
+<code class="language-plaintext highlighter-rouge" ph-show-current-url></code>
+
 <button type="button" name="button" class="btn" ph-pjax-link="./examples/ph-pjax-link-1/">Will load by pjax</button>
 
 </div>

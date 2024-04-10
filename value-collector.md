@@ -12,6 +12,33 @@ has_children: false
 
 > This rule apply to mutiple attributes, include `ph-params`, `ph-headers` etc.
 
+<code class="language-plaintext highlighter-rouge" ph-show-current-url></code>
+
+**After lost the focus, the new url will be pushed**
+
+<label>Type path and query for test:
+<input type="text" name="to-url" ph-value-to-url style="width: 100%;"/>
+</label>
+
+Selected ids fixtures(fruit):
+<form>
+<label>101
+    <input type="checkbox" ph-row-selector="fruit" id="_row_101"/>
+    </label>
+<label>102
+    <input type="checkbox" ph-row-selector="fruit" id="_row_102"/>
+    </label>
+<label>103
+    <input type="checkbox" ph-row-selector="fruit" id="_row_103"/>
+    </label>
+</form>
+
+type the expression and see the result.
+<div ph-value-collect-demo>
+  <div ph-result-show></div>
+  <input type="text" name="abc" value="ids:::__selected_ids__/fruit,cat::abc,frompath:/0/,fromqs:qa" ph-expression-input style="width:100%;" />
+</div>
+
 Look at the code bellow:
 
 ```html
@@ -19,21 +46,13 @@ Look at the code bellow:
   type="button"
   ph-mask="6"
   class="btn btn-sm"
-  ph-params="ids:::__selected_ids__/usercmd,cat::abc,parentid:/1/,othervalue:qa"
+  ph-params="ids:::__selected_ids__/fruit,cat::abc,frompath:/0/,fromqs:qa"
   ph-method="delete"
   ph-confirm
   ph-ajax="."
 >
   Delete
 </button>
-```
-
-The result URL will be:
-
-```typescript
-// suppose current URL was: /user/30?qa=me
-// And selected id is [5]
-const finalurl = "?ids=5&cat=abc&parentid=30&othervalue=me";
 ```
 
 ## ::: extract special value or by css selector
