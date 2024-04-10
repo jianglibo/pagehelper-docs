@@ -19,8 +19,69 @@ this.idRegex = new RegExp(
 );
 ```
 
+## How row selector works?
+
+
+Say we have a `ph-row-selector="fruit"`, when user click to change the value, the selected ids in history state will change too.
+
+Bellow is history state of `__ph`
+
+<code class="language-plaintext highlighter-rouge" ph-show-history-state="__ph">Show history state here.</code>
+<div class="code-example" markdown="1">
+<form>
+    <input type="checkbox" ph-row-selector="fruit" id="_row_101"/>
+    <input type="checkbox" ph-row-selector="fruit" id="_row_102"/>
+    <input type="checkbox" ph-row-selector="fruit" id="_row_103"/>
+</form>
+</div>
+```html
+<input type="checkbox" ph-row-selector="fruit" id="_row_101"/>
+<input type="checkbox" ph-row-selector="fruit" id="_row_102"/>
+<input type="checkbox" ph-row-selector="fruit" id="_row_103"/>
+```
+
+And a `ph-selector-listener="fruit"` will be notified when selected id changes. Here use `ph-config="goggle::disabled"` to toggole the status of the button based on the selection number. User `ph-config="toggle::your-class-name` to toggle class.
+
+<div class="code-example" markdown="1">
+<div class="select-all" ph-selector-listener="fruit" ph-config="toggle::disabled">
+    <button type="button" ph-mask="7" class="btn"
+     ph-pjax-link="."
+     ph-params="ids:::__selected_ids__/fruit">
+     New</button>
+    <button type="button" ph-mask="2" class="btn"
+     ph-pjax-link="."
+     ph-params="ids:::__selected_ids__/fruit">
+    Edit</button>
+    <button type="button" ph-mask="6" class="btn"
+     ph-ajax="../../fixtures/fruit"
+     ph-method="delete"
+     ph-params="ids:::__selected_ids__/fruit">
+    Delete</button>
+</div>
+</div>
+```html
+<div class="select-all" ph-selector-listener="fruit" ph-config="toggle::disabled">
+    <button type="button" ph-mask="7" class="btn"
+     ph-pjax-link="."
+     ph-params="ids:::__selected_ids__/fruit">
+     New</button>
+    <button type="button" ph-mask="2" class="btn"
+     ph-pjax-link="."
+     ph-params="ids:::__selected_ids__/fruit">
+    Edit</button>
+    <button type="button" ph-mask="6" class="btn"
+     ph-ajax="../../fixtures/fruit"
+     ph-method="delete"
+     ph-params="ids:::__selected_ids__/fruit">
+    Delete</button>
+</div>
+```
+
 <h2>Todo List</h2>
 <code class="language-plaintext highlighter-rouge" ph-show-current-url></code>
+
+<code class="language-plaintext highlighter-rouge" ph-show-history-state="__ph">Show history state here.</code>
+
 <div class="code-example" markdown="1">
 <div class="select-all" ph-selector-listener="todo" ph-config="toggle::disabled">
     <button type="button" ph-mask="7" class="btn"
@@ -98,78 +159,149 @@ this.idRegex = new RegExp(
 </div>
 
 ```html
-<div class="select-all" ph-selector-listener="todo" ph-config="toggle::disabled">
-    <button type="button" ph-mask="7" class="btn"
-     ph-pjax-link="."
-     ph-params="ids:::__selected_ids__/todo">
-     New</button>
-    <button type="button" ph-mask="2" class="btn"
-     ph-pjax-link="."
-     ph-params="ids:::__selected_ids__/todo">
-    Edit</button>
-    <button type="button" ph-mask="6" class="btn"
-     ph-ajax="../../fixtures/todo"
-     ph-method="delete"
-     ph-params="ids:::__selected_ids__/todo">
-    Delete</button>
+<div
+  class="select-all"
+  ph-selector-listener="todo"
+  ph-config="toggle::disabled"
+>
+  <button
+    type="button"
+    ph-mask="7"
+    class="btn"
+    ph-pjax-link="."
+    ph-params="ids:::__selected_ids__/todo"
+  >
+    New
+  </button>
+  <button
+    type="button"
+    ph-mask="2"
+    class="btn"
+    ph-pjax-link="."
+    ph-params="ids:::__selected_ids__/todo"
+  >
+    Edit
+  </button>
+  <button
+    type="button"
+    ph-mask="6"
+    class="btn"
+    ph-ajax="../../fixtures/todo"
+    ph-method="delete"
+    ph-params="ids:::__selected_ids__/todo"
+  >
+    Delete
+  </button>
 </div>
 
 <table>
-    <thead>
-        <tr>
-            <th style="text-align:left;"><input type="checkbox" ph-row-selector-all="todo"></th>
-            <th>ID</th>
-            <th>Task</th>
-            <th>Due Date</th>
-            <th>Priority</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td><input type="checkbox" ph-row-selector="todo" id="_row_1"></td>
-            <td>1</td>
-            <td>Finish project report</td>
-            <td>2024-03-25</td>
-            <td>High</td>
-        </tr>
-        <tr>
-            <td><input type="checkbox" ph-row-selector="todo" id="_row_2"></td>
-            <td>2</td>
-            <td>Buy groceries</td>
-            <td>2024-03-24</td>
-            <td>Medium</td>
-        </tr>
-        <tr>
-            <td><input type="checkbox" ph-row-selector="todo" id="_row_3"></td>
-            <td>3</td>
-            <td>Call mom</td>
-            <td>2024-03-26</td>
-            <td>Low</td>
-        </tr>
-    </tbody>
+  <thead>
+    <tr>
+      <th style="text-align:left;">
+        <input
+          type="checkbox"
+          ph-row-selector-all="todo"
+        />
+      </th>
+      <th>ID</th>
+      <th>Task</th>
+      <th>Due Date</th>
+      <th>Priority</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <input
+          type="checkbox"
+          ph-row-selector="todo"
+          id="_row_1"
+        />
+      </td>
+      <td>1</td>
+      <td>Finish project report</td>
+      <td>2024-03-25</td>
+      <td>High</td>
+    </tr>
+    <tr>
+      <td>
+        <input
+          type="checkbox"
+          ph-row-selector="todo"
+          id="_row_2"
+        />
+      </td>
+      <td>2</td>
+      <td>Buy groceries</td>
+      <td>2024-03-24</td>
+      <td>Medium</td>
+    </tr>
+    <tr>
+      <td>
+        <input
+          type="checkbox"
+          ph-row-selector="todo"
+          id="_row_3"
+        />
+      </td>
+      <td>3</td>
+      <td>Call mom</td>
+      <td>2024-03-26</td>
+      <td>Low</td>
+    </tr>
+  </tbody>
 </table>
 <div class="pagination">
-    <div>
+  <div>
     <button
-     ph-params="*:*"
-     ph-qs-step="page:1,min:1,disabled"
-     ph-pjax-link="./">&laquo; Prev</button>
-    <button class="active" ph-pjax-link="./" ph-params="*:*,page::1" ph-qs-to-css="page:1,innerHTML,active">1</button>
-    <button ph-pjax-link="./" ph-params="*:*,page::2" ph-qs-to-css="page:1,innerHTML,active">2</button>
-    <button ph-pjax-link="./" ph-params="*:*,page::3" ph-qs-to-css="page:1,innerHTML,active">3</button>
-    <button 
-    ph-params="*:*"
-    ph-qs-step="page:1,max:3,disabled"
-    ph-pjax-link="./">Next &raquo;</button>
-    </div>
-    <div>
-        <span>Items per page:</span>
-        <select ph-page-submitter="pjax" name="size" ph-qs-to-value="size:5">
-            <option value="5">5</option>
-            <option value="10">10</option>
-            <option value="20">20</option>
-        </select>
-    </div>
+      ph-params="*:*"
+      ph-qs-step="page:1,min:1,disabled"
+      ph-pjax-link="./"
+    >
+      &laquo; Prev
+    </button>
+    <button
+      class="active"
+      ph-pjax-link="./"
+      ph-params="*:*,page::1"
+      ph-qs-to-css="page:1,innerHTML,active"
+    >
+      1
+    </button>
+    <button
+      ph-pjax-link="./"
+      ph-params="*:*,page::2"
+      ph-qs-to-css="page:1,innerHTML,active"
+    >
+      2
+    </button>
+    <button
+      ph-pjax-link="./"
+      ph-params="*:*,page::3"
+      ph-qs-to-css="page:1,innerHTML,active"
+    >
+      3
+    </button>
+    <button
+      ph-params="*:*"
+      ph-qs-step="page:1,max:3,disabled"
+      ph-pjax-link="./"
+    >
+      Next &raquo;
+    </button>
+  </div>
+  <div>
+    <span>Items per page:</span>
+    <select
+      ph-page-submitter="pjax"
+      name="size"
+      ph-qs-to-value="size:5"
+    >
+      <option value="5">5</option>
+      <option value="10">10</option>
+      <option value="20">20</option>
+    </select>
+  </div>
 </div>
 ```
 

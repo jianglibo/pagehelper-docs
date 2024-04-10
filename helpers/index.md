@@ -3,6 +3,7 @@ title: Helpers List
 layout: default
 nav_order: 20
 has_children: true
+comments: true
 ---
 
 # Helpers
@@ -14,6 +15,7 @@ The following code will enhance the link by fetching the target page and replace
 <div class="code-example" markdown="1">
 
 <code class="language-plaintext highlighter-rouge" ph-show-current-url></code>
+
 <a href="./"
   ph-pjax-link
   ph-params="id:idInUrl">ToNewPage</a>

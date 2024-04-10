@@ -66,3 +66,5 @@ ph-pjax-link="./examples/ph-pjax-link-1/">
   Will load by pjax
 </button>
 ```
+
+<ph ph-css-to-head="https://pagehelper.lets-script.com/highlight/" ph-params="css::highlight.js" inline />

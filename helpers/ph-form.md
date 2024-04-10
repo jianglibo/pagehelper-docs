@@ -110,6 +110,7 @@ Even if remove the `ph-validate` attribute, the server side could hanle the vali
 <form class="ph"
 ph-form="../../fixtures/ph-form"
 ph-method="post"
+ph-json
 ph-confirm='{"title": "Do you want to save the changes?", "showCancelButton": true, "confirmButtonText": "Save"}'
 >
 <label>
