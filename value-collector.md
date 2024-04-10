@@ -160,7 +160,7 @@ it("should parse from query", () => {
 >
 > `id:idInUrl` will get the idInUrl and as id to new url parameter.
 >
-> `id:/1/` will get the first part of the pathname.
+> `id:/0/` will get the first part of the pathname.
 
 ## get all query
 

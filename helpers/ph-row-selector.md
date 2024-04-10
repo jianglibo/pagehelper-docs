@@ -33,11 +33,13 @@ Bellow is history state of `__ph`
     <input type="checkbox" ph-row-selector="fruit" id="_row_102"/>
     <input type="checkbox" ph-row-selector="fruit" id="_row_103"/>
 </form>
+<label>All<input type="checkbox" ph-row-selector-all="fruit"></label>
 </div>
 ```html
 <input type="checkbox" ph-row-selector="fruit" id="_row_101"/>
 <input type="checkbox" ph-row-selector="fruit" id="_row_102"/>
 <input type="checkbox" ph-row-selector="fruit" id="_row_103"/>
+<label>All<input type="checkbox" ph-row-selector-all="fruit"></label>
 ```
 
 And a `ph-selector-listener="fruit"` will be notified when selected id changes. Here use `ph-config="goggle::disabled"` to toggole the status of the button based on the selection number. User `ph-config="toggle::your-class-name` to toggle class.
