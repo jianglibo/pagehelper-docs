@@ -18,11 +18,12 @@ The following code will enhance the link by fetching the target page and replace
 
 <a href="./"
   ph-pjax-link
-  ph-params="id:idInUrl">ToNewPage</a>
+  ph-params="from:::this/innerHTML">ToNewPage</a>
+
 </div>
 ```html
 <a href="./"
   ph-pjax-link
-  ph-params="id:idInUrl">
+  ph-params="from:::this/innerHTML">
   ToNewPage</a>
 ```
