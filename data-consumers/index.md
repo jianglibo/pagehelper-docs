@@ -5,7 +5,11 @@ nav_order: 15
 has_children: true
 ---
 
-# Data Consumer
+# Data Consumer (ph-data-consumer)
+
+{: .important }
+> `ph-data-consumer` may have multiple consumers, separated by `,`.
+> Each consumer has the format of `name:any value(except,)`
 
 An HTML element which consumes data.
 
