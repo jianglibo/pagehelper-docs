@@ -21,6 +21,7 @@ has_children: false
 </label>
 
 Selected ids fixtures(fruit):
+
 <form>
 <label>101
     <input type="checkbox" ph-row-selector="fruit" id="_row_101"/>
@@ -34,6 +35,7 @@ Selected ids fixtures(fruit):
 </form>
 
 type the expression and see the result.
+
 <div ph-value-collect-demo>
   <div ph-result-show></div>
   <input type="text" name="abc" value="ids:::__selected_ids__/fruit,cat::abc,frompath:/0/,fromqs:qa" ph-expression-input style="width:100%;" />
@@ -100,6 +102,23 @@ it("should extract by selector", () => {
 > `__selected_ids__/user` will get current selected ids. see: [ph-row-selector](/helpers/ph-row-selector/)
 >
 > `this/attribute/href` will get the attribute value.
+>
+> `&ph-abc` If starts with a `&`, it will get the attribute on the same element, Usually it's because the value is too large or too complex to mixed up with other parameters.
+
+```html
+<a
+  href="http://localhost:8787/upload/"
+  ph-ajax
+  ph-json
+  ph-method="post"
+  ph-params-in-url="action::mpu-complete,uploadId::6fEP9oVB1AMIbT2Q9cdRLS2-WTe0-vsd7Ew1uMULrh1VVwR1BDxedoHKtxH-ijFtUknWUH9z1h01IE7gw1IqiVMzQ4JtDbRfn0f-b_fuVHTmLbQ_XySDLYv5U5P01Bw1i-v03StYlUOvUtqlJX8ZJSMpOXAcH-WObrh8WWV6Uas"
+  ph-params="parts:::&ph-param-parts"
+  ph-params-type-map="parts:json"
+  ph-param-parts='[{"partNumber":1,"etag":"71BxsQTUX2hbt3FfOd5Nd7ga8t3dbh22zQ0_N2v63R1d1cgUC4cFja2MWBpV79AE_HqxIhn4ThnY69shI4RMtufkZpLPtE7hSxxqkylgcil6_f5zhGDqqmnlriemygKD2mRmPhsOvJd-AOHvQJGpPVHiVrQILwgdSkTJM1Ux11Q"}]'
+>
+  Complete</a
+>
+```
 
 ## :: add constant value
 

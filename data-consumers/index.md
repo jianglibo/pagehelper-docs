@@ -9,6 +9,7 @@ has_children: true
 
 An HTML element which consumes data.
 
+<code class="language-plaintext highlighter-rouge" ph-show-response-body>Show response body here.</code>
 <div class="code-example" markdown="1">
 {% raw %}
 <ul ph-data-consumer="innerhtml-mustache:any-value"
