@@ -8,17 +8,37 @@ parent: Helpers List
 
 # ph-ajax-upload attribute
 
+{: .important }
+> This widget can be used directly on your website, uploaded file will go to Cloudflare R2.
+
 <div class="code-example" markdown="1">
-<span id="blob-result" ph-data-consumer="innerhtml"></span>
+<div
+      id="blob-result" 
+      ph-highlight="https://pagehelper.lets-script.com/highlight/"
+      ph-params="lang::json,inline::true"
+      ph-data-consumer="innerhtml">
+      <pre>
+    upload result will be here.
+</pre>
+</div>
+
+<ul ph-data-consumer="innerhtml-mustache" id="blob-result-live">
+{% raw %}
+<template>
+{{#.}}
+<a href="{{url}}" target="_blank">{{originFileName}}</a>
+{{/.}}
+</template>
+{% endraw %}
+</ul>
 <form
   method="put"
-  ph-blob
-  ph-target="#blob-result"
+  ph-target="#blob-result,#blob-result-live"
   ph-ajax-upload="https://pagehelper.lets-script.com/upload/r2-blob"
   action=""
   novalidate
 >
-  <input type="file" name="file" ph-disable-on-working/>
+  <input type="file" name="file" multiple ph-disable-on-working/>
   <div
     ph-error-css="is-invalid"
     ph-error-message="please select a file."
@@ -29,16 +49,32 @@ parent: Helpers List
 </form>
 </div>
 ```html
-<span id="blob-result" ph-data-consumer="innerhtml"></span>
+<div
+      id="blob-result" 
+      ph-highlight="https://pagehelper.lets-script.com/highlight/"
+      ph-params="lang::json,inline::true"
+      ph-data-consumer="innerhtml">
+      <pre>
+    upload result will be here.
+</pre>
+</div>
+<ul ph-data-consumer="innerhtml-mustache" id="blob-result-live">
+{% raw %}
+<template>
+{{#.}}
+<a href="{{url}}" target="_blank">{{originFileName}}</a>
+{{/.}}
+</template>
+{% endraw %}
+</ul>
 <form
   method="put"
-  ph-blob
-  ph-target="#blob-result"
+  ph-target="#blob-result,#blob-result-live"
   ph-ajax-upload="https://pagehelper.lets-script.com/upload/r2-blob"
   action=""
   novalidate
 >
-  <input type="file" name="file" ph-disable-on-working/>
+  <input type="file" name="file" multiple ph-disable-on-working/>
   <div
     ph-error-css="is-invalid"
     ph-error-message="please select a file."
@@ -50,17 +86,25 @@ parent: Helpers List
 ## auto upload after select
 
 <div class="code-example" markdown="1">
-<span id="blob-result-auto" ph-data-consumer="innerhtml"></span>
+<span id="blob-result-auto" ph-data-consumer="innerhtml">upload result will be here.</span>
+<ul ph-data-consumer="innerhtml-mustache" id="blob-result-auto-live">
+{% raw %}
+<template>
+{{#.}}
+<a href="{{url}}" target="_blank">{{originFileName}}</a>
+{{/.}}
+</template>
+{% endraw %}
+</ul>
 <form
   method="put"
-  ph-blob
   ph-auto-start
-  ph-target="#blob-result-auto"
+  ph-target="#blob-result-auto,#blob-result-auto-live"
   ph-ajax-upload="https://pagehelper.lets-script.com/upload/r2-blob"
   action=""
   novalidate
 >
-  <input type="file" name="file" />
+  <input type="file" name="file" multiple ph-disable-on-working />
   <div
     ph-error-css="is-invalid"
     ph-error-message="please select a file."
@@ -69,19 +113,33 @@ parent: Helpers List
 </div>
 ```html
 <span id="blob-result-auto" ph-data-consumer="innerhtml"></span>
+<ul ph-data-consumer="innerhtml-mustache" id="blob-result-auto-live">
+{% raw %}
+<template>
+{{#.}}
+<a href="{{url}}" target="_blank">{{originFileName}}</a>
+{{/.}}
+</template>
+{% endraw %}
+</ul>
 <form
   method="put"
-  ph-blob
   ph-auto-start
-  ph-target="#blob-result-auto"
+  ph-target="#blob-result-auto,#blob-result-auto-live"
   ph-ajax-upload="https://pagehelper.lets-script.com/upload/r2-blob"
   action=""
   novalidate
 >
-  <input type="file" name="file" />
+  <input type="file" name="file" multiple />
   <div
     ph-error-css="is-invalid"
     ph-error-message="please select a file."
   ></div>
 </form>
 ```
+
+## extra attributes for this helper:
+
+| name        | descriptio                                 | link        |
+| :---------- | :----------------------------------------- | ----------- |
+| ph-not-blob | default submit File as the body to server. | [fileupload](/blog/fileupload/) |
