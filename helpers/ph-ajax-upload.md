@@ -9,6 +9,7 @@ parent: Helpers List
 # ph-ajax-upload attribute
 
 {: .important }
+
 > This widget can be used directly on your website, uploaded file will go to Cloudflare R2.
 
 <div class="code-example" markdown="1">
@@ -35,6 +36,7 @@ parent: Helpers List
   method="put"
   ph-target="#blob-result,#blob-result-live"
   ph-ajax-upload="https://pagehelper.lets-script.com/upload/r2-blob"
+  ph-callback-remote="get:/save-urls"
   action=""
   novalidate
 >
@@ -101,6 +103,7 @@ parent: Helpers List
   ph-auto-start
   ph-target="#blob-result-auto,#blob-result-auto-live"
   ph-ajax-upload="https://pagehelper.lets-script.com/upload/r2-blob"
+  ph-callback-remote="get:/save-me"
   action=""
   novalidate
 >
@@ -140,6 +143,8 @@ parent: Helpers List
 
 ## extra attributes for this helper:
 
-| name        | descriptio                                 | link        |
-| :---------- | :----------------------------------------- | ----------- |
-| ph-not-blob | default submit File as the body to server. | [fileupload](/blog/fileupload/) |
+| name               | descriptio                                             | link                                   |
+| :----------------- | :----------------------------------------------------- | -------------------------------------- |
+| ph-not-blob        | default submit File as the body to server.             | [fileupload](/blog/fileupload/)        |
+| ph-api-key         | add an apikey so that you will own the uploaded files. | [Get Apikey](/blog/get-upload-apikey/) |
+| ph-callback-remote | callback the url with the data just received.          | format: `method:url`, `post:/mycb`     |
