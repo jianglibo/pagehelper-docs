@@ -22,6 +22,7 @@ When the value of an element changed, will summit the current page with changed 
 <label>Type to search
 <input type="search" name="search" ph-page-submitter="pjax" ph-config="delay::1500" ph-qs-to-value/>
 </label>
+
 </div>
 
 ```html
@@ -37,6 +38,29 @@ When the value of an element changed, will summit the current page with changed 
 </label>
 ```
 
+### Using Alpine
+
+<div class="code-example" markdown="1">
+<label>
+<input
+  type="search"
+  x-data="ph"
+  name="alpineinput"
+  x-init="qsToValue('alpineinput')" 
+  x-on:input.debounce.1000ms="pjax('hello')"/>
+</label>
+</div>
+
+```html
+<input
+  type="search"
+  x-data="ph"
+  name="alpineinput"
+  x-init="qsToValue('alpineinput')"
+  @input.debounce.1000ms="pjax('hello')"
+/>
+```
+
 ## select field
 
 <div class="code-example" markdown="1">
@@ -46,6 +70,7 @@ When the value of an element changed, will summit the current page with changed 
 <select name="size" 
  ph-page-submitter="pjax" 
  ph-qs-to-value="_:5">
+
 <option value="5">5</option>
 <option value="10">10</option>
 <option value="20">20</option>
@@ -68,6 +93,43 @@ When the value of an element changed, will summit the current page with changed 
 </label>
 ```
 
+### Using Alpine
+
+<div class="code-example" markdown="1">
+<form>
+    <select
+      id="selector1"
+      name="selector1"
+      x-data="ph"
+      x-init="qsToValue('selector1')"
+      x-on:input.debounce="pjax"
+    >
+      <option value="" disabled>Select a value</option>
+        <option value="a">a</option>
+        <option value="b">b</option>
+    </select>
+</form>
+</div>
+
+```html
+<select
+  id="selector1"
+  name="selector1"
+  x-data="ph"
+  x-init="qsToValue('selector1')"
+  @input.debounce="pjax"
+>
+  <option
+    value=""
+    disabled
+  >
+    Select a value
+  </option>
+  <option value="a">a</option>
+  <option value="b">b</option>
+</select>
+```
+
 ## Checkbox field
 
 <div class="code-example" markdown="1">
@@ -78,13 +140,49 @@ When the value of an element changed, will summit the current page with changed 
  ph-page-submitter="pjax"
  ph-qs-to-value="_:true"/>
 </label>
+
 </div>
 
 ```html
+<label
+  >all
+  <input
+    type="checkbox"
+    name="all"
+    ph-page-submitter="pjax"
+    ph-qs-to-value="_:true"
+  />
+</label>
+<label>Type to search</label>
+```
+
+### Using Alpine
+
+<div class="code-example" markdown="1">
+<code class="language-plaintext highlighter-rouge" ph-show-current-url></code>
+
 <label>all
-<input type="checkbox" name="all"
- ph-page-submitter="pjax" 
- ph-qs-to-value="_:true"/>
+<input
+type="checkbox"
+x-data="ph"
+name="alpineinput1"
+x-init="qsToValue('alpineinput1')"
+x-on:input.debounce.1000ms="pjax"
+/>
+</label>
+
+</div>
+
+```html
+<label
+  >all
+  <input
+    type="checkbox"
+    x-data="ph"
+    name="alpineinput1"
+    x-init="qsToValue('alpineinput1')"
+    @input.debounce.1000ms="pjax"
+  />
 </label>
 <label>Type to search</label>
 ```
@@ -92,7 +190,7 @@ When the value of an element changed, will summit the current page with changed 
 ## submitter types
 
 ```typescript
-type PjaxRequestType = "query" | "pjax" | "ajax";
+type PjaxRequestType = "query" | "pjax";
 ```
 
 {: .important }
@@ -109,5 +207,5 @@ type PjaxRequestType = "query" | "pjax" | "ajax";
 
 The syntax is `qn:default,value|innerHTML|attributes`.
 
-* qn:default Query name and default value
-* value or innerHTML or attribute to set from the Query parameter from the url
+- qn:default Query name and default value
+- value or innerHTML or attribute to set from the Query parameter from the url
