@@ -10,6 +10,15 @@ parent: Data Consumers
 
 This is a global consumer that means it's triggered by the response message, if this consumer find the pattern in the message and think it as a show Swal instruction it will show it.
 
+
+<button
+  type="button"
+  ph-params="itemid::2"
+  ph-pjax-link="../../playground/"
+  class="btn btn-sm">
+<span x-text="btnLabel">Live DEMO</span>
+</button>
+
 It's easy to write your own and register it.
 
 <div class="code-example" markdown="1">

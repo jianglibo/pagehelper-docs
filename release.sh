@@ -3,30 +3,33 @@
 originDir=$(pwd)
 cd "$(dirname -- "${BASH_SOURCE}")"
 
-#now at util
+bash ../pagehelper/deploy-to-docs.sh
+bash ../my-codemirror/deploy-to-docs.sh
 
-cd ../pagehelper
-yarn build
+# #now at util
 
-if [[ ! -d ../pagehelper-docs/dist ]]; then
-	mkdir ../pagehelper-docs/dist
-fi
+# cd ../pagehelper
+# yarn build
 
-cp -f ./dist/bundle.min.es.js ../pagehelper-docs/dist/
-cp -f ./dist/bundle.min.iife.js ../pagehelper-docs/dist/
+# if [[ ! -d ../pagehelper-docs/dist ]]; then
+# 	mkdir ../pagehelper-docs/dist
+# fi
 
-if [[ ! -d ../pagehelper/forever ]]; then
-  mkdir ../pagehelper/forever
-fi
+# cp -f ./dist/bundle.min.es.js ../pagehelper-docs/dist/
+# cp -f ./dist/bundle.min.iife.js ../pagehelper-docs/dist/
 
-# remove all files it's name contains .hashed.
-find ../pagehelper-docs/forever -name "*.hashed.*" -exec rm -f {} \;
+# if [[ ! -d ../pagehelper/forever ]]; then
+#   mkdir ../pagehelper/forever
+# fi
 
-hash=$(md5sum ../pagehelper/dist/bundle.min.es.js | cut -d ' ' -f 1)
-cp -f ./dist/bundle.min.es.js ../pagehelper-docs/forever/bundle.min.es.hashed.$hash.js
+# # remove all files it's name contains .hashed.
+# find ../pagehelper-docs/forever -name "*.hashed.*" -exec rm -f {} \;
 
-# update ../pagehelper-docs/_data/file_hashes.yml with content: bundle_es: $hash
-echo "bundle_es: $hash" > ../pagehelper-docs/_data/file_hashes.yml
+# hash=$(md5sum ../pagehelper/dist/bundle.min.es.js | cut -d ' ' -f 1)
+# cp -f ./dist/bundle.min.es.js ../pagehelper-docs/forever/bundle.min.es.hashed.$hash.js
+
+# # update ../pagehelper-docs/_data/file_hashes.yml with content: bundle_es: $hash
+# echo "bundle_es: $hash" > ../pagehelper-docs/_data/file_hashes.yml
 
 cd $originDir
 

@@ -44,3 +44,6 @@ footer_content: '<a href="https://discord.gg/ZXumFzxkcg">Discord</a>, <span>QQ g
 # <ph ph-css-to-head="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" inline/>
 # <code ph-highlight="/highlight" ph-params="lang::javascript" id="demo-code">
 # <ph ph-css-to-head="/highlight/" ph-params="css::highlight.js" inline />
+twitter:
+  username: jianglibo
+  card: summary

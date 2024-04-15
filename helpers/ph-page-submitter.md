@@ -70,7 +70,6 @@ When the value of an element changed, will summit the current page with changed 
 <select name="size" 
  ph-page-submitter="pjax" 
  ph-qs-to-value="_:5">
-
 <option value="5">5</option>
 <option value="10">10</option>
 <option value="20">20</option>

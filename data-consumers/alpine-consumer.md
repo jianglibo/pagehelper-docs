@@ -12,6 +12,14 @@ parent: Data Consumers
 
 As a convention only change the **data** field of the data context.
 
+<button
+  type="button"
+  ph-params="itemid::3"
+  ph-pjax-link="../../playground/"
+  class="btn btn-sm">
+<span x-text="btnLabel">Live DEMO</span>
+</button>
+
 <code class="language-plaintext highlighter-rouge" ph-show-response-body>Show response body here.</code>
 
 <div class="code-example" markdown="1">
