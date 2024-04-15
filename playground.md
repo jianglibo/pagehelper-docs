@@ -36,13 +36,14 @@ has_children: false
     data-finalc="https://lets-script.com/devtools/ph-playground-completion"
     data-lang="html"
     data-height="150px"
+    data-max-height="250px"
     data-firewritein
     data-mode="normal"
   />
 </div>
 </div>
 
-<div style="margin-top: 8px;border: thick double #32a1ce;padding:5px;"
+<div style="margin-top: 18px;border: thick double #32a1ce;padding:5px;"
  x-on:demo-change.window="$el.innerHTML=$store.demos.currentItem.html;"
  x-on:json-change.window="$el.innerHTML=$store.demos.currentItem.html;"
  class="ph" id="playground-result" x-html="$store.demos.currentItem.html">
