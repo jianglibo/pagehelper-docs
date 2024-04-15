@@ -69,11 +69,15 @@ site.data.file_hashes.cm %}
         all: [],
         currentItem: {},
         setCurrentItem(id) {
-          this.currentItem = this.find(id);
+          console.log("id to set", id);
+          const found = this.find(id);
+          console.log("found", found);
+          this.currentItem = JSON.parse(JSON.stringify(found));
         },
         find(id) {
-          console.log("all", this.all);
-          return this.all.find((demo) => demo.id + "" === id);
+          return this.all.find((demo) => {
+            return demo.id + "" === id;
+          });
         },
         currentLink(demoname) {
           const qs = new URLSearchParams();
