@@ -8,19 +8,19 @@ has_children: false
 
 # Play Ground for Alpine and Pagehelper
 
-<div x-data="{...demos(), loading: 'Loading...', showLoaddAll: false}">
+<div x-data="{...demos(), loading: false, showLoadAll: false}">
 <form class="ph">
 <select  style="width:100%;" 
   x-model="$store.demos.currentItem.id"
   x-bind="initdemo"
   x-on:change="$store.demos.setCurrentItem($el.value);loading='Please select a Demo';$nextTick(() => $dispatch('demo-change', {}))"
   name="demo">
-  <option value='' disabled x-text="loading">Please select a Demo</option>
+  <option value='' disabled x-text="loading ? 'Loading...' : 'Please select a Demo'">Please select a Demo</option>
   <template x-for="item in $store.demos.all">
     <option x-bind:value="item.id + ''" x-text="`${item.name}(${item.id})`">hello</option>
   </template>
 </select>
-<a x-bind="loadalldemos" href="#" x-show="showLoadAll">Load Others</a>
+<a x-bind="loadalldemos" href="#" x-show="showLoadAll" x-text="loading ? 'Loading...' : 'Load Others' ">Load Others</a>
 </form>
 
 <div>

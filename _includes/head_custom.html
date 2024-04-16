@@ -15,8 +15,13 @@ site.data.file_hashes.cm %} {% raw %}
           loadalldemos: {
             ["@click.prevent"]() {
               const qs = new URLSearchParams(window.location.search);
+              this.$data.loading = true;
               qs.delete("id");
-              fetch("https://lets-script.com/devtools/pagehelpers" + '?' + qs.toString())
+              fetch(
+                "https://lets-script.com/devtools/pagehelpers" +
+                  "?" +
+                  qs.toString()
+              )
                 .then((res) => res.json())
                 .then((j) => {
                   Alpine.store("demos").all = [
@@ -24,7 +29,9 @@ site.data.file_hashes.cm %} {% raw %}
                     Alpine.store("demos").currentItem,
                   ];
                   history.pushState({}, "", window.location.pathname);
-                  this.$data.showLoadAll = false
+                  console.log("this:", this);
+                  this.$data.loading = false;
+                  this.$data.showLoadAll = false;
                 });
             },
           },
@@ -59,7 +66,7 @@ site.data.file_hashes.cm %} {% raw %}
                 .then((items) => {
                   Alpine.store("demos").all = items;
                   const id = qs.get("id");
-                  this.$data.loading = 'Please select a demo.';
+                  this.$data.loading = false;
                   if (id) {
                     Alpine.store("demos").setCurrentItem(id);
                     Alpine.nextTick(() => {
@@ -140,11 +147,16 @@ site.data.file_hashes.cm %} {% raw %}
 </script>
 
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-8EWSPQX3BX"></script>
+<script
+  async
+  src="https://www.googletagmanager.com/gtag/js?id=G-8EWSPQX3BX"
+></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+  gtag("js", new Date());
 
-  gtag('config', 'G-8EWSPQX3BX');
+  gtag("config", "G-8EWSPQX3BX");
 </script>
