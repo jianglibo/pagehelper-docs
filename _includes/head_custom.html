@@ -48,13 +48,22 @@ site.data.file_hashes.cm %} {% raw %}
                   window.dispatchEvent(ce);
                 });
               } else {
-                fetch("https://lets-script.com/devtools/pagehelpers")
+                const id = qs.get("id");
+                let search = window.location.search;
+                fetch("https://lets-script.com/devtools/pagehelpers" + search)
                   .then((res) => res.json())
                   .then((j) => {
-                    Alpine.store("demos").all = j.data;
-                    const itemid = qs.get("itemid");
-                    if (itemid) {
-                      Alpine.store("demos").setCurrentItem(itemid);
+                    if (Array.isArray(j.data)) {
+                      return j.data;
+                    } else {
+                      return [j.data];
+                    }
+                  })
+                  .then((items) => {
+                    Alpine.store("demos").all = items;
+                    const id = qs.get("id");
+                    if (id) {
+                      Alpine.store("demos").setCurrentItem(id);
                       Alpine.nextTick(() => {
                         const ce = new CustomEvent("demo-change", {});
                         window.dispatchEvent(ce);
