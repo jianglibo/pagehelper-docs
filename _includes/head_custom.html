@@ -14,7 +14,9 @@ site.data.file_hashes.cm %} {% raw %}
         Alpine.data("demos", () => ({
           loadalldemos: {
             ["@click.prevent"]() {
-              fetch("https://lets-script.com/devtools/pagehelpers")
+              const qs = new URLSearchParams(window.location.search);
+              qs.delete("id");
+              fetch("https://lets-script.com/devtools/pagehelpers" + '?' + qs.toString())
                 .then((res) => res.json())
                 .then((j) => {
                   Alpine.store("demos").all = [
@@ -22,12 +24,16 @@ site.data.file_hashes.cm %} {% raw %}
                     Alpine.store("demos").currentItem,
                   ];
                   history.pushState({}, "", window.location.pathname);
+                  this.$data.showLoadAll = false
                 });
             },
           },
           initdemo: {
             ["x-init"]() {
               const qs = new URLSearchParams(window.location.search);
+              if (qs.has("id")) {
+                this.$data.showLoadAll = true;
+              }
               console.log(
                 "current store:",
                 JSON.stringify(Alpine.store("demos").currentItem)

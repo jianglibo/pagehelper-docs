@@ -8,7 +8,7 @@ has_children: false
 
 # Play Ground for Alpine and Pagehelper
 
-<div x-data="{...demos(), loading: 'Loading...'}">
+<div x-data="{...demos(), loading: 'Loading...', showLoaddAll: false}">
 <form class="ph">
 <select  style="width:100%;" 
   x-model="$store.demos.currentItem.id"
@@ -20,7 +20,7 @@ has_children: false
     <option x-bind:value="item.id + ''" x-text="`${item.name}(${item.id})`">hello</option>
   </template>
 </select>
-<a x-bind="loadalldemos" href="#" x-show="window.location.search.indexOf('item=') !== -1">Load Others</a>
+<a x-bind="loadalldemos" href="#" x-show="showLoadAll">Load Others</a>
 </form>
 
 <div>
