@@ -50,7 +50,7 @@ has_children: false
 </div>
 
 <div style="margin-top: 10px;" x-data="{styles: {color: ''}}">
-<span x-bind:style="styles">Response json for ajax test:</span>
+<span x-bind:style="styles">Server Echo data:</span>
 <div class="cm-editor-wrap">
   <input
     type="hidden"
@@ -58,7 +58,7 @@ has_children: false
     id="playground-json"
     x-on:demo-change.window="$el.value=$store.demos.currentItem.jsonvalue;$dispatch('writeback', {value: $store.demos.currentItem.jsonvalue})"
     x-on:cmwritein.debounce.1000ms="if($event.detail.cmid === 'playground-json'){ $store.demos.currentItem.jsonvalue = $event.detail.value };
-          try { JSON.parse($event.detail.value);styles.color='';$dispatch('json-change', {})} catch (error) {styles.color='red'} "
+          try { JSON.parse($event.detail.value);styles.color='';} catch (error) {styles.color='red'};$dispatch('json-change', {}) "
     data-lang="json"
     data-height="150px"
     data-firewritein
@@ -80,9 +80,12 @@ has_children: false
 
 ## Docs
 
-**echo json to mock server response**
+**echo any data to mock server response**
 
 Add `ph-params="echo:::#playground-json/value"` to the `ph-ajax="https://pagehelper.lets-script.com/ph-misc/echo"` link will bring the json value to the server and echo back for testing.
+
+* when `echo` query parameter exists,always echo this value
+* if is post method, echo the body
 
 **This page already add a `demos` Alpine store**
 ```html
