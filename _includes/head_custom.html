@@ -39,38 +39,29 @@ site.data.file_hashes.cm %} {% raw %}
                 });
                 return;
               }
-              if (qs.has("item")) {
-                const item = JSON.parse(qs.get("item"));
-                Alpine.store("demos").all = [item];
-                Alpine.store("demos").currentItem = item;
-                Alpine.nextTick(() => {
-                  const ce = new CustomEvent("demo-change", {});
-                  window.dispatchEvent(ce);
+              const id = qs.get("id");
+              let search = window.location.search;
+              fetch("https://lets-script.com/devtools/pagehelpers" + search)
+                .then((res) => res.json())
+                .then((j) => {
+                  if (Array.isArray(j.data)) {
+                    return j.data;
+                  } else {
+                    return [j.data];
+                  }
+                })
+                .then((items) => {
+                  Alpine.store("demos").all = items;
+                  const id = qs.get("id");
+                  this.$data.loading = 'Please select a demo.';
+                  if (id) {
+                    Alpine.store("demos").setCurrentItem(id);
+                    Alpine.nextTick(() => {
+                      const ce = new CustomEvent("demo-change", {});
+                      window.dispatchEvent(ce);
+                    });
+                  }
                 });
-              } else {
-                const id = qs.get("id");
-                let search = window.location.search;
-                fetch("https://lets-script.com/devtools/pagehelpers" + search)
-                  .then((res) => res.json())
-                  .then((j) => {
-                    if (Array.isArray(j.data)) {
-                      return j.data;
-                    } else {
-                      return [j.data];
-                    }
-                  })
-                  .then((items) => {
-                    Alpine.store("demos").all = items;
-                    const id = qs.get("id");
-                    if (id) {
-                      Alpine.store("demos").setCurrentItem(id);
-                      Alpine.nextTick(() => {
-                        const ce = new CustomEvent("demo-change", {});
-                        window.dispatchEvent(ce);
-                      });
-                    }
-                  });
-              }
             },
           },
         }));
@@ -118,6 +109,7 @@ site.data.file_hashes.cm %} {% raw %}
     pageHelper.add(new Cm6Enricher({ makecm6 }));
 
     pageHelper.enrich();
+    window.pageHelper = pageHelper;
 
     window.addEventListener("pjaxPageLoaded", (e) => {
       var domContentLoadedEvent = new Event("DOMContentLoaded", {
