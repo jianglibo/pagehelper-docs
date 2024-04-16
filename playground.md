@@ -10,7 +10,7 @@ has_children: false
 
 <div x-data="{...demos(), loading: false, showLoadAll: false}">
 <form class="ph">
-<select  style="width:100%;" 
+<select  style="width:70%;" 
   x-model="$store.demos.currentItem.id"
   x-bind="initdemo"
   x-on:change="$store.demos.setCurrentItem($el.value);loading='Please select a Demo';$nextTick(() => $dispatch('demo-change', {}))"
@@ -46,7 +46,26 @@ has_children: false
 <div style="margin-top: 18px;border: thick double #32a1ce;padding:5px;"
  x-on:demo-change.window="$el.innerHTML=$store.demos.currentItem.html;"
  x-on:json-change.window="$el.innerHTML=$store.demos.currentItem.html;"
+ x-on:js-change.window="$el.innerHTML=$store.demos.currentItem.html;"
  class="ph" id="playground-result" x-html="$store.demos.currentItem.html">
+</div>
+
+<div style="margin-top: 10px;">
+<span>JS Code:</span>
+<div class="cm-editor-wrap">
+  <input
+    type="hidden"
+    name="json"
+    id="playground-js"
+    x-on:demo-change.window="$el.value=$store.demos.currentItem.jsvalue;$dispatch('writeback', {value: $store.demos.currentItem.jsvalue})"
+    x-on:cmwritein.debounce.1000ms="if($event.detail.cmid === 'playground-js'){ $store.demos.currentItem.jsvalue = $event.detail.value };
+         console.log($event.detail.value);evalJs(); $dispatch('js-change', {}) "
+    data-lang="javascript"
+    data-height="150px"
+    data-firewritein
+    data-mode="normal"
+  />
+</div>
 </div>
 
 <div style="margin-top: 10px;" x-data="{styles: {color: ''}}">
@@ -67,6 +86,7 @@ has_children: false
 </div>
 </div>
 
+
 <div class="ph" x-data="{btnLabel: 'Share Link', demoname: ''}" style="margin-top: 15px;">
 <input type="text" name="demoname" placeholder="Give it a name" x-model="demoname"/>
 <button
@@ -75,6 +95,14 @@ has_children: false
   x-on:click="$store.demos.copyCurrentLink(demoname);btnLabel='Copied';setTimeout(() => {btnLabel = 'Share Link'}, 2000)">
 <span x-text="btnLabel">Share Link</span>
 </button>
+</div>
+
+<div style="margin-top: 20px;" x-data="{dumpValue: '', show: false}">
+<a href="#" x-on:click.prevent="dumpValue = dumpStore(); show = ! show">dump demo store</a>
+<pre>
+<code x-text="dumpValue" x-show="show">
+</code>
+</pre>
 </div>
 </div>
 

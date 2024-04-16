@@ -11,6 +11,8 @@ site.data.file_hashes.cm %} {% raw %}
       debug: true,
       demo_mode: true,
       alpine_before_start: function (Alpine) {
+        window.Alpine = Alpine;
+        console.log(Alpine);
         Alpine.data("demos", () => ({
           loadalldemos: {
             ["@click.prevent"]() {
@@ -35,21 +37,33 @@ site.data.file_hashes.cm %} {% raw %}
                 });
             },
           },
+          evalJs() {
+            let cit = Alpine.store("demos").currentItem;
+            cit = cit.jsvalue;
+            if (cit) {
+              try {
+                const scriptElement = document.createElement("script");
+                scriptElement.innerHTML = cit;
+                document.body.appendChild(scriptElement);
+              } catch (error) {
+                console.error(error);
+              }
+            }
+          },
           initdemo: {
             ["x-init"]() {
               const qs = new URLSearchParams(window.location.search);
               if (qs.has("id")) {
                 this.$data.showLoadAll = true;
               }
-              console.log(
-                "current store:",
-                JSON.stringify(Alpine.store("demos").currentItem)
-              );
-              if (Alpine.store("demos").currentItem.id) {
+              if (Alpine.store("demos").currentItem.html) {
                 Alpine.nextTick(() => {
                   const ce = new CustomEvent("demo-change", {});
                   window.dispatchEvent(ce);
                 });
+                if (Alpine.store("demos").all.length === 0) {
+                  this.$data.showLoadAll = true;
+                }
                 return;
               }
               const id = qs.get("id");
@@ -77,13 +91,26 @@ site.data.file_hashes.cm %} {% raw %}
                 });
             },
           },
+          dumpStore() {
+            const all = JSON.stringify(Alpine.store("demos").all);
+            const currentItem = JSON.stringify(
+              Alpine.store("demos").currentItem
+            );
+            const v = {
+              all: JSON.parse(all),
+              currentItem: JSON.parse(currentItem),
+            };
+            return JSON.stringify(v, null, 2);
+          },
         }));
         Alpine.store("demos", {
           init() {
             this.all = [];
           },
           all: [],
-          currentItem: {},
+          currentItem: Alpine.$persist({})
+            .as("last_editing_item")
+            .using(sessionStorage),
           setCurrentItem(id) {
             console.log("id to set", id);
             const found = this.find(id);
@@ -121,8 +148,8 @@ site.data.file_hashes.cm %} {% raw %}
 
     pageHelper.add(new Cm6Enricher({ makecm6 }));
 
-    pageHelper.enrich();
     window.pageHelper = pageHelper;
+    pageHelper.enrich();
 
     window.addEventListener("pjaxPageLoaded", (e) => {
       var domContentLoadedEvent = new Event("DOMContentLoaded", {
