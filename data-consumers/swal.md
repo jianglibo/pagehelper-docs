@@ -13,7 +13,7 @@ This is a global consumer that means it's triggered by the response message, if 
 
 <button
   type="button"
-  ph-params="itemid::2"
+  ph-params="id::2"
   ph-pjax-link="../../playground/"
   class="btn btn-sm">
 <span x-text="btnLabel">Live DEMO</span>

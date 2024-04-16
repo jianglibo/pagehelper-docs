@@ -11,7 +11,7 @@ parent: Data Consumers
 Put a mustache template as a child in the HTML element.
 <button
   type="button"
-  ph-params="itemid::1"
+  ph-params="id::1"
   ph-pjax-link="../../playground/"
   class="btn btn-sm">
 <span x-text="btnLabel">Live DEMO</span>

@@ -14,7 +14,7 @@ As a convention only change the **data** field of the data context.
 
 <button
   type="button"
-  ph-params="itemid::3"
+  ph-params="id::3"
   ph-pjax-link="../../playground/"
   class="btn btn-sm">
 <span x-text="btnLabel">Live DEMO</span>

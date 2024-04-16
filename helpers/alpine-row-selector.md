@@ -11,7 +11,7 @@ parent: Helpers List
 
 <button
   type="button"
-  ph-params="itemid::6"
+  ph-params="id::6"
   ph-pjax-link="../../playground/"
   class="btn btn-sm">
 <span x-text="btnLabel">Live DEMO</span>

@@ -12,6 +12,15 @@ parent: Helpers List
 
 > This widget can be used directly on your website, uploaded file will go to Cloudflare R2.
 
+<button
+  type="button"
+  ph-params="id::3"
+  ph-pjax-link="../../playground/"
+  class="btn btn-sm">
+<span x-text="btnLabel">Live DEMO</span>
+</button>
+
+
 <div class="code-example" markdown="1">
 <div
       id="blob-result" 
