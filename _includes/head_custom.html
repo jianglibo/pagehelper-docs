@@ -14,6 +14,18 @@ site.data.file_hashes.cm %} {% raw %}
       alpine_before_start: function (Alpine) {
         window.Alpine = Alpine;
         Alpine.data("demos", () => ({
+          runjsAt: Alpine.$persist("both"),
+          cmSizes: Alpine.$persist({
+            "js-cm-wrap": "400px",
+            "css-cm-wrap": "400px",
+            "json-cm-wrap": "400px",
+            "html-cm-wrap": "400px",
+          }),
+          updateCmSizes(id, size) {
+            const s = (size && size + "px") || "400px";
+            console.log('set cmsized: ', id, size);
+            this.cmSizes[id] = s;
+          },
           loadalldemos: {
             ["@click.prevent"]() {
               const qs = new URLSearchParams(window.location.search);
@@ -36,28 +48,33 @@ site.data.file_hashes.cm %} {% raw %}
                 });
             },
           },
+          _runjs() {
+            if (this.runjsAt === "both" || this.runjsAt === "before") {
+              this.evalJs();
+            }
+            this.$el.innerHTML = Alpine.store("demos").currentItem.html;
+            if (this.runjsAt === "both" || this.runjsAt === "after") {
+              this.evalJs();
+            }
+          },
           setResultInnerHTML: {
             ["@demo-change.window"]() {
-              this.evalJs();
-              this.$el.innerHTML = Alpine.store("demos").currentItem.html;
+              this._runjs();
             },
             ["@json-change.window"]() {
-              this.evalJs();
-              this.$el.innerHTML = Alpine.store("demos").currentItem.html;
+              this._runjs();
             },
             ["@js-change.window"]() {
-              this.evalJs();
-              this.$el.innerHTML = Alpine.store("demos").currentItem.html;
+              this._runjs();
+            },
+            ["@html-change.window"]() {
+              this._runjs();
             },
             ["@css-change.window"]() {
               let el = document.createElement("style");
               el.type = "text/css";
               el.innerText = Alpine.store("demos").currentItem.cssvalue;
               document.head.appendChild(el);
-            },
-            ["x-html"]() {
-              this.evalJs();
-              return Alpine.store("demos").currentItem.html;
             },
           },
           evalJs() {

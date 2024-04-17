@@ -8,7 +8,8 @@ has_children: false
 
 # Play Ground for Alpine and Pagehelper
 
-<div x-data="{...demos(), loading: false, showLoadAll: false}">
+<div x-data="{...demos(), loading: false, cmheight: '200px', showLoadAll: false}"
+  x-on:cmcontainerchanged.window.debounce.500ms="console.log('target', $event);updateCmSizes($event.target.id, $event.detail.height)">
 <table>
 <tr>
 <td>
@@ -16,9 +17,14 @@ has_children: false
 <select
   x-model="$store.demos.currentItem.id"
   x-bind="initdemo"
-  x-on:change="$store.demos.setCurrentItem($el.value);loading='Please select a Demo';$nextTick(() => $dispatch('demo-change', {}))"
+  x-on:change="
+    $store.demos.setCurrentItem($el.value);
+    loading='Please select a Demo';
+    $nextTick(() => $dispatch('demo-change', {}))"
   name="demo">
-  <option value='' disabled x-text="loading ? 'Loading...' : 'Please select a Demo'">Please select a Demo</option>
+  <option value='' disabled x-text="loading ? 'Loading...' : 'Please select a Demo'">
+  Please select a Demo
+  </option>
   <template x-for="item in $store.demos.all">
     <option x-bind:value="item.id + ''" x-text="`${item.name}(${item.id})`">hello</option>
   </template>
@@ -31,7 +37,10 @@ has_children: false
 </tr>
 </table>
 
-<div x-data="{activetab: $persist('html'), styles: {color: ''}, height: $persist('150px'), maxHeight: $persist('400px')}">
+<div x-data="{
+  activetab: $persist('html'), 
+  styles: {color: ''}
+  }">
 <div>
 <button
   type="button"
@@ -39,13 +48,6 @@ has_children: false
   x-on:click="activetab = 'html'"
   class="btn btn-sm" >
 HTML
-</button>
-<button
-  type="button"
-  x-bind:disabled="activetab === 'js'"
-  x-on:click="activetab = 'js'"
-  class="btn btn-sm" >
-JS
 </button>
 <button
   type="button"
@@ -61,69 +63,116 @@ CSS
   class="btn btn-sm" >
 <span x-bind:style="styles">JSON</span>
 </button>
+<button
+  type="button"
+  x-bind:disabled="activetab === 'js'"
+  x-on:click="activetab = 'js'"
+  class="btn btn-sm" >
+JS
+</button>
+<select x-bind:disabled="activetab !== 'js'" x-model="runjsAt">
+<option value="both">both</option>
+<option value="before">before</option>
+<option value="after">after</option>
+</select>
 </div>
 <div class="cm-editor-wrap"
+ id="html-cm-wrap"
  x-show="activetab === 'html'">
   <input
     type="hidden"
     name="html"
     id="playground-html"
-    x-on:demo-change.window="$el.value=$store.demos.currentItem.html;$dispatch('writeback', {value: $store.demos.currentItem.html})"
-    x-on:cmwritein.debounce.2000ms="if($event.detail.cmid === 'playground-html'){ $store.demos.currentItem.html = $event.detail.value }  "
+    x-on:demo-change.window="
+      $el.value=$store.demos.currentItem.html;
+      $dispatch('writeback', {value: $store.demos.currentItem.html})"
+    x-on:cmwritein.debounce.2000ms="
+      if($event.detail.cmid === 'playground-html')
+      { 
+        $store.demos.currentItem.html = $event.detail.value;
+        $dispatch('html-change', {});
+      }"
     data-final-try="/devtools/finaltry"
     data-finalc="https://lets-script.com/devtools/ph-playground-completion"
     data-lang="html"
-    x-bind:data-height="height"
-    x-bind:data-max-height="maxHeight"
+    x-bind:data-height="cmheight"
+    x-bind:data-max-height="cmSizes['html-cm-wrap']"
     data-firewritein
+    data-resizable
     data-mode="normal"
   />
 </div>
 <div class="cm-editor-wrap"
+  id="js-cm-wrap"
  x-show="activetab === 'js'">
   <input
     type="hidden"
     name="js"
     id="playground-js"
-    x-on:demo-change.window="$el.value=$store.demos.currentItem.jsvalue;$dispatch('writeback', {value: $store.demos.currentItem.jsvalue})"
-    x-on:cmwritein.debounce.1000ms="if($event.detail.cmid === 'playground-js'){ $store.demos.currentItem.jsvalue = $event.detail.value };
-         console.log($event.detail.value);$dispatch('js-change', {}) "
+    x-on:demo-change.window="
+      $el.value=$store.demos.currentItem.jsvalue;
+      $dispatch('writeback', {value: $store.demos.currentItem.jsvalue})"
+    x-on:cmwritein.debounce.1000ms="if($event.detail.cmid === 'playground-js'){ 
+      $store.demos.currentItem.jsvalue = $event.detail.value;
+      $dispatch('js-change', {});
+      }"
     data-lang="javascript"
-    x-bind:data-height="height"
-    x-bind:data-max-height="maxHeight"
+    x-bind:data-height="cmheight"
+    x-bind:data-max-height="cmSizes['js-cm-wrap']"
     data-firewritein
+    data-resizable
     data-mode="normal"
   />
 </div>
 <div class="cm-editor-wrap"
+ id="css-cm-wrap"
  x-show="activetab === 'css'">
   <input
     type="hidden"
     name="css"
     id="playground-css"
-    x-on:demo-change.window="$el.value=$store.demos.currentItem.cssvalue;$dispatch('writeback', {value: $store.demos.currentItem.cssvalue})"
-    x-on:cmwritein.debounce.1000ms="if($event.detail.cmid === 'playground-css'){ $store.demos.currentItem.cssvalue = $event.detail.value };
-         $dispatch('css-change', {}) "
+    x-on:demo-change.window="
+      $el.value=$store.demos.currentItem.cssvalue;
+      $dispatch('writeback', {value: $store.demos.currentItem.cssvalue})"
+    x-on:cmwritein.debounce.1000ms="
+      if($event.detail.cmid === 'playground-css')
+      { 
+        $store.demos.currentItem.cssvalue = $event.detail.value;
+        $dispatch('css-change', {});
+      }"
     data-lang="css"
-    x-bind:data-height="height"
-    x-bind:data-max-height="maxHeight"
+    x-bind:data-height="cmheight"
+    x-bind:data-max-height="cmSizes['css-cm-wrap']"
+    data-resizable
     data-firewritein
     data-mode="normal"
   />
 </div>
 <div class="cm-editor-wrap"
+ id="json-cm-wrap"
  x-show="activetab === 'json'">
   <input
     type="hidden"
     name="json"
     id="playground-json"
-    x-on:demo-change.window="$el.value=$store.demos.currentItem.jsonvalue;$dispatch('writeback', {value: $store.demos.currentItem.jsonvalue})"
-    x-on:cmwritein.debounce.1000ms="if($event.detail.cmid === 'playground-json'){ $store.demos.currentItem.jsonvalue = $event.detail.value };
-          try { JSON.parse($event.detail.value || '{}');styles.color='';} catch (error) {styles.color='red'};$dispatch('json-change', {}) "
+    x-on:demo-change.window="
+      $el.value=$store.demos.currentItem.jsonvalue;
+      $dispatch('writeback', {value: $store.demos.currentItem.jsonvalue})"
+    x-on:cmwritein.debounce.1000ms="
+    if($event.detail.cmid === 'playground-json'){ 
+      $store.demos.currentItem.jsonvalue = $event.detail.value;
+      try { 
+        JSON.parse($event.detail.value || '{}');
+        styles.color='';
+        $dispatch('json-change', {});
+      } catch (error) {
+        styles.color='red'};
+      };"
     data-lang="json"
-    x-bind:data-height="height"
-    x-bind:data-max-height="maxHeight"
+    x-bind:data-height="cmheight"
+    x-bind:data-max-height="cmSizes['json-cm-wrap']"
     data-firewritein
+    data-resizable
     data-mode="normal"
   />
 </div>
@@ -134,13 +183,15 @@ CSS
  class="ph" id="playground-result" x-bind="setResultInnerHTML">
 </div>
 
-
 <div class="ph" x-data="{btnLabel: 'Share Link', demoname: ''}" style="margin-top: 15px;">
 <input type="text" name="demoname" placeholder="Give it a name" x-model="demoname"/>
 <button
   type="button"
   class="btn btn-sm"
-  x-on:click="$store.demos.copyCurrentLink(demoname);btnLabel='Copied';setTimeout(() => {btnLabel = 'Share Link'}, 2000)">
+  x-on:click="
+    $store.demos.copyCurrentLink(demoname);
+    btnLabel='Copied';
+    setTimeout(() => {btnLabel = 'Share Link'}, 2000)">
 <span x-text="btnLabel">Share Link</span>
 </button>
 </div>
