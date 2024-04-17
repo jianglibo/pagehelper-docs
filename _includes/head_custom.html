@@ -23,7 +23,6 @@ site.data.file_hashes.cm %} {% raw %}
           }),
           updateCmSizes(id, size) {
             const s = (size && size + "px") || "400px";
-            console.log('set cmsized: ', id, size);
             this.cmSizes[id] = s;
           },
           loadalldemos: {

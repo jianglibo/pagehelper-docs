@@ -9,7 +9,7 @@ has_children: false
 # Play Ground for Alpine and Pagehelper
 
 <div x-data="{...demos(), loading: false, cmheight: '200px', showLoadAll: false}"
-  x-on:cmcontainerchanged.window.debounce.500ms="console.log('target', $event);updateCmSizes($event.target.id, $event.detail.height)">
+  x-on:cmcontainerchanged.window.debounce.500ms="updateCmSizes($event.target.id, $event.detail.height)">
 <table>
 <tr>
 <td>
