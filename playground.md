@@ -1,7 +1,7 @@
 ---
 title: Play Ground
 layout: default
-tagline: 'Unlock the Power: Experiment and Innovate with Alpine.js and PageHelper – Your Playground for Interactive Frontend Development!'
+tagline: "Unlock the Power: Experiment and Innovate with Alpine.js and PageHelper – Your Playground for Interactive Frontend Development!"
 nav_order: 5
 has_children: false
 ---
@@ -9,8 +9,11 @@ has_children: false
 # Play Ground for Alpine and Pagehelper
 
 <div x-data="{...demos(), loading: false, showLoadAll: false}">
+<table>
+<tr>
+<td>
 <form class="ph">
-<select  style="width:70%;" 
+<select
   x-model="$store.demos.currentItem.id"
   x-bind="initdemo"
   x-on:change="$store.demos.setCurrentItem($el.value);loading='Please select a Demo';$nextTick(() => $dispatch('demo-change', {}))"
@@ -20,12 +23,47 @@ has_children: false
     <option x-bind:value="item.id + ''" x-text="`${item.name}(${item.id})`">hello</option>
   </template>
 </select>
-<a x-bind="loadalldemos" href="#" x-show="showLoadAll" x-text="loading ? 'Loading...' : 'Load Others' ">Load Others</a>
 </form>
+</td>
+<td>
+<a x-bind="loadalldemos" href="#" x-show="showLoadAll" x-text="loading ? 'Loading...' : 'Load Others' ">Load Others</a>
+</td>
+</tr>
+</table>
 
+<div x-data="{activetab: $persist('html'), styles: {color: ''}, height: $persist('150px'), maxHeight: $persist('400px')}">
 <div>
-<span>HTML content:</span>
-<div class="cm-editor-wrap">
+<button
+  type="button"
+  x-bind:disabled="activetab === 'html'"
+  x-on:click="activetab = 'html'"
+  class="btn btn-sm" >
+HTML
+</button>
+<button
+  type="button"
+  x-bind:disabled="activetab === 'js'"
+  x-on:click="activetab = 'js'"
+  class="btn btn-sm" >
+JS
+</button>
+<button
+  type="button"
+  x-bind:disabled="activetab === 'css'"
+  x-on:click="activetab = 'css'"
+  class="btn btn-sm" >
+CSS
+</button>
+<button
+  type="button"
+  x-bind:disabled="activetab === 'json'"
+  x-on:click="activetab = 'json'"
+  class="btn btn-sm" >
+<span x-bind:style="styles">JSON</span>
+</button>
+</div>
+<div class="cm-editor-wrap"
+ x-show="activetab === 'html'">
   <input
     type="hidden"
     name="html"
@@ -35,55 +73,65 @@ has_children: false
     data-final-try="/devtools/finaltry"
     data-finalc="https://lets-script.com/devtools/ph-playground-completion"
     data-lang="html"
-    data-height="150px"
-    data-max-height="250px"
+    x-bind:data-height="height"
+    x-bind:data-max-height="maxHeight"
     data-firewritein
     data-mode="normal"
   />
 </div>
-</div>
-
-<div style="margin-top: 18px;border: thick double #32a1ce;padding:5px;"
- x-on:demo-change.window="$el.innerHTML=$store.demos.currentItem.html;"
- x-on:json-change.window="$el.innerHTML=$store.demos.currentItem.html;"
- x-on:js-change.window="$el.innerHTML=$store.demos.currentItem.html;"
- class="ph" id="playground-result" x-html="$store.demos.currentItem.html">
-</div>
-
-<div style="margin-top: 10px;">
-<span>JS Code:</span>
-<div class="cm-editor-wrap">
+<div class="cm-editor-wrap"
+ x-show="activetab === 'js'">
   <input
     type="hidden"
-    name="json"
+    name="js"
     id="playground-js"
     x-on:demo-change.window="$el.value=$store.demos.currentItem.jsvalue;$dispatch('writeback', {value: $store.demos.currentItem.jsvalue})"
     x-on:cmwritein.debounce.1000ms="if($event.detail.cmid === 'playground-js'){ $store.demos.currentItem.jsvalue = $event.detail.value };
-         console.log($event.detail.value);evalJs(); $dispatch('js-change', {}) "
+         console.log($event.detail.value);$dispatch('js-change', {}) "
     data-lang="javascript"
-    data-height="150px"
+    x-bind:data-height="height"
+    x-bind:data-max-height="maxHeight"
     data-firewritein
     data-mode="normal"
   />
 </div>
+<div class="cm-editor-wrap"
+ x-show="activetab === 'css'">
+  <input
+    type="hidden"
+    name="css"
+    id="playground-css"
+    x-on:demo-change.window="$el.value=$store.demos.currentItem.cssvalue;$dispatch('writeback', {value: $store.demos.currentItem.cssvalue})"
+    x-on:cmwritein.debounce.1000ms="if($event.detail.cmid === 'playground-css'){ $store.demos.currentItem.cssvalue = $event.detail.value };
+         $dispatch('css-change', {}) "
+    data-lang="css"
+    x-bind:data-height="height"
+    x-bind:data-max-height="maxHeight"
+    data-firewritein
+    data-mode="normal"
+  />
 </div>
-
-<div style="margin-top: 10px;" x-data="{styles: {color: ''}}">
-<span x-bind:style="styles">Server Echo data:</span>
-<div class="cm-editor-wrap">
+<div class="cm-editor-wrap"
+ x-show="activetab === 'json'">
   <input
     type="hidden"
     name="json"
     id="playground-json"
     x-on:demo-change.window="$el.value=$store.demos.currentItem.jsonvalue;$dispatch('writeback', {value: $store.demos.currentItem.jsonvalue})"
     x-on:cmwritein.debounce.1000ms="if($event.detail.cmid === 'playground-json'){ $store.demos.currentItem.jsonvalue = $event.detail.value };
-          try { JSON.parse($event.detail.value);styles.color='';} catch (error) {styles.color='red'};$dispatch('json-change', {}) "
+          try { JSON.parse($event.detail.value || '{}');styles.color='';} catch (error) {styles.color='red'};$dispatch('json-change', {}) "
     data-lang="json"
-    data-height="150px"
+    x-bind:data-height="height"
+    x-bind:data-max-height="maxHeight"
     data-firewritein
     data-mode="normal"
   />
 </div>
+
+</div>
+
+<div style="margin-top: 18px;border: thick double #32a1ce;padding:5px;"
+ class="ph" id="playground-result" x-bind="setResultInnerHTML">
 </div>
 
 
@@ -97,6 +145,15 @@ has_children: false
 </button>
 </div>
 
+<div style="margin-top: 20px;">
+<span>Logs</span>
+<div id="console">
+<pre>
+<code x-effect="$store.demos.currentItem.html;$el.innerHTML='';"></code>
+</pre>
+</div>
+</div>
+
 <div style="margin-top: 20px;" x-data="{dumpValue: '', show: false}">
 <a href="#" x-on:click.prevent="dumpValue = dumpStore(); show = ! show">dump demo store</a>
 <pre>
@@ -106,18 +163,28 @@ has_children: false
 </div>
 </div>
 
+## Share your Code
+
+Go to [lets-script.com](https://lets-script.com), write your code snippets and share it by the url like:
+
+`https://pagehelper.lets-script.com/playground/?id=xx&uid=xx`
+
 ## Docs
 
 **echo any data to mock server response**
 
 Add `ph-params="echo:::#playground-json/value"` to the `ph-ajax="https://pagehelper.lets-script.com/ph-misc/echo"` link will bring the json value to the server and echo back for testing.
 
-* when `echo` query parameter exists,always echo this value
-* if is post method, echo the body
+- when `echo` query parameter exists,always echo this value
+- if is post method, echo the body
 
 **This page already add a `demos` Alpine store**
+
 ```html
-<div x-data x-init="$store.demos.a=1">
+<div
+  x-data
+  x-init="$store.demos.a=1"
+>
   <span x-text="$store.demos.a"></span>
 </div>
 ```
