@@ -39,11 +39,33 @@ export default async function cm6({
     data-lang="html"
     data-height="150px"
     data-mode="vim"
+    data-acplugins="asdf,default"
     data-firewritein
     data-showdoclength
     data-cmid=""
   />
 </div>
+```
+
+Available `acplugins`
+
+```json
+[
+  "default",
+  "json",
+  "url",
+  "html-entities",
+  "codemirror",
+  "unicode",
+  "eval",
+  "asdf",
+  "string",
+  "base64",
+  "chatgpt",
+  "password",
+  "websocket",
+  "download-attach"
+]
 ```
 
 If has attribute `data-firewritein`, it will fire:
