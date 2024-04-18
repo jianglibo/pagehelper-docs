@@ -179,8 +179,8 @@ JS
 
 </div>
 
-<div style="margin-top: 18px;border: thick double #32a1ce;padding:5px;"
- class="ph" id="playground-result" x-bind="setResultInnerHTML">
+<div style="margin-top: 18px;border: thick double #32a1ce;padding:10px;resize:vertical;overflow:auto;"
+ id="playground-result" x-bind="setResultInnerHTML">
 </div>
 
 <div class="ph" x-data="{btnLabel: 'Share Link', demoname: ''}" style="margin-top: 15px;">
@@ -213,6 +213,13 @@ JS
 </pre>
 </div>
 </div>
+
+
+## JS's both, before, after
+
+For Alpine.js, some times need prepare the `data` and `store` before innerHTML into document.
+
+So it's better to run `before`.
 
 ## Share your Code
 
