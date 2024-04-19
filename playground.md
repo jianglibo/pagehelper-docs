@@ -121,6 +121,7 @@ JS
     x-bind:data-max-height="cmSizes['js-cm-wrap']"
     data-firewritein
     data-resizable
+    data-linter="eslint"
     data-mode="normal"
   />
 </div>
@@ -145,6 +146,7 @@ JS
     x-bind:data-max-height="cmSizes['css-cm-wrap']"
     data-resizable
     data-firewritein
+    data-linter="stylelint"
     data-mode="normal"
   />
 </div>
