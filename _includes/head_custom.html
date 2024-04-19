@@ -4,15 +4,23 @@
 />
 
 {% assign phHash = site.data.file_hashes.ph %} {% assign cmHash =
-site.data.file_hashes.cm %} {% raw %}
+site.data.file_hashes.cm %} {% assign debug = jekyll.environment == "production"
+? '' : 'true' %}{% raw %}
 <script>
-  const ___f__1 = (PageHelper, Cm6Enricher, makecm6) => {
+  const ___f__1 = (PageHelper, Cm6Enricher, makecm6, nconsole) => {
     const srcCache = [];
     const pageHelper = new PageHelper({
-      debug: true,
+      debug: "{{debug}}",
       demo_mode: true,
       alpine_before_start: function (Alpine) {
         window.Alpine = Alpine;
+        nconsole({
+          receiver: (line) => {
+            if (Alpine.store("demos") && Alpine.store("demos").loglines) {
+              Alpine.store("demos").loglines.push(line);
+            }
+          },
+        });
         Alpine.data("demos", () => ({
           runjsAt: Alpine.$persist("both"),
           initLoading: false,
@@ -174,6 +182,14 @@ site.data.file_hashes.cm %} {% raw %}
             this.all = [];
           },
           all: [],
+          loglines: [],
+          filterLoglines: (filter) => {
+            return Alpine.store("demos")
+              .loglines.filter((line) => {
+                return line.includes(filter);
+              })
+              .join("\n");
+          },
           currentItem: Alpine.$persist({})
             .as("last_editing_item")
             .using(sessionStorage),
@@ -235,8 +251,7 @@ site.data.file_hashes.cm %} {% raw %}
     nconsole,
   } from "{{ site.baseurl }}/forever/ph-{{ phHash }}.js";
   import makecm6 from "{{ site.baseurl }}/forever/cm-{{ cmHash }}.js";
-  nconsole();
-  ___f__1(PageHelper, Cm6Enricher, makecm6);
+  ___f__1(PageHelper, Cm6Enricher, makecm6, nconsole);
 </script>
 
 <!-- Google tag (gtag.js) -->

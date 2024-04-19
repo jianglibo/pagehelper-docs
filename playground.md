@@ -196,11 +196,14 @@ JS
 </button>
 </div>
 
-<div style="margin-top: 20px;">
+<div x-data="{ft: ''}" style="margin-top: 20px;">
 <span>Logs</span>
+<input type="text" x-model="ft" />
+<a style="margin-left:6px;" href="#" x-on:click.prevent="document.querySelector('#console code').textContent=''">clear</a>
 <div id="console">
 <pre>
-<code x-effect="$store.demos.currentItem.html;$el.innerHTML='';"></code>
+<code x-effect="$store.demos.currentItem.html;$el.innerHTML='';"
+ x-text="$store.demos.filterLoglines(ft)"></code>
 </pre>
 </div>
 </div>
