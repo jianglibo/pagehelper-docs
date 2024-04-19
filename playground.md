@@ -197,9 +197,9 @@ JS
 </div>
 
 <div x-data="{ft: ''}" style="margin-top: 20px;">
-<span>Logs</span>
+<span>Logs</span><span style="font-size: 70%;" x-text="'(' + $store.demos.loglines.length + ')'"></span>
 <input type="text" x-model="ft" />
-<a style="margin-left:6px;" href="#" x-on:click.prevent="document.querySelector('#console code').textContent=''">clear</a>
+<a style="margin-left:6px;" href="#" x-on:click.prevent="$store.demos.loglines=[]">clear</a>
 <div id="console">
 <pre>
 <code x-effect="$store.demos.currentItem.html;$el.innerHTML='';"

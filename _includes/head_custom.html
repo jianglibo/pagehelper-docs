@@ -5,7 +5,7 @@
 
 {% assign phHash = site.data.file_hashes.ph %} {% assign cmHash =
 site.data.file_hashes.cm %} {% assign debug = jekyll.environment == "production"
-? '' : 'true' %}{% raw %}
+? '' : 'true' %}
 <script>
   const ___f__1 = (PageHelper, Cm6Enricher, makecm6, nconsole) => {
     const srcCache = [];
@@ -240,7 +240,6 @@ site.data.file_hashes.cm %} {% assign debug = jekyll.environment == "production"
     });
   };
 </script>
-{% endraw %}
 <script
   type="module"
   ph-not-execute-me
