@@ -9,12 +9,13 @@ site.data.file_hashes.cm %} {% raw %}
   const ___f__1 = (PageHelper, Cm6Enricher, makecm6) => {
     const srcCache = [];
     const pageHelper = new PageHelper({
-      debug: false,
+      debug: true,
       demo_mode: true,
       alpine_before_start: function (Alpine) {
         window.Alpine = Alpine;
         Alpine.data("demos", () => ({
           runjsAt: Alpine.$persist("both"),
+          initLoading: false,
           cmSizes: Alpine.$persist({
             "js-cm-wrap": "400px",
             "css-cm-wrap": "400px",
@@ -42,6 +43,15 @@ site.data.file_hashes.cm %} {% raw %}
                     Alpine.store("demos").currentItem,
                   ];
                   history.pushState({}, "", window.location.pathname);
+                  if (Alpine.store("demos").all.length > 0) {
+                    Alpine.store("demos").currentItem = JSON.parse(
+                      JSON.stringify(Alpine.store("demos").all[0])
+                    );
+                    Alpine.nextTick(() => {
+                      const ce = new CustomEvent("demo-change", {});
+                      window.dispatchEvent(ce);
+                    });
+                  }
                   this.$data.loading = false;
                   this.$data.showLoadAll = false;
                 });
@@ -100,6 +110,35 @@ site.data.file_hashes.cm %} {% raw %}
               });
               if (qs.has("id")) {
                 this.$data.showLoadAll = true;
+                const id = qs.get("id");
+                const currentId = Alpine.store("demos").currentItem?.id + "";
+                if (id !== currentId) {
+                  let search = window.location.search;
+                  this.initLoading = true;
+                  fetch("https://lets-script.com/devtools/pagehelpers" + search)
+                    .then((res) => res.json())
+                    .then((j) => {
+                      if (Array.isArray(j.data)) {
+                        return j.data;
+                      } else {
+                        return [j.data];
+                      }
+                    })
+                    .then((items) => {
+                      Alpine.store("demos").all = items;
+                      const id = qs.get("id");
+                      this.$data.loading = false;
+                      this.initLoading = false;
+                      if (id) {
+                        Alpine.store("demos").setCurrentItem(id);
+                        Alpine.nextTick(() => {
+                          const ce = new CustomEvent("demo-change", {});
+                          window.dispatchEvent(ce);
+                        });
+                      }
+                    });
+                  return;
+                }
               }
               if (Alpine.store("demos").currentItem.html) {
                 pageHelper.executeScriptTags(
@@ -116,30 +155,6 @@ site.data.file_hashes.cm %} {% raw %}
                 }
                 return;
               }
-              const id = qs.get("id");
-              let search = window.location.search;
-
-              fetch("https://lets-script.com/devtools/pagehelpers" + search)
-                .then((res) => res.json())
-                .then((j) => {
-                  if (Array.isArray(j.data)) {
-                    return j.data;
-                  } else {
-                    return [j.data];
-                  }
-                })
-                .then((items) => {
-                  Alpine.store("demos").all = items;
-                  const id = qs.get("id");
-                  this.$data.loading = false;
-                  if (id) {
-                    Alpine.store("demos").setCurrentItem(id);
-                    Alpine.nextTick(() => {
-                      const ce = new CustomEvent("demo-change", {});
-                      window.dispatchEvent(ce);
-                    });
-                  }
-                });
             },
           },
           dumpStore() {

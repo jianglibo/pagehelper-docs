@@ -8,9 +8,9 @@ has_children: false
 
 # Play Ground for Alpine and Pagehelper
 
-<div x-data="{...demos(), loading: false, cmheight: '200px', showLoadAll: false}"
-  x-on:cmcontainerchanged.window.debounce.500ms="updateCmSizes($event.target.id, $event.detail.height)">
-<table>
+<div x-data="{...demos(), loading: false, showLoadAll: false}">
+<span x-show="initLoading">Loading.......</span>
+<table x-show="! initLoading">
 <tr>
 <td>
 <form class="ph">
@@ -95,9 +95,9 @@ JS
     data-final-try="/devtools/finaltry"
     data-finalc="https://lets-script.com/devtools/ph-playground-completion"
     data-lang="html"
-    x-bind:data-height="cmheight"
-    x-bind:data-max-height="cmSizes['html-cm-wrap']"
+    data-max-height="400px"
     data-firewritein
+    data-min-height="100px"
     data-resizable
     data-mode="normal"
   />
@@ -117,8 +117,8 @@ JS
       $dispatch('js-change', {});
       }"
     data-lang="javascript"
-    x-bind:data-height="cmheight"
-    x-bind:data-max-height="cmSizes['js-cm-wrap']"
+    data-max-height="400px"
+    data-min-height="100px"
     data-firewritein
     data-resizable
     data-linter="eslint"
@@ -142,8 +142,7 @@ JS
         $dispatch('css-change', {});
       }"
     data-lang="css"
-    x-bind:data-height="cmheight"
-    x-bind:data-max-height="cmSizes['css-cm-wrap']"
+    data-max-height="400px"
     data-resizable
     data-firewritein
     data-linter="stylelint"
@@ -171,8 +170,7 @@ JS
         styles.color='red'};
       };"
     data-lang="json"
-    x-bind:data-height="cmheight"
-    x-bind:data-max-height="cmSizes['json-cm-wrap']"
+    data-max-height="400px"
     data-firewritein
     data-resizable
     data-mode="normal"
@@ -215,7 +213,6 @@ JS
 </pre>
 </div>
 </div>
-
 
 ## JS's both, before, after
 
