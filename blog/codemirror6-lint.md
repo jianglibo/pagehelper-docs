@@ -162,3 +162,8 @@ Go live demo in this page.
   />
 </div>
 ```
+
+## Benefits of Using a Remote Solution
+
+* No additional bundle size, even if you have tens of linters on one page.
+* Stay updated with the latest versions of linters without waiting for updates to an npm package.
