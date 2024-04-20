@@ -5,6 +5,7 @@ cd "$(dirname -- "${BASH_SOURCE}")"
 
 bash ../pagehelper/deploy-to-docs.sh
 bash ../my-codemirror/deploy-to-docs.sh
+bash ../mini-codeium/deploy-to-docs.sh
 
 # #now at util
 

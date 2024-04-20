@@ -200,11 +200,22 @@ JS
 <span>Logs</span><span style="font-size: 70%;" x-text="'(' + $store.demos.loglines.length + ')'"></span>
 <input type="text" x-model="ft" />
 <a style="margin-left:6px;" href="#" x-on:click.prevent="$store.demos.loglines=[]">clear</a>
-<div id="console">
-<pre>
-<code x-effect="$store.demos.currentItem.html;$el.innerHTML='';"
- x-text="$store.demos.filterLoglines(ft)"></code>
-</pre>
+<div class="cm-editor-wrap"
+ id="log-cm-wrap">
+  <input x-init="$watch('$store.demos.loglines', v => 
+      $dispatch('writeback', {value: $store.demos.filterLoglines(ft)})
+    )"
+    type="hidden"
+    name="log"
+    value=""
+    id="playground-log"
+    data-lang="text"
+    data-max-height="400px"
+    data-firewritein
+    data-min-height="100px"
+    data-resizable
+    data-mode="normal"
+  />
 </div>
 </div>
 
