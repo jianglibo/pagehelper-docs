@@ -125,6 +125,7 @@ site.data.file_hashes.cm %} {% assign ceHash = site.data.file_hashes.ce %}
                 this.$data.showLoadAll = true;
                 const id = qs.get("id");
                 const currentId = Alpine.store("demos").currentItem?.id + "";
+                console.log(`currentIdInStore: ${currentId}, idInQs: ${id}`);
                 if (id !== currentId) {
                   let search = window.location.search;
                   this.initLoading = true;
@@ -150,8 +151,11 @@ site.data.file_hashes.cm %} {% assign ceHash = site.data.file_hashes.ce %}
                         });
                       }
                     });
+                  return;
+                } else {
                 }
-              } else if (Alpine.store("demos").currentItem.html) {
+              }
+              if (Alpine.store("demos").currentItem.html) {
                 pageHelper.executeScriptTags(
                   Alpine.store("demos").currentItem.html,
                   {},
