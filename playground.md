@@ -143,6 +143,7 @@ JS
       }"
     data-lang="css"
     data-max-height="400px"
+    data-min-height="100px"
     data-resizable
     data-firewritein
     data-linter="stylelint"
@@ -171,6 +172,7 @@ JS
       };"
     data-lang="json"
     data-max-height="400px"
+    data-min-height="100px"
     data-firewritein
     data-resizable
     data-mode="normal"
