@@ -150,10 +150,8 @@ site.data.file_hashes.cm %} {% assign ceHash = site.data.file_hashes.ce %}
                         });
                       }
                     });
-                  return;
                 }
-              }
-              if (Alpine.store("demos").currentItem.html) {
+              } else if (Alpine.store("demos").currentItem.html) {
                 pageHelper.executeScriptTags(
                   Alpine.store("demos").currentItem.html,
                   {},
@@ -166,7 +164,8 @@ site.data.file_hashes.cm %} {% assign ceHash = site.data.file_hashes.ce %}
                 if (Alpine.store("demos").all.length === 0) {
                   this.$data.showLoadAll = true;
                 }
-                return;
+              } else {
+                this.$data.showLoadAll = true;
               }
             },
           },
