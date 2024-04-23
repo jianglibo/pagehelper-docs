@@ -21,12 +21,12 @@ this.idRegex = new RegExp(
 
 ## How row selector works?
 
-
 Say we have a `ph-row-selector="fruit"`, when user click to change the value, the selected ids in history state will change too.
 
 Bellow is select state of this path.
 
 <code class="language-plaintext highlighter-rouge" ph-show-select-state>Show select state here.</code>
+
 <div class="code-example" markdown="1">
 <form>
     <input type="checkbox" ph-row-selector="fruit" id="_row_101"/>
@@ -79,7 +79,30 @@ And a `ph-selector-listener="fruit"` will be notified when selected id changes. 
 </div>
 ```
 
-<h2>Todo List</h2>
+## How to get the selected ids by JS
+
+Using `ph.getSelectedIds()` to get the selected ids for current url path.
+
+<div x-data class="code-example" markdown="1">
+<button
+type="button"
+class="btn"
+x-on:click.prevent="alert(JSON.stringify(ph.getSelectedIds(),null, 2))">
+ Show selectedIds
+</button>
+</div>
+```html
+<button
+type="button"
+class="btn"
+x-on:click.prevent="alert(JSON.stringify(ph.getSelectedIds(),null, 2))">
+ Show selectedIds
+</button>
+</div>
+```
+
+## Todo List
+
 <code class="language-plaintext highlighter-rouge" ph-show-current-url></code>
 
 <code class="language-plaintext highlighter-rouge" ph-show-select-state="__ph">Show history state here.</code>
