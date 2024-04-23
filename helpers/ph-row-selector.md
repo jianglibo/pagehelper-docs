@@ -24,9 +24,9 @@ this.idRegex = new RegExp(
 
 Say we have a `ph-row-selector="fruit"`, when user click to change the value, the selected ids in history state will change too.
 
-Bellow is history state of `__ph`
+Bellow is select state of this path.
 
-<code class="language-plaintext highlighter-rouge" ph-show-history-state="__ph">Show history state here.</code>
+<code class="language-plaintext highlighter-rouge" ph-show-select-state>Show select state here.</code>
 <div class="code-example" markdown="1">
 <form>
     <input type="checkbox" ph-row-selector="fruit" id="_row_101"/>
@@ -42,7 +42,7 @@ Bellow is history state of `__ph`
 <label>All<input type="checkbox" ph-row-selector-all="fruit"></label>
 ```
 
-And a `ph-selector-listener="fruit"` will be notified when selected id changes. Here use `ph-config="goggle::disabled"` to toggole the status of the button based on the selection number. User `ph-config="toggle::your-class-name` to toggle class.
+And a `ph-selector-listener="fruit"` will be notified when selected id changes. Here use `ph-config="toggle::disabled"` to toggle the status of the button based on the selection number. User `ph-config="toggle::your-class-name` to toggle class.
 
 <div class="code-example" markdown="1">
 <div class="select-all" ph-selector-listener="fruit" ph-config="toggle::disabled">
@@ -82,7 +82,7 @@ And a `ph-selector-listener="fruit"` will be notified when selected id changes. 
 <h2>Todo List</h2>
 <code class="language-plaintext highlighter-rouge" ph-show-current-url></code>
 
-<code class="language-plaintext highlighter-rouge" ph-show-history-state="__ph">Show history state here.</code>
+<code class="language-plaintext highlighter-rouge" ph-show-select-state="__ph">Show history state here.</code>
 
 <div class="code-example" markdown="1">
 <div class="select-all" ph-selector-listener="todo" ph-config="toggle::disabled">
