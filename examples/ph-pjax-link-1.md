@@ -7,7 +7,7 @@ nav_exclude: true
 ---
 
 <div class="code-example" markdown="1">
-<code class="language-plaintext highlighter-rouge" ph-show-current-url></code>
+<code class="language-plaintext highlighter-rouge" x-data x-text="window.location.href" ></code>
 
 <button x-data x-on:click="history.back()" type="button" name="button" class="btn">back</button>
 

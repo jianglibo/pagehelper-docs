@@ -29,7 +29,7 @@ It's just a link, you could add parameters easily.
 </script>
 
 <div class="code-example" markdown="1">
-<code class="language-plaintext highlighter-rouge" ph-show-current-url></code>
+<code class="language-plaintext highlighter-rouge" x-data x-text="window.location.href" ></code>
 
 <button
 type="button"

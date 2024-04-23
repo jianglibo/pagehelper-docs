@@ -14,7 +14,7 @@ The following code will enhance the link by fetching the target page and replace
 
 <div class="code-example" markdown="1">
 
-<code class="language-plaintext highlighter-rouge" ph-show-current-url></code>
+<code class="language-plaintext highlighter-rouge" x-data x-text="window.location.href" ></code>
 
 <a href="./"
   ph-pjax-link

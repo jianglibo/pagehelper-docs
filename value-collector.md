@@ -12,15 +12,20 @@ has_children: false
 
 > This rule apply to mutiple attributes, include `ph-params`, `ph-headers` etc.
 
-<code class="language-plaintext highlighter-rouge" ph-show-current-url></code>
-
-**After lost the focus, the new url will be pushed**
-
+<div x-data="{tourl: '', 
+params: 'ids:::__selected_ids__/fruit,cat::abc,frompath:/0/,fromqs:qa',
+somethingChanged: 1
+}"
+x-on:selector-changed.window="somethingChanged++"
+>
 <label>Type path and query for test:
-<input type="text" name="to-url" ph-value-to-url style="width: 100%;"/>
+<input type="text"
+ x-model="tourl"
+ x-on:input="history.pushState(null, '', tourl);somethingChanged++;"
+ name="to-url" style="width: 100%;"/>
 </label>
 
-Selected ids fixtures(fruit):
+<p>Selected ids fixtures(fruit):</p>
 
 <form>
 <label>101
@@ -33,29 +38,22 @@ Selected ids fixtures(fruit):
     <input type="checkbox" ph-row-selector="fruit" id="_row_103"/>
     </label>
 </form>
-
-type the expression and see the result.
-
-<div ph-value-collect-demo>
-  <div ph-result-show></div>
-  <input type="text" name="abc" value="ids:::__selected_ids__/fruit,cat::abc,frompath:/0/,fromqs:qa" ph-expression-input style="width:100%;" />
+<div>
+  <p style="font-weight: bold;"
+   x-effect="somethingChanged &&
+  $nextTick(() => ($el.innerHTML=ph.fullUrl($refs.pathinput, window.location.pathname)))"
+  x-init="$nextTick(() => $el.innerHTML=ph.fullUrl($refs.pathinput, window.location.pathname))"></p>
+  <input type="text"
+   x-bind:ph-params="params" 
+   x-model="params"
+   x-ref="pathinput"
+   name="abc"
+   spellcheck="false"
+   x-on:input.debounce.750ms="somethingChanged++"
+   value="" 
+   style="width:100%;" />
 </div>
-
-Look at the code bellow:
-
-```html
-<button
-  type="button"
-  ph-mask="6"
-  class="btn btn-sm"
-  ph-params="ids:::__selected_ids__/fruit,cat::abc,frompath:/0/,fromqs:qa"
-  ph-method="delete"
-  ph-confirm
-  ph-ajax="."
->
-  Delete
-</button>
-```
+</div>
 
 ## ::: extract special value or by css selector
 

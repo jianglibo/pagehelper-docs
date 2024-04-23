@@ -103,7 +103,7 @@ x-on:click.prevent="alert(JSON.stringify(ph.getSelectedIds(),null, 2))">
 
 ## Todo List
 
-<code class="language-plaintext highlighter-rouge" ph-show-current-url></code>
+<code class="language-plaintext highlighter-rouge" x-data x-text="window.location.href" ></code>
 
 <code class="language-plaintext highlighter-rouge" ph-show-select-state="__ph">Show history state here.</code>
 
