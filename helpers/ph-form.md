@@ -9,6 +9,14 @@ parent: Helpers List
 # ph-form attribute
 
 Submit a form and add extra functions.
+<button
+  type="button"
+  ph-params="id::10"
+  ph-pjax-link="../../playground/"
+  class="btn btn-sm">
+<span x-text="btnLabel">Live DEMO</span>
+</button>
+
 
 ## client side validate
 
@@ -104,6 +112,14 @@ ph-error-message-for-password="at least 6 characters"
 ## Server side validate
 
 Even if remove the `ph-validate` attribute, the server side could hanle the validation too, but need return the data in specific format.
+<button
+  type="button"
+  ph-params="id::11"
+  ph-pjax-link="../../playground/"
+  class="btn btn-sm">
+<span x-text="btnLabel">Live DEMO</span>
+</button>
+
 
 <code class="language-plaintext highlighter-rouge" ph-show-response-body>Show response body here</code>
 <div class="code-example" markdown="1">

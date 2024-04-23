@@ -21,7 +21,7 @@ this.idRegex = new RegExp(
 
 ## How row selector works?
 
-Say we have a `ph-row-selector="fruit"`, when user click to change the value, the selected ids in history state will change too.
+Say we have a `ph-row-selector="fruit"`, when user click to the value, the selected ids in memory/sessionStorage/localStorage will keep sync..
 
 Bellow is select state of this path.
 

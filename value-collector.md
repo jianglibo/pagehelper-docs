@@ -59,13 +59,9 @@ x-on:selector-changed.window="somethingChanged++"
 
 ```javascript
 it("should extract by selector", () => {
-  const selectedIdHolder = new SelectedIdHolder({});
-  selectedIdHolder.alter("user", "1", true);
-  selectedIdHolder.alter("user", "2", true);
-
-  expect(selectedIdHolder.idsByName("user")).toStrictEqual(["1", "2"]);
-
   // create an html element with tag and attributes
+  tutil.setpathname("/hello");
+  SelectedIdsStore.getInstance().saveNewSelectedIds("user", ["1", "2"]);
   const input = document.createElement("input");
   input.value = "55";
   input.name = "age";
@@ -81,7 +77,7 @@ it("should extract by selector", () => {
   document.body.appendChild(div);
   document.body.appendChild(input);
 
-  const kvs = htmlUtil.getParams(div, selectedIdHolder);
+  const kvs = htmlUtil.getParams(div);
 
   expect(kvs).toStrictEqual({
     id: "myid",
