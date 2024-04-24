@@ -59,7 +59,7 @@ Do ajax work. The table bellow is a mix of pjax and ajax calls. The browser's ba
             <th>Priority</th>
         </tr>
     </thead>
-    <tbody ph-group-id="table1" ph-data-consumer="innerhtml-mustache">
+    <tbody id="table1" ph-data-consumer="innerhtml-mustache">
         {% raw %}
         <template>
           {{#data}}
@@ -97,46 +97,35 @@ Do ajax work. The table bellow is a mix of pjax and ajax calls. The browser's ba
     </tbody>
 </table>
 
-<div class="pagination">
+<div x-data="ph" class="pagination">
     <div>
     <button ph-ajax="./" 
       ph-push-state
       ph-params="*:*"
       ph-qs-step="page:1,min:1,disabled"
-      ph-target='[ph-group-id="table1"]'>
+      ph-target='#table1'>
     &laquo; Prev</button>
-    <button class="active" 
-     ph-target='[ph-group-id="table1"]'
+    <template x-for="i in 3">
+    <button x-bind:class="{active: false}"
+     ph-target='#table1'
      ph-push-state
      ph-ajax="./"
-     ph-id="p-1"
-     ph-params="*:*,page::1"
-     ph-qs-to-css="page:1,innerHTML,active">1</button>
-    <button 
-    ph-target='[ph-group-id="table1"]'
-    ph-ajax="./"
-     ph-id="p-2"
-    ph-push-state
-    ph-params="*:*,page::2" 
-    ph-qs-to-css="page:1,innerHTML,active">2</button>
-    <button 
-    ph-target='[ph-group-id="table1"]'
-    ph-ajax="./"  
-    ph-push-state 
-    ph-id="p-3"
-    ph-params="*:*,page::3"
-    ph-qs-to-css="page:1,innerHTML,active">3</button>
+     x-bind:ph-id="`p-${i}`"
+     x-bind:ph-params="`*:*,page::${i}`"
+     x-bind:ph-qs-to-css="`page:1,innerHTML,active`"
+     x-text="i">1</button>
+     </template>
     <button ph-ajax="./" 
       ph-push-state
       ph-params="*:*"
       ph-qs-step="page:1,max:3,disabled"
-      ph-target='[ph-group-id="table1"]'>Next
+      ph-target='#table1'>Next
       &raquo;</button>
     </div>
     <div>
         <span>Items per page:</span>
         <select 
-           ph-target='[ph-group-id="table1"]'
+           ph-target='#table1'
            ph-ajax="./" 
            ph-params="*:*,size:::this/value" 
            ph-push-state
@@ -160,12 +149,12 @@ Do ajax work. The table bellow is a mix of pjax and ajax calls. The browser's ba
      New</button>
     <button type="button"
      class="btn"
-     ph-mask="2"
+     ph-mask="2" 
      ph-pjax-link="./"
      ph-params="ids:::__selected_ids__/todo">
     Edit</button>
     <button type="button" class="btn"
-     ph-mask="6"
+     ph-mask="6" 
      ph-ajax="../../fixtures/todo"
      ph-method="delete"
      ph-params="ids:::__selected_ids__/todo">
@@ -184,7 +173,7 @@ Do ajax work. The table bellow is a mix of pjax and ajax calls. The browser's ba
             <th>Priority</th>
         </tr>
     </thead>
-    <tbody ph-group-id="table1" ph-data-consumer="innerhtml-mustache">
+    <tbody id="table1" ph-data-consumer="innerhtml-mustache">
         {% raw %}
         <template>
           {{#data}}
@@ -222,45 +211,37 @@ Do ajax work. The table bellow is a mix of pjax and ajax calls. The browser's ba
     </tbody>
 </table>
 
-<div class="pagination">
+<div x-data="ph" class="pagination">
     <div>
-    <button ph-ajax="./"
+    <button ph-ajax="./" 
       ph-push-state
       ph-params="*:*"
-      ph-qs-step="page:1,min:1"
-      ph-group-id="table1">
+      ph-qs-step="page:1,min:1,disabled"
+      ph-target='#table1'>
     &laquo; Prev</button>
-    <button class="active"
-     ph-group-id="table1"
+    <template x-for="i in 3">
+    <button x-bind:class="{active: false}"
+     ph-target='#table1'
      ph-push-state
      ph-ajax="./"
-     ph-params="*:*,page::1"
-     ph-qs-to-css="page:1,innerHTML,active">1</button>
-    <button
-    ph-group-id="table1"
-    ph-ajax="./"
-    ph-push-state
-    ph-params="*:*,page::2"
-    ph-qs-to-css="page:1,innerHTML,active">2</button>
-    <button
-    ph-group-id="table1"
-    ph-ajax="./"
-    ph-push-state
-    ph-params="*:*,page::3"
-    ph-qs-to-css="page:1,innerHTML,active">3</button>
-    <button ph-ajax="./"
+     x-bind:ph-id="`p-${i}`"
+     x-bind:ph-params="`*:*,page::${i}`"
+     x-bind:ph-qs-to-css="`page:1,innerHTML,active`"
+     x-text="i">1</button>
+     </template>
+    <button ph-ajax="./" 
       ph-push-state
       ph-params="*:*"
-      ph-qs-step="page:1,max:3"
-      ph-group-id="table1">Next
+      ph-qs-step="page:1,max:3,disabled"
+      ph-target='#table1'>Next
       &raquo;</button>
     </div>
     <div>
         <span>Items per page:</span>
-        <select
-           ph-group-id="table1"
-           ph-ajax="./"
-           ph-params="*:*,size:::this/value"
+        <select 
+           ph-target='#table1'
+           ph-ajax="./" 
+           ph-params="*:*,size:::this/value" 
            ph-push-state
            ph-evtname="change"
            name="size"
@@ -271,7 +252,6 @@ Do ajax work. The table bellow is a mix of pjax and ajax calls. The browser's ba
         </select>
     </div>
 </div>
-</div>
 ```
 
 ## change target value
@@ -279,6 +259,7 @@ Do ajax work. The table bellow is a mix of pjax and ajax calls. The browser's ba
 Using `ph-data-consumer="value"` to consume the server response.
 
 <code class="language-plaintext highlighter-rouge" ph-show-response-body>Show Response body here.</code>
+
 <div class="code-example" markdown="1">
 <form>
 <input type="text" name="name" 
@@ -324,6 +305,7 @@ Using `ph-data-consumer="value"` to consume the server response.
 Using `ph-data-consumer="innerhtml-mustach"` to consume the data from response.
 
 <code class="language-plaintext highlighter-rouge" ph-show-response-body>Show response body here.</code>
+
 <div class="code-example" markdown="1">
 {% raw %}
 <form>
@@ -378,29 +360,3 @@ ph-target="#select-consumer">
 </select>
 {% endraw %}
 ```
-
-{: .note }
-
-> Ajax and the State.
->
-> Explain the ajax and state in detail
-
-## Ajax and State
-
-Using a `__pn` namespace in the history.state to keep the state.
-
-```json
-{
-  "selectedIds": {
-    "todo": [1, 2, 3]
-  },
-  "phIdStates": {
-    "ph-id-value": {
-      "any": "data from the server by this trigger"
-    }
-  }
-}
-```
-
-{: .warning }
-> Don't over use this function, Maybe you shoud use other framework instead of this tool to do that kind of things.
