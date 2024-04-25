@@ -239,6 +239,30 @@ Add `ph-params="echo:::#playground-json/value"` to the `ph-ajax="https://pagehel
 - when `echo` query parameter exists,always echo this value
 - if is post method, echo the body
 
+{: .note }
+
+> Using `ph-params="echo:::__function__/mock_echo` to mock more real data, the function_name is written in the JS tab. like one bellow.
+
+```javascript
+window.mock_echo = (kvs, method) => {
+    console.log(kvs['page'] + '.............')
+    const page = parseInt(kvs['page'] || '1')
+    const size = parseInt(kvs['size'] || '2')
+    const data = []
+    let idx = page * 10
+     const max = idx + size
+    for(;idx<max;idx++) {
+      data.push({
+        "id": idx,
+        "task": "Item " + idx,
+        "dueDate": "2021-01-01",
+        "priority": "high"
+      })
+    }
+     return JSON.stringify({ data });
+}
+```
+
 **This page already add a `demos` Alpine store**
 
 ```html

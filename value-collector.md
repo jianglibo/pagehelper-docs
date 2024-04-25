@@ -13,7 +13,7 @@ has_children: false
 > This rule apply to mutiple attributes, include `ph-params`, `ph-headers` etc.
 
 <div x-data="{tourl: '', 
-params: 'ids:::__selected_ids__/fruit,cat::abc,frompath:/0/,fromqs:qa',
+params: 'ids:::__selected_ids__/fruit,cat::abc,frompath:/0/,fromqs:qa,alias:::__alias__/ids',
 somethingChanged: 1
 }"
 x-on:selector-changed.window="somethingChanged++"
@@ -97,7 +97,9 @@ it("should extract by selector", () => {
 >
 > `this/attribute/href` will get the attribute value.
 >
-> `&ph-abc` If starts with a `&`, it will get the attribute on the same element, Usually it's because the value is too large or too complex to mixed up with other parameters.
+> `__ref_attr__/ph-abc` it will get the attribute on the same element, Usually it's because the value is too large or too complex to mixed up with other parameters.
+>
+> `__alias__/id` create an alias for parameter, usually for the parameter which will change before submit. 
 
 ```html
 <a
