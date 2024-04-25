@@ -100,6 +100,8 @@ it("should extract by selector", () => {
 > `__ref_attr__/ph-abc` it will get the attribute on the same element, Usually it's because the value is too large or too complex to mixed up with other parameters.
 >
 > `__alias__/id` create an alias for parameter, usually for the parameter which will change before submit. 
+>
+> `__function__/fn_on_window` get the value by execute a function on window object.
 
 ```html
 <a
