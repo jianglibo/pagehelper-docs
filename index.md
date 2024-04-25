@@ -10,6 +10,12 @@ Pagehelper is a utility designed to make common processes simpler and more effic
 
 It's not a framework, just a tool.
 
+{: .note }
+
+> It's for traditional multi-page applications. It will boost productivity.
+>
+> 对于传统的多页面WEB程序，有奇效。
+
 get started:
 
 ```html
