@@ -74,7 +74,6 @@ site.data.file_hashes.cm %} {% assign ceHash = site.data.file_hashes.ce %}
             if (this.runjsAt === "both" || this.runjsAt === "before") {
               this.evalJs();
             }
-            console.log('setInnerHTML');
             this.$el.innerHTML = Alpine.store("demos").currentItem.html;
             if (this.runjsAt === "both" || this.runjsAt === "after") {
               this.evalJs();

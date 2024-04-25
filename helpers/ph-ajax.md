@@ -9,6 +9,13 @@ parent: Helpers List
 # ph-ajax attribute
 
 Do ajax work. The table bellow is a mix of pjax and ajax calls. The browser's backward and forward keep working.
+<button
+  type="button"
+  ph-params="id::12"
+  ph-pjax-link="../../playground/"
+  class="btn btn-sm">
+<span x-text="btnLabel">Live DEMO</span>
+</button>
 
 <!-- export type GroupMessageHandleCat =  -->
 

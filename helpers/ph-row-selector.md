@@ -8,6 +8,10 @@ parent: Helpers List
 
 # ph-row-selector attribute
 
+
+{: .important }
+> It's for traditional multipage webpages, Single page app has no need to use this pagehelper.
+
 Will keep track of the selected rows and consume it in `ph-params`.
 
 Default id extractor:
