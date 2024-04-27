@@ -3,6 +3,7 @@ title: How to use linters in codemirror6
 layout: default
 nav_order: 60
 has_children: false
+description: Access our remote JavaScript and CSS linting service directly from your web-based editor. Validate your code in real-time, ensuring adherence to best practices and high quality standards. Streamline your development workflow with our efficient and accessible linting solution.
 parent: Blogs for pagehelper
 ---
 

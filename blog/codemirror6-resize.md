@@ -3,6 +3,7 @@ title: How to resize codemirror6
 layout: default
 nav_order: 40
 has_children: false
+description: Discover the art of resizing CodeMirror 6 with our comprehensive guide. Learn step-by-step techniques and best practices for optimizing the dimensions of your code editor. Dive into detailed explanations and explore an interactive demo to master the art of responsive code editing interfaces.
 parent: Blogs for pagehelper
 ---
 

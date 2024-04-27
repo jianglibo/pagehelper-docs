@@ -3,12 +3,11 @@ title: ph-highlight
 layout: default
 nav_order: 50
 has_children: false
+description: Instantly transform raw code into beautifully highlighted HTML with our dependency-free tool. Simply paste your code, click 'Highlight', and receive static HTML ready for seamless integration into any webpage.
 parent: Helpers List
 ---
 
 # ph-highlight attribute
-
-
 
 {: .important }
 > The service is allowed in your site too. because it allow CORS requst.

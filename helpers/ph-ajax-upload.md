@@ -3,6 +3,7 @@ title: ph-ajax-upload
 layout: default
 nav_order: 60
 has_children: false
+description: Simplify file uploads with our ph-ajax-upload attribute. Effortlessly upload files to Cloudflare R2 with CORS support, enabling seamless integration without the need for backend configuration. Streamline your workflow and empower users to upload files with ease, regardless of backend dependencies.
 parent: Helpers List
 ---
 

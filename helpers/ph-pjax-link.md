@@ -3,6 +3,7 @@ title: ph-pjax-link
 layout: default
 nav_order: 3
 has_children: false
+description: Elevate your website's user experience with our ph-pjax-link attribute. Seamlessly transform ordinary links into dynamic, AJAX-powered navigation. Fetch target HTML content via AJAX, replace existing content, and update the browser's history using pushState. Enjoy the feel of a single-page application with smooth, asynchronous page transitions.
 parent: Helpers List
 ---
 

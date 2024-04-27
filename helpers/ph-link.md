@@ -3,6 +3,7 @@ title: ph-link
 layout: default
 nav_order: 1
 has_children: false
+description: Elevate your link functionality with our ph-link attribute. Seamlessly append additional parameters from various sources, including URL path, query string, HTML element values, and inner HTML content. Expand the versatility of your links for enhanced user engagement and dynamic content delivery.
 parent: Helpers List
 ---
 

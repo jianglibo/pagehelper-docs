@@ -3,6 +3,7 @@ title: ph-ajax
 layout: default
 nav_order: 5
 has_children: false
+description: Easily add event listeners to HTML elements with our ph-ajax attribute. Upon specified events (such as click), it automatically gathers required data and sends an AJAX request to the backend. Streamline your front-end development workflow with this efficient, data-driven approach.
 parent: Helpers List
 ---
 

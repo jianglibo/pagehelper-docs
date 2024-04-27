@@ -3,6 +3,7 @@ title: ph-page-submitter
 layout: default
 nav_order: 11
 has_children: false
+description: Experience real-time data submission with our ph-page-submitter attribute. Automatically trigger backend requests upon value changes, perfect for scenarios like user typing in a search field. With built-in debounce functionality, ensure efficient and responsive interactions without overwhelming your backend.
 parent: Helpers List
 ---
 

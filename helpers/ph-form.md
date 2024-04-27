@@ -3,6 +3,7 @@ title: ph-form
 layout: default
 nav_order: 7
 has_children: false
+description: Enhance your front-end development with our ph-form attribute, designed for seamless event handling and form validation. Simply apply it to HTML elements to trigger AJAX requests upon events like click, while also providing built-in validation functions for smoother user interactions.
 parent: Helpers List
 ---
 
