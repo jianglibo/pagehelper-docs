@@ -8,7 +8,7 @@ parent: Helpers List
 
 # ph-highlight attribute
 
-https://pagehelper.lets-script.com/highlight/
+
 
 {: .important }
 > The service is allowed in your site too. because it allow CORS requst.
@@ -16,7 +16,7 @@ https://pagehelper.lets-script.com/highlight/
 
 
 <div class="code-example" markdown="1">
-<form ph-form="http://localhost:8787/highlight/"
+<form ph-form="https://pagehelper.lets-script.com/highlight/"
   method="get" 
   ph-params="inline::true" 
   ph-target="#code-after-format,#formatted-show">
