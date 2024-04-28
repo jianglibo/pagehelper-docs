@@ -9,8 +9,8 @@ parent: Helpers List
 
 # ph-row-selector attribute
 
-
 {: .important }
+
 > It's for traditional multipage webpages, Single page app has no need to use this pagehelper.
 
 Will keep track of the selected rows and consume it in `ph-params`.
@@ -23,6 +23,14 @@ this.idRegex = new RegExp(
   (this.cfg && this.cfg.rowSelector?.ptn) || "_row_(.*)"
 );
 ```
+
+## attributes for this helper:
+
+| name                 | descriptio                                                                                              | link |
+| :------------------- | :------------------------------------------------------------------------------------------------------ | ---- |
+| ph-row-selector      | `ph-row-selector="todo"`, for individual select item                                                    |      |
+| ph-row-selector-all  | `ph-row-selector-all="todo"`, for select all item                                                       |      |
+| ph-selector-listener | `ph-selector-listener="todo"`, for menuitem to react on selection number.`ph-config="toggle::disabled"` or `ph-config="toggle::classname"` |      |
 
 ## How row selector works?
 
