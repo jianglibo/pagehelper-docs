@@ -3,6 +3,7 @@ title: ph-row-selector
 layout: default
 nav_order: 3
 has_children: false
+description: A table row selector for server side rendered static web pages, make the super easy to track the selected rows.
 parent: Helpers List
 ---
 

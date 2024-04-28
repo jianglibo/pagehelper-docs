@@ -29,6 +29,7 @@ Do ajax work. The table bellow is a mix of pjax and ajax calls. The browser's ba
 | ph-json       | all kvs will send as a json object, if the method is GET, will append to `body` query name. |                                      |
 | ph-auto-start | will invoke the ajax request when dom ready.                                                |                                      |
 | ph-once       | will only invoke once. sometimes element with ph-auto-start need this.                      |                                      |
+| ph-config     | `ph-config="debounce::1000"`, if the element is an input                                    |                                      |
 
 {: .note }
 
