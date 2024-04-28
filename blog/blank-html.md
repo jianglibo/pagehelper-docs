@@ -48,7 +48,11 @@ ph-ajax="https://lets-script.com/devtools/blank-htmls"
 </form>
 <ul>
 <template x-for="v in data.filter(it => it.name.indexOf(q) !== -1)">
-<li x-text="v.name"></li>
+<li x-text="v.name" x-on:click="
+  const items = data.filter(it => it.name !== v.name);
+  items.unshift(v);
+  data = items;
+" style="cursor:pointer;"></li>
 </template>
 </ul>
 </div>
