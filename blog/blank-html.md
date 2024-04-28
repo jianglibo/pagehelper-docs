@@ -3,7 +3,7 @@ title: Blank html page generator
 layout: default
 nav_order: 90
 has_children: false
-description: Learn about setting up a C++ development environment on WSL2 in Windows 11 using vcpkg and VS Code. Gain insights into managing dependencies with CMake and setting up a uWebSockets tutorial project.
+description: Create a blank html, thymeleaf, php etc file.
 parent: Blogs for pagehelper
 ---
 
