@@ -28,10 +28,9 @@ this.idRegex = new RegExp(
 
 | name                 | descriptio                                                                                              | link |
 | :------------------- | :------------------------------------------------------------------------------------------------------ | ---- |
-| ph-row-selector      | `ph-row-selector="todo"`, for individual select item                                                    |      |
+| ph-row-selector      | `ph-row-selector="todo"`, for individual select item, add `ph-row-delete-selector=closest('tr')`, when sever response delete row, what to delete.                                                    |      |
 | ph-row-selector-all  | `ph-row-selector-all="todo"`, for select all item                                                       |      |
 | ph-selector-listener | `ph-selector-listener="todo"`, for menuitem to react on selection number.`ph-config="toggle::disabled"` or `ph-config="toggle::classname"` |      |
-| ph-row-delete-selector| `ph-row-delete-selector=closest('tr')`, when sever response delete row, what to delete.|      |
 
 ## How row selector works?
 

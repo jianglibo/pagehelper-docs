@@ -22,14 +22,15 @@ Do ajax work. The table bellow is a mix of pjax and ajax calls. The browser's ba
 
 ## extra attributes for this helper:
 
-| name          | descriptio                                                                                  | link                                 |
-| :------------ | :------------------------------------------------------------------------------------------ | ------------------------------------ |
-| ph-params     | append extra values to ajax request                                                         | [value-collector](/value-collector/) |
-| ph-headers    | append extra headers to ajax request                                                        | [value-collector](/value-collector/) |
-| ph-json       | all kvs will send as a json object, if the method is GET, will append to `body` query name. |                                      |
-| ph-auto-start | will invoke the ajax request when dom ready.                                                |                                      |
-| ph-once       | will only invoke once. sometimes element with ph-auto-start need this.                      |                                      |
-| ph-config     | `ph-config="debounce::1000"`, if the element is an input                                    |                                      |
+| name          | descriptio                                                                                         | link                                 |
+| :------------ | :------------------------------------------------------------------------------------------------- | ------------------------------------ |
+| ph-params     | append extra values to ajax request                                                                | [value-collector](/value-collector/) |
+| ph-headers    | append extra headers to ajax request                                                               | [value-collector](/value-collector/) |
+| ph-json       | all kvs will send as a json object, if the method is GET, will append to `body` query name.        |                                      |
+| ph-auto-start | will invoke the ajax request when dom ready.                                                       |                                      |
+| ph-once       | will only invoke once. sometimes element with ph-auto-start need this.                             |                                      |
+| ph-config     | `ph-config="debounce::1000"`, if the element is an input                                           |                                      |
+| ph-target     | css selector to choose the targets, when server response with data,these targets will get noticed. | [data-consumers](/data-consumers/)   |
 
 {: .note }
 
@@ -150,116 +151,174 @@ Do ajax work. The table bellow is a mix of pjax and ajax calls. The browser's ba
 </div>
 
 ```html
-<div class="select-all" ph-selector-listener="todo" ph-config="toggle::disabled">
-    <button type="button"
-     class="btn"
-     ph-mask="7"
-     ph-pjax-link="../ph-form/">
-     New</button>
-    <button type="button"
-     class="btn"
-     ph-mask="2" 
-     ph-pjax-link="./"
-     ph-params="ids:::__selected_ids__/todo">
-    Edit</button>
-    <button type="button" class="btn"
-     ph-mask="6" 
-     ph-ajax="../../fixtures/todo"
-     ph-method="delete"
-     ph-params="ids:::__selected_ids__/todo">
-    Delete</button>
+<div
+  class="select-all"
+  ph-selector-listener="todo"
+  ph-config="toggle::disabled"
+>
+  <button
+    type="button"
+    class="btn"
+    ph-mask="7"
+    ph-pjax-link="../ph-form/"
+  >
+    New
+  </button>
+  <button
+    type="button"
+    class="btn"
+    ph-mask="2"
+    ph-pjax-link="./"
+    ph-params="ids:::__selected_ids__/todo"
+  >
+    Edit
+  </button>
+  <button
+    type="button"
+    class="btn"
+    ph-mask="6"
+    ph-ajax="../../fixtures/todo"
+    ph-method="delete"
+    ph-params="ids:::__selected_ids__/todo"
+  >
+    Delete
+  </button>
 </div>
 
 <table>
-    <thead>
-        <tr>
-            <th style="text-align:left;">
-              <input type="checkbox" ph-row-selector-all="todo">
-            </th>
-            <th>ID</th>
-            <th>Task</th>
-            <th>Due Date</th>
-            <th>Priority</th>
-        </tr>
-    </thead>
-    <tbody id="table1" ph-data-consumer="innerhtml-mustache">
-        {% raw %}
-        <template>
-          {{#data}}
-          <tr>
-            <td><input type="checkbox" ph-row-selector="todo" id="_row_{{id}}"></td>
-            <td>{{id}}</td>
-            <td>{{task}}</td>
-            <td>{{dueDate}}</td>
-            <td>{{priority}}</td>
-            </tr>
-            {{/data}}
-        </template>
-        {% endraw %}
-        <tr>
-            <td><input type="checkbox" ph-row-selector="todo" id="_row_1"></td>
-            <td>1</td>
-            <td>Finish project report</td>
-            <td>2024-03-25</td>
-            <td>High</td>
-        </tr>
-        <tr>
-            <td><input type="checkbox" ph-row-selector="todo" id="_row_2"></td>
-            <td>2</td>
-            <td>Buy groceries</td>
-            <td>2024-03-24</td>
-            <td>Medium</td>
-        </tr>
-        <tr>
-            <td><input type="checkbox" ph-row-selector="todo" id="_row_3"></td>
-            <td>3</td>
-            <td>Call mom</td>
-            <td>2024-03-26</td>
-            <td>Low</td>
-        </tr>
-    </tbody>
+  <thead>
+    <tr>
+      <th style="text-align:left;">
+        <input
+          type="checkbox"
+          ph-row-selector-all="todo"
+        />
+      </th>
+      <th>ID</th>
+      <th>Task</th>
+      <th>Due Date</th>
+      <th>Priority</th>
+    </tr>
+  </thead>
+  <tbody
+    id="table1"
+    ph-data-consumer="innerhtml-mustache"
+  >
+    {% raw %}
+    <template>
+      {{#data}}
+      <tr>
+        <td>
+          <input
+            type="checkbox"
+            ph-row-selector="todo"
+            id="_row_{{id}}"
+          />
+        </td>
+        <td>{{id}}</td>
+        <td>{{task}}</td>
+        <td>{{dueDate}}</td>
+        <td>{{priority}}</td>
+      </tr>
+      {{/data}}
+    </template>
+    {% endraw %}
+    <tr>
+      <td>
+        <input
+          type="checkbox"
+          ph-row-selector="todo"
+          id="_row_1"
+        />
+      </td>
+      <td>1</td>
+      <td>Finish project report</td>
+      <td>2024-03-25</td>
+      <td>High</td>
+    </tr>
+    <tr>
+      <td>
+        <input
+          type="checkbox"
+          ph-row-selector="todo"
+          id="_row_2"
+        />
+      </td>
+      <td>2</td>
+      <td>Buy groceries</td>
+      <td>2024-03-24</td>
+      <td>Medium</td>
+    </tr>
+    <tr>
+      <td>
+        <input
+          type="checkbox"
+          ph-row-selector="todo"
+          id="_row_3"
+        />
+      </td>
+      <td>3</td>
+      <td>Call mom</td>
+      <td>2024-03-26</td>
+      <td>Low</td>
+    </tr>
+  </tbody>
 </table>
 
-<div x-data="ph" class="pagination">
-    <div>
-    <button ph-ajax="./" 
+<div
+  x-data="ph"
+  class="pagination"
+>
+  <div>
+    <button
+      ph-ajax="./"
       ph-push-state
       ph-params="*:*"
       ph-qs-step="page:1,min:1,disabled"
-      ph-target='#table1'>
-    &laquo; Prev</button>
+      ph-target="#table1"
+    >
+      &laquo; Prev
+    </button>
     <template x-for="i in 3">
-    <button x-bind:class="{active: false}"
-     ph-target='#table1'
-     ph-push-state
-     ph-ajax="./"
-     x-bind:ph-id="`p-${i}`"
-     x-bind:ph-params="`*:*,page::${i}`"
-     x-bind:ph-qs-to-css="`page:1,innerHTML,active`"
-     x-text="i">1</button>
-     </template>
-    <button ph-ajax="./" 
+      <button
+        x-bind:class="{active: false}"
+        ph-target="#table1"
+        ph-push-state
+        ph-ajax="./"
+        x-bind:ph-id="`p-${i}`"
+        x-bind:ph-params="`*:*,page::${i}`"
+        x-bind:ph-qs-to-css="`page:1,innerHTML,active`"
+        x-text="i"
+      >
+        1
+      </button>
+    </template>
+    <button
+      ph-ajax="./"
       ph-push-state
       ph-params="*:*"
       ph-qs-step="page:1,max:3,disabled"
-      ph-target='#table1'>Next
-      &raquo;</button>
-    </div>
-    <div>
-        <span>Items per page:</span>
-        <select 
-           ph-target='#table1'
-           ph-ajax="./" 
-           ph-params="*:*,size:::this/value" 
-           ph-push-state
-           ph-evtname="change"
-           name="size"
-           ph-qs-to-value="size:5">
-            <option value="5">5</option>
-            <option value="10">10</option>
-            <option value="20">20</option>
-        </select>
-    </div>
+      ph-target="#table1"
+    >
+      Next &raquo;
+    </button>
+  </div>
+  <div>
+    <span>Items per page:</span>
+    <select
+      ph-target="#table1"
+      ph-ajax="./"
+      ph-params="*:*,size:::this/value"
+      ph-push-state
+      ph-evtname="change"
+      name="size"
+      ph-qs-to-value="size:5"
+    >
+      <option value="5">5</option>
+      <option value="10">10</option>
+      <option value="20">20</option>
+    </select>
+  </div>
 </div>
 ```
 
