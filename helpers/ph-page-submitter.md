@@ -11,6 +11,23 @@ parent: Helpers List
 
 When the value of an element changed, will summit the current page with changed value.
 
+```html
+<input
+  name="abc"
+  ph-config="name::abc,delay::1500"
+  ph-page-submitter="query|pjax"
+/>
+```
+
+For sortby:
+
+```html
+<div
+  ph-config="sortbyParam::sortby,sortby::name,multipleSortby::false"
+  ph-page-submitter="query|pjax"
+></div>
+```
+
 {: .highlight }
 
 > Change the value of the form field and watch the url change.
@@ -71,6 +88,7 @@ When the value of an element changed, will summit the current page with changed 
 <select name="size" 
  ph-page-submitter="pjax" 
  ph-qs-to-value="_:5">
+
 <option value="5">5</option>
 <option value="10">10</option>
 <option value="20">20</option>
