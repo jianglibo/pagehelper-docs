@@ -166,7 +166,21 @@ http {
 ```
 ## Use the proxy
 
-
 ```bash
 export https_proxy=https://username:password@gate.lets-script.com:8443
+# or
+export https_proxy=http://username:password@gate.lets-script.com:8080
+```
+
+{: .warning }
+
+> IF you find WGET don't work with https proxy, using http proxy instead. BECAUSE WGET invoke the CONNECT request with http.
+
+If you want let CURL to use https, but let WGET use http, edit the `~/.wgetrc` file. or use 
+
+```conf
+https_proxy=http://gate.lets-script.com:8080
+use_proxy=on
+proxy-user=username
+proxy-password=password
 ```
