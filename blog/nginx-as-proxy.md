@@ -23,30 +23,55 @@ Steps
 ```bash
 #!/bin/bash
 
+user_host=$SSH_USER@$SSH_HOST
 openresty=openresty-1.25.3.1.tar.gz
-if [[ -z $1 ]];then
-apt -q update && apt -q install -y build-essential libpcre3 libpcre3-dev libzip-dev libssl-dev apache2-utils
-git clone https://github.com/chobits/ngx_http_proxy_connect_module.git
-cd ngx_http_proxy_connect_module
-wget https://openresty.org/download/$openresty
-tar -xzf $openresty
-cd openresty-1.25.3.1
-./configure --prefix=/opt/openresty --add-module=../ --with-http_ssl_module
-patch -d build/nginx-1.25.3/ -p 1 < ../patch/proxy_connect_rewrite_102101.patch
-#make CFLAGS="-Wno-deprecated-declarations" && make install
-make && make install
+if [[ -z $1 ]]; then
+	apt -q update && apt -q install -y build-essential libpcre3 libpcre3-dev libzip-dev libssl-dev apache2-utils
+	git clone https://github.com/chobits/ngx_http_proxy_connect_module.git
+	cd ngx_http_proxy_connect_module
+	wget https://openresty.org/download/$openresty
+	tar -xzf $openresty
+	cd openresty-1.25.3.1
+	./configure --prefix=/opt/openresty --add-module=../ --with-http_ssl_module
+	patch -d build/nginx-1.25.3/ -p 1 <../patch/proxy_connect_rewrite_102101.patch
+	#make CFLAGS="-Wno-deprecated-declarations" && make install
+	make && make install
 fi
 
-htpasswd -Bbc .htpasswd username 'password'
-
-cp -f .htpasswd /opt/openresty/nginx/conf/
-chmod 600 /opt/openresty/nginx/conf/.htpasswd
+bash ./user-gen.sh
+if [[ ! -d /opt/openresty/nginx/conf ]]; then
+	mkdir -p /opt/openresty/nginx/conf
+fi
+cp -f .htpasswd /opt/openresty/nginx/conf/.htpasswd-new
+cp -f user.txt /opt/openresty/nginx/conf/user-new.txt
 cp -f nginx.conf /opt/openresty/nginx/conf/
 cp -f nginx-proxy.service /opt/openresty/nginx/
 
-scp_wrap -r "/opt/openresty" "$SSH_USER@$SSH_HOST":/opt/
+scp_wrap -r "/opt/openresty" "$user_host":/opt/
 
-# {{eval shell copy, Ctrl-enter to 🏃}}
+# run at your server.
+export SSH_SCRIPT=$(
+	cat <<'EOF'
+passwdfile=/opt/openresty/nginx/conf/.htpasswd
+newpasswdfile=/opt/openresty/nginx/conf/.htpasswd-new
+userfile=/opt/openresty/nginx/conf/user.txt
+newuserfile=/opt/openresty/nginx/conf/user-new.txt
+if [[ ! -f $passwdfile ]];then
+  touch $passwdfile
+  chmod 600 $passwdfile
+fi
+if [[ ! -f $userfile ]];then
+  touch $userfile
+  chmod 600 $userfile
+fi
+cat $newpasswdfile | tee -a $passwdfile
+cat $newuserfile | tee -a $userfile
+EOF
+)
+outputs=$(ssh_script $user_host)
+
+# {{eval shell, Ctrl-enter to 🏃}} # build and copy
+# {{eval shell copy, Ctrl-enter to 🏃}} #copy only
 ```
 
 Go to [lets-script](https://lets-script.com) and search `ngx-connect-openresty` to build online.
