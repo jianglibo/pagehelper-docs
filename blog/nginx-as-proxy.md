@@ -209,3 +209,27 @@ use_proxy=on
 proxy-user=username
 proxy-password=password
 ```
+
+## How to handle special characters in username and password
+
+URLencode the username and password.
+
+`export https_proxy='http://u+abc/d:+3hgkOLkQ@/OSQX6J@localhost:8090'`
+
+{% raw %}
+<div class="cm-editor-wrap" x-data="{
+    tpl: `+3hgkOLkQ@/OSQX6J\n{{url encode  , Ctrl-enter to 🏃}}`
+}">
+  <input
+    type="hidden"
+    name="json"
+    value=""
+    x-model="tpl"
+    data-lang="shell"
+    data-max-height="400px"
+    data-min-height="100px"
+    data-resizable
+    data-mode="normal"
+  />
+</div>
+{% endraw %}

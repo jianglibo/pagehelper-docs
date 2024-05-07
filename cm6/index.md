@@ -49,6 +49,12 @@ export default async function cm6({
 
 Available `acplugins`
 
+{: .important }
+
+> assing value `disabled` to `acplugins` will disabled all bulitin plugins. but can still enable selected plugins.
+>
+> like `acplugins="disabled,asdf,json".
+
 ```json
 [
   "default",
@@ -68,7 +74,7 @@ Available `acplugins`
 ]
 ```
 
-If has attribute `data-firewritein`, it will fire:
+If has attribute `data-firewritein`, it will fire event when user typing in the editor:
 
 ```typescript
 if (this.firewritein) {
@@ -77,4 +83,18 @@ if (this.firewritein) {
   });
   this._input.dispatchEvent(ce);
 }
+```
+
+{: .important}
+
+> fire `writeback` event on the wrapped hidden input element will copy the value of the input to editor.
+>
+> Say, if you change the input field programlly.
+
+```html
+<input
+  x-on:demo-change.window="
+      $el.value=$store.demos.currentItem.cssvalue;
+   $dispatch('writeback', {value: $store.demos.currentItem.cssvalue})"
+/>
 ```
