@@ -6,7 +6,7 @@
   "repository": "https://github.com/jianglibo/pagehelper-docs.git",
   "author": "jianglibo <jianglibo@gmail.com>",
   "license": "MIT",
-  "packageManager": "yarn@4.1.1",
+  "packageManager": "yarn@4.2.2",
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",

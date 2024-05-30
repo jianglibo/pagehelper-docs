@@ -10,6 +10,13 @@ parent: Data Consumers
 
 [Alpine](https://alpinejs.dev/) provide the most flexable consumer.
 
+
+{: .warning}
+
+> When using Alpine consumer, remember to add `x-data` attribute to the parent node.
+>
+> Only existance of `x-data` will trigger the Alpine consumer.
+
 As a convention only change the **data** field of the data context.
 
 <button

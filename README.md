@@ -7,6 +7,7 @@ https://jekyllrb.com/docs/
 
 bundle exec jekyll serve --livereload
 
+bundle exec jekyll serve --port 4008 --host 0.0.0.0
 
 ## install ruby
 apt install -y libyaml-dev libtool libssl-dev libffi-dev zlib1g-dev build-essential
@@ -31,3 +32,9 @@ be aware of the `baseurl`.
 
 
 ## yarn onchange ../pagehelper/**/*.ts -- bash release.sh
+
+## Dev
+
+```sh
+tmuxp load session.yml
+```
