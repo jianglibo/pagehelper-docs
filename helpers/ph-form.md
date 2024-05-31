@@ -253,3 +253,4 @@ the returned data. it locates the field by name.
 | ph-json              | submit all data as a json, If the method is GET, will apped to `body` query |                                                     |
 | ph-confirm           | confirm before submit. If passin a Json value, it will be treat as Swal     |                                                     |
 | ph-save-keybind      | ph-save-keybind="Ctrl+s", unchangable at the moment.                        |                                                     |
+| ph-fire-event        | fire a custom event with the data just received.                            | format: `name:target`, `foo:window`                 |

@@ -158,3 +158,4 @@ parent: Helpers List
 | ph-not-blob        | default submit File as the body to server.             | [fileupload](/blog/fileupload/)        |
 | ph-api-key         | add an apikey so that you will own the uploaded files. | [Get Apikey](/blog/get-upload-apikey/) |
 | ph-callback-remote | callback the url with the data just received.          | format: `method:url`, `post:/mycb`     |
+| ph-fire-event      | fire a custom event with the data just received.       | format: `name:target`, `foo:window`    |

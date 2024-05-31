@@ -31,6 +31,7 @@ Do ajax work. The table bellow is a mix of pjax and ajax calls. The browser's ba
 | ph-once       | will only invoke once. sometimes element with ph-auto-start need this.                             |                                      |
 | ph-config     | `ph-config="debounce::1000"`, if the element is an input                                           |                                      |
 | ph-target     | css selector to choose the targets, when server response with data,these targets will get noticed. | [data-consumers](/data-consumers/)   |
+| ph-fire-event | fire a custom event with the data just received.       | format: `name:target`, `foo:window`    |
 
 {: .note }
 
