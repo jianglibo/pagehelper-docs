@@ -133,6 +133,8 @@ it("should extract by selector", () => {
 
 ## : extract values from url
 
+support default value if follow the syntax: `ph-params="page:page!0!"`
+
 ```javascript
 it("should parse from query", () => {
   tutil.setpathname("/hello/55/x");
