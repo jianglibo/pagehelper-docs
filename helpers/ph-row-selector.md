@@ -94,6 +94,41 @@ And a `ph-selector-listener="fruit"` will be notified when selected id changes. 
 
 ## How to get the selected ids by JS
 
+In the intialize code assign the `pagehelper` and `Alpine` to window object.
+
+```html
+<script type="module" ph-not-execute-me>
+    // ph-js-go-here
+    import { PageHelper } from "/forever/pagehelper/ph-1f304ae18424cd583620180e9d47e84b.js";
+    // ph-js-go-here
+    const pageHelper = new PageHelper({
+        debug: true,
+        alpine_before_start: function (Alpine, Swal) {
+            window.Alpine = Alpine;
+            window.Swal = Swal;
+        },
+        script_exclude_patterns: [/email-decode.min.js/],
+        after_pjax_load: () => {
+        },
+    });
+    pageHelper.enrich();
+    window.ph = pageHelper;
+    console.log("Alpine store:", window.Alpine.store('selectors'))
+</script>
+```
+
+Now you are able to get the selectedIds by:
+
+```javascript
+const ids = window.Alpine.store('selectors').all.images.map(it => {
+    if (typeof it === 'string') {
+        return parseInt(it);
+    } else {
+        return it;
+    }
+});
+```
+
 Using `ph.getSelectedIds()` to get the selected ids for current url path.
 
 <div x-data class="code-example" markdown="1">
@@ -196,6 +231,7 @@ x-on:click.prevent="alert(JSON.stringify(ph.getSelectedIds(),null, 2))">
 
 </div>
 
+ <a href="#" ph-config="class::display,ontext::Hide Source,offtext::Show Source" ph-toggler="next!..div">Hide Source</a>
 ```html
 <div
   class="select-all"
@@ -352,8 +388,15 @@ type ToggleName = "disabled" | "visibility" | "display" | string;
 
 ## Delete item
 
-When delete button clicked, the Ajax reques will add a header named `Ph-Selector-Name`, when the server returns data, carry the value so that the row will be deleted.
+When server response body like bellow, if the the row has a `ph-row-delete-selector` attribute it will be deleted. based on the value of the `ph-row-delete-selector`:
 
+* Has attribute but no  value. --> just delete
+* Starts with `closest(`. --> will use closest css selector to choose the delete target.
+* Other value --> using `ele.querySelector || document.querySelector`
+
+
+
+ <a href="#" ph-config="class::display,ontext::Hide Source,offtext::Show Source" ph-toggler="next!..div">Hide Source</a>
 ```json
 {
   "data": [
@@ -372,8 +415,8 @@ When delete button clicked, the Ajax reques will add a header named `Ph-Selector
       "params": {
         "ids": [
           {
-            "id": 694,
-            "name": "todo"
+            "name": "images",
+            "id": 127
           }
         ]
       }
