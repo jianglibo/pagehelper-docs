@@ -7,6 +7,7 @@ has_children: false
 
 # Jsdoc for util methods.
 
+See readme in the pagehelper project.
 
 [jsdoc](/jsdoc/)
 
