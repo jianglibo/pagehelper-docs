@@ -117,6 +117,15 @@ parent: Helpers List
   action=""
   novalidate
 >
+  <div ph-progress style="display: inline-block;">
+    <template>
+      <ul>
+        {{#.}}
+        <li>{{uploaded}}/{{size}}</li>
+        {{/.}}
+      </ul>
+    </template>
+  </div>
   <input type="file" name="file" multiple ph-disable-on-working />
   <div
     ph-error-css="is-invalid"
@@ -159,3 +168,4 @@ parent: Helpers List
 | ph-api-key         | add an apikey so that you will own the uploaded files. | [Get Apikey](/blog/get-upload-apikey/) |
 | ph-callback-remote | callback the url with the data just received.          | format: `method:url`, `post:/mycb`     |
 | ph-fire-event      | fire a custom event with the data just received.       | format: `name:target`, `foo:window`    |
+| ph-disable-on-working   | disable the element which has this attribute when uploading | |
