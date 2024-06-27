@@ -17,5 +17,5 @@ windows:
       - shell_command:
           - yarn sr
       - shell_command:
-          - bundle exec jekyll serve --livereload
+          - bundle exec jekyll serve --port 4008 --livereload
       - pane
