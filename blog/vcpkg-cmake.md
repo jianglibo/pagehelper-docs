@@ -41,3 +41,20 @@ set(OpenCV_LIBS opencv_world)
 target_link_libraries( main PRIVATE ${OpenCV_LIBS} )
 message(STATUS "OpenCV_LIBS: ${OpenCV_LIBS}")
 ```
+
+## error: ‘std::filesystem’ has not been declared
+
+check the ```CMAKE_CXX_STANDARD``` value. ```std::filesystem``` is since c++ 17.
+
+```cmake
+set(CMAKE_CXX_STANDARD 17)
+```
+
+##  Could not find a package configuration file provided by "TIFF" with any of the following names: TIFFConfig.cmake,  tiff-config.cmake
+
+Add exactly like vcpkg prompted.
+```cmake
+find_package(TIFF REQUIRED)
+target_link_libraries(main PRIVATE TIFF::TIFF)
+```
+find_package(TIFF **CONFIG** REQUIRED) **will fail**.
